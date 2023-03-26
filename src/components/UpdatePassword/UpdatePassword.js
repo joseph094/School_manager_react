@@ -78,12 +78,12 @@ function UpdatePassword() {
       </div>
       <div className="vl"></div>
       <div className='right-block'>
-        <form onSubmit={handleSubmit}>
+        <form className='right-form' onSubmit={handleSubmit}>
             <div className='row'>
-              <p className='updateLabel'>Ancien mot de passe :</p>
               <input
                 id="old-password"
                 type="password"
+                placeholder='Old password'
                 className='passInput'
                 value={oldPassword}
                 onChange={(event) => setOldPassword(event.target.value)}
@@ -91,10 +91,10 @@ function UpdatePassword() {
               />
             </div>
             <div className='row'>
-              <p className='updateLabel' >Nouveau mot de passe :</p>
               <input
                 id="new-password"
                 type="password"
+                placeholder='New password'
                 className='passInput'
                 value={newPassword}
                 onChange={(event) => setNewPassword(event.target.value)}
@@ -102,12 +102,10 @@ function UpdatePassword() {
               />
             </div>
             <div className='row' >
-              <p className='updateLabel'>
-                Confirmer le nouveau mot de passe :
-              </p>
               <input
                 id="confirm-new-password"
                 type="password"
+                placeholder='Confirm password'
                 className='passInput'
                 value={confirmNewPassword}
                 onChange={(event) => setConfirmNewPassword(event.target.value)}
