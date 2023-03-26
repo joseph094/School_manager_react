@@ -1,11 +1,10 @@
 import "./App.css";
+import EtudiantADD from "./components/etudiant";
+import Signin from "./components/signin";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Hello World ! </h1>
-    </div>
-  );
+  return <EtudiantADD />;
+  //return <Signin />;
 }
 
 export default App;
