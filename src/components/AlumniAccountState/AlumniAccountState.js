@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import jwt_decode from 'jwt-decode';
-import {getEtudiantAlumni} from '../../api/api';
+import {getEtudiantAlumni, getToken} from '../../api/api';
 import styled from "styled-components";
 
 
@@ -9,7 +9,7 @@ import styled from "styled-components";
 function AlumniAccountState () {
   const [status, setStatus] = useState('');
   const [etudiantAlumni, setEtudiantAlumni] = useState(null);
-  const decodedToken = jwt_decode('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNDciLCJtZHAiOiIkYXJnb24yaWQkdj0xOSRtPTY1NTM2LHQ9MyxwPTQkRkZtdXdoQ1FaeU02QzVnWHNsMnIzQSR6STFIT3B6S3hydWpSeWlocVN2ZUlFS0RIaUhvMGdIT0V0aFN4QUpmVkprIiwicm9sZXMiOlsiZXR1ZGlhbnQiXSwiaWF0IjoxNjc5ODMyOTA4LCJleHAiOjE2Nzk4MzM4MDh9.KeoV2Zc9BDt3adBKBEXe81UKqjZOxb9fa6Bpdfi_ZA8');
+  const decodedToken = jwt_decode(getToken());
   
   function checkVerificationStatus() {
     if(etudiantAlumni != null){
