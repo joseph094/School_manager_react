@@ -71,7 +71,7 @@ function SignupAlumni() {
 
     try {
         const etudiant = {
-            EtudiantAluId: '187',
+            EtudiantAluId: (formData.login).toString(),
             dateObtentionDiplome: formData.dateObtentionDiplome,
             dateEmbauche: formData.dateEmbauche,
             nom : formData.nom,
@@ -79,18 +79,26 @@ function SignupAlumni() {
             dateNaissance : formData.dateNaissance,
             formation : formData.formation,
             poste : formData.poste,
-            login : formData.login,
+            login : Number(formData.login),
             mdp : formData.mdp,
             vacation : formData.vacation,
             ContratExpert : formData.contratExpert
         };
         console.log(etudiant);
         const response = await sighUpAlumni(etudiant);
-        
         console.log(response);
+        //redirect to success page
+        console.log('redirect');
+  
     } catch (error) {
-      console.log(error);
-      setFormError(error.response.data.message);
+      if ((error.response.data.message).includes("duplicate key")){
+        console.log('Login Already Existing');
+        setFormError('Login Already Existing');
+      }
+      else{
+        setFormError('Something Wrong Happened ... Try Again Later');
+      }
+      
     }
     };
 
@@ -100,6 +108,7 @@ function SignupAlumni() {
 
   return (
         <div className='signup-container'>
+           {formError && <div className='error'>{formError}</div>}
           <div className='title'>
             <h1>Sign Up Alumni</h1>
           </div>
@@ -237,7 +246,6 @@ function SignupAlumni() {
                   onBlur={handleBlur}
                   id="dateEmbauche"
                   name="dateEmbauche"
-                  required
                   placeholder="Date d'embauche"
                   onfocus="(this.type='date')"
                   value={formData.dateEmbacuhe}

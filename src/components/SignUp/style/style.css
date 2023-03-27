@@ -108,3 +108,26 @@
         font-size: 2vw;
     }
   }
+
+  .error {
+    position:absolute;
+    font-family: 'montserrat';
+    color : red;
+    background-color: #f1dcdc;
+    width: 30vw;
+    margin-top: -1%;
+    left: 34%;
+    text-align: center;
+    font-size: 1rem;
+    height: 18px;
+    padding: 10px;
+    border-radius: 10px;
+    animation: fadeIn ease-in .5s;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; 
+        margin-top: -50px;}
+    100% { opacity: 1;
+    margin-top:0 }
+  }
