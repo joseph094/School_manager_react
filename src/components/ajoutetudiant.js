@@ -3,6 +3,7 @@ import FormComponent from "./formContainer";
 import styled from "styled-components";
 import { Alert, Button, MenuItem, Select, TextField } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function EtudiantADD() {
   const [etudiantData, setEtudiantData] = useState({
@@ -17,6 +18,7 @@ export default function EtudiantADD() {
   });
   const [error, setError] = useState(false);
   const [disableButton, setDisableButton] = useState(false);
+  let navigate = useNavigate();
   const handleSubmit = () => {
     if (etudiantData.type == "Actuel") {
       axios
@@ -29,8 +31,12 @@ export default function EtudiantADD() {
           login: parseInt(etudiantData.cin),
           mdp: etudiantData.cin,
           email: etudiantData.email,
+          EtudiantActId: etudiantData.cin,
         })
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res);
+          navigate("/");
+        })
         .catch((err) => setError(true));
     } else {
       axios
@@ -41,8 +47,9 @@ export default function EtudiantADD() {
           login: parseInt(etudiantData.cin),
           mdp: etudiantData.cin,
           email: etudiantData.email,
+          EtudiantAluId: etudiantData.cin,
         })
-
+        .then(navigate("/"))
         .catch((err) => setError(true));
     }
   };
@@ -76,7 +83,7 @@ export default function EtudiantADD() {
     setError(false);
   }, [etudiantData]);
   return (
-    <FormComponent>
+    <FormComponent height="130%">
       <TitleLogin>Ajouter un Etudiant</TitleLogin>
       <InputName>Nom</InputName>
       <TextField

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
-function FormComponent({ children }) {
+export default function FormComponent(props) {
+  console.log(props);
   return (
     <>
       <Container>
@@ -13,20 +14,18 @@ function FormComponent({ children }) {
               height="200px"
             />
           </ImgContainer>
-          <Form>{children}</Form>
+          <Form>{props.children}</Form>
         </FormContainer>
       </Container>
     </>
   );
 }
 
-export default FormComponent;
-
 const Container = styled.div`
   background-color: #dfdfdf;
   position: absolute;
   width: 100%;
-  height: 130%;
+  height: ${(props) => (props.height == undefined ? "160%" : props.height)};
   display: flex;
   justify-content: center;
   align-items: center;

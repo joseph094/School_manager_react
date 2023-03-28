@@ -6,6 +6,8 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import { Navigate, Redirect, useNavigate } from "react-router-dom";
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -18,6 +20,8 @@ export default function Signin() {
   });
   const [error, setError] = useState(false);
   const [disableButton, setDisableButton] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
+  let navigate = useNavigate();
   const handleChange = (event) => {
     const { name, value } = event.target;
     setForm((prevState) => {
@@ -39,6 +43,7 @@ export default function Signin() {
         console.log(res);
         localStorage.setItem("token", res.data.access_token);
         setError(false);
+        setIsLogged(true);
       })
       .catch((er) => {
         console.log("ERROR CATCHED BY ME ", er);
@@ -56,7 +61,11 @@ export default function Signin() {
         setDisableButton(false);
       }
     }
-  }, [form]);
+    console.log(isLogged);
+    if (isLogged) {
+      return navigate("/ajouteretudiant");
+    }
+  }, [form, isLogged]);
   return (
     <FormComponent>
       <TitleLogin>Se connecter</TitleLogin>
