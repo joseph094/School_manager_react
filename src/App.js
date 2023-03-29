@@ -1,9 +1,6 @@
 import "./App.css";
-import EtudiantADD from "./components/ajoutetudiant";
-import EtudiantPUT from "./components/modifieretudiant";
-import Signin from "./components/signin";
-import GetEtudiant from "./components/getetudiant";
-import EtudiantCRUD from "./components/etudiantCRUD";
+
+import EtudiantCRUD from "./components/etudiant/etudiantCRUD";
 function App() {
   // return <EtudiantADD />;
   // return <Signin />;

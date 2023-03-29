@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import FormComponent from "./formContainer";
+import FormComponent from "../formContainer";
 import styled from "styled-components";
 import { Alert, Button, MenuItem, Select, TextField } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function EtudiantPUT() {
   const [etudiantData, setEtudiantData] = useState({
@@ -18,6 +19,8 @@ export default function EtudiantPUT() {
   const [error, setError] = useState(false);
   const [disableButton, setDisableButton] = useState(false);
   const [isNotFound, setIsNotFound] = useState(false);
+  const navigate = useNavigate();
+
   const handleSubmit = () => {
     if (etudiantData.type == "Actuel") {
       axios
@@ -71,6 +74,7 @@ export default function EtudiantPUT() {
           etudiantData.email = response.data.email;
           etudiantData.DOB = response.data.dateNaissance;
           setIsNotFound(false);
+          navigate("/");
         })
         .catch(setIsNotFound(true));
     } else if (etudiantData.type == "Actuel") {
@@ -84,6 +88,7 @@ export default function EtudiantPUT() {
           etudiantData.classe = response.data.Classe;
           etudiantData.niveau = response.data.niveau;
           setIsNotFound(false);
+          navigate("/");
         })
         .catch(setIsNotFound(true));
     } else {

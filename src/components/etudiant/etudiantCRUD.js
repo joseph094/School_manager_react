@@ -10,7 +10,7 @@ import {
 import GetEtudiant from "./getetudiant";
 import EtudiantPUT from "./modifieretudiant";
 import EtudiantADD from "./ajoutetudiant";
-import Signin from "./signin";
+import Signin from "../signin";
 
 export default function EtudiantCRUD() {
   return (

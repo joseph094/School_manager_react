@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import FormComponent from "./formContainer";
+import FormComponent from "../formContainer";
 import styled from "styled-components";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import { Alert, Button, MenuItem, Select, TextField } from "@mui/material";
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function GetEtudiant() {
   const [etudiantData, setEtudiantData] = useState({
