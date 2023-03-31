@@ -30,7 +30,7 @@
     flex-direction: column;
 }
 
-.row-1 {
+.row-1 , .row-2 {
     display: flex;
     justify-content: space-evenly;
 }
@@ -46,7 +46,7 @@
     font-family: "montserrat";
     padding-left: 10px;
     color: #000000d2;
-    font-size: 15px;
+    font-size: 0.8rem;
     margin-bottom: 3.5vw;
     width: 15.72vw;
     height: 2.5rem;
@@ -70,7 +70,6 @@
     height: 1.15em;
     border: 0.15em solid #4981f5;
     border-radius: 0.15em;
-    transform: translateY(-0.075em);
 }
 .redirect{
     font-family: "montserrat";
@@ -82,14 +81,26 @@
     .redirect {
         font-size: 1.3vw;
     }
-  }
+}
+
+@media only screen and (max-width: 350px) {
+    .row-2 {
+        flex-direction: column;
+        align-items: center;
+    }
+    .title{
+        font-size: 0.7rem;
+    }
+
+    
+}
 .bold{
     font-weight: 700;  
     cursor: pointer;
 }
 .btn{
     width: 30vw;
-    height: 35px;
+    height: 3em;
     border: none;
     border-radius: 12.92vw;
     box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.16);
@@ -109,21 +120,77 @@
     }
   }
 
-  .error {
-    position:absolute;
-    font-family: 'montserrat';
-    color : red;
-    background-color: #f1dcdc;
-    width: 30vw;
-    margin-top: -1%;
-    left: 34%;
-    text-align: center;
-    font-size: 1rem;
-    height: 18px;
-    padding: 10px;
-    border-radius: 10px;
-    animation: fadeIn ease-in .5s;
+@media only screen and (max-width: 700px) {
+.signup-container {
+    width: 75%;
+    flex-direction: column;
 }
+.row-1 {
+    flex-direction: column;
+    align-items: center;
+}
+.signInput{
+   
+    min-width: 90%;
+    height: 2rem;
+   
+}
+.boolean{
+    margin: 0;
+}
+.label{
+    font-size: 0.7rem;
+}
+.btn{
+    width: 90%;
+    height: 100%;
+    font-size: 1rem;
+}
+.redirect{
+    font-size: 0.7rem;
+}
+
+}
+
+.error {
+position:absolute;
+font-family: 'montserrat';
+color : red;
+background-color: #f1dcdc;
+width: 30vw;
+margin-top: -1%;
+left: 34%;
+text-align: center;
+font-size: 1rem;
+height: 18px;
+padding: 10px;
+border-radius: 10px;
+animation: fadeIn ease-in .5s;
+}
+
+@media only screen and (max-width: 350px) {
+   
+    .error{
+        font-size: 0.7rem;
+        width: 85%;
+        position: relative;
+        left: 0%;
+
+    }
+}
+
+@media only screen and (max-width: 750px) {
+   
+    .error{
+        font-size: 0.7rem;
+        width: 85%;
+        position: relative;
+        left: 5%;
+
+    }
+}
+    
+    
 
 @keyframes fadeIn {
     0% { opacity: 0; 

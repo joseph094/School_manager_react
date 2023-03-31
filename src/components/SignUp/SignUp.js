@@ -252,7 +252,7 @@ function SignupAlumni() {
                   onChange={handleChange}/>
                 </div>
 
-                <div className='row-1'>
+                <div className='row-2'>
                   <div className='boolean'>
                     <label className='label' htmlFor="vacation">
                     Vacation:
