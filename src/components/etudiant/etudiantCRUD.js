@@ -11,6 +11,8 @@ import GetEtudiant from "./getetudiant";
 import EtudiantPUT from "./modifieretudiant";
 import EtudiantADD from "./ajoutetudiant";
 import Signin from "../signin";
+import InsertStageEte from "./insertStageEte";
+import InsertPFE from "./insertPFE";
 
 export default function EtudiantCRUD() {
   return (
@@ -28,7 +30,13 @@ export default function EtudiantCRUD() {
               <Link to="/modifyetudiants">Modifier Etudiants </Link>
             </li>
             <li>
-              <Link to="/">Se connecter </Link>
+              <Link to="/signin">Se connecter </Link>
+            </li>
+            <li>
+              <Link to="/insertstage">Inserer Stage </Link>
+            </li>
+            <li>
+              <Link to="/insertpfe">Inserer PFE </Link>
             </li>
           </ul>
         </nav>
@@ -39,7 +47,9 @@ export default function EtudiantCRUD() {
           <Route path="/getetudiant" element={<GetEtudiant />} />
           <Route path="/modifyetudiants" element={<EtudiantPUT />} />
           <Route path="/ajouteretudiant" element={<EtudiantADD />} />
-          <Route path="/" element={<Signin />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/insertstage" element={<InsertStageEte />} />
+          <Route path="/insertpfe" element={<InsertPFE />} />
         </Routes>
       </div>
     </BrowserRouter>

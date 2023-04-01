@@ -9,7 +9,11 @@ export default function FormComponent(props) {
         <FormContainer>
           <ImgContainer>
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPER3IadGxhpKdcbTts8Oj4lgtZH0bxMjLMNhLvmaiWghkfS-2HQmFP2lRtFRLICRx4qk&usqp=CAU"
+              src={
+                props.imgLink == null
+                  ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPER3IadGxhpKdcbTts8Oj4lgtZH0bxMjLMNhLvmaiWghkfS-2HQmFP2lRtFRLICRx4qk&usqp=CAU"
+                  : props.imgLink
+              }
               width="200px"
               height="200px"
             />
