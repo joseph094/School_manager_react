@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import AlumniAccountState from "./components/AlumniAccountState/AlumniAccountState";
+import SignupAlumni from "./components/SignUp/SignUp";
 import App from "./App";
 import { BrowserRouter } from 'react-router-dom';
 /*
