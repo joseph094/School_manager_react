@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import jwt_decode from 'jwt-decode';
-import {getEtudiantAlumni} from '../../api/api';
+import {getEtudiantAlumni, getToken} from '../../api/api';
 import styled from "styled-components";
 
 
@@ -9,7 +9,7 @@ import styled from "styled-components";
 function AlumniAccountState () {
   const [status, setStatus] = useState('');
   const [etudiantAlumni, setEtudiantAlumni] = useState(null);
-  const decodedToken = jwt_decode('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNDciLCJtZHAiOiIkYXJnb24yaWQkdj0xOSRtPTY1NTM2LHQ9MyxwPTQkRkZtdXdoQ1FaeU02QzVnWHNsMnIzQSR6STFIT3B6S3hydWpSeWlocVN2ZUlFS0RIaUhvMGdIT0V0aFN4QUpmVkprIiwicm9sZXMiOlsiZXR1ZGlhbnQiXSwiaWF0IjoxNjc5ODMyOTA4LCJleHAiOjE2Nzk4MzM4MDh9.KeoV2Zc9BDt3adBKBEXe81UKqjZOxb9fa6Bpdfi_ZA8');
+  const decodedToken = jwt_decode(getToken());
   
   function checkVerificationStatus() {
     if(etudiantAlumni != null){
@@ -38,7 +38,7 @@ function AlumniAccountState () {
         <Container>
         <ProfilePicture src=".\profile.png"></ProfilePicture>
         <NameRow>
-          <Prenom>{etudiantAlumni.prenom}</Prenom><Nom>{etudiantAlumni.nom}</Nom>
+          <Prenom>{etudiantAlumni.prenom}<Nom> {etudiantAlumni.nom}</Nom></Prenom>
         </NameRow>
         <InformationRow>
           <Title>Email</Title><Value>{etudiantAlumni.email}</Value>
@@ -70,33 +70,46 @@ function AlumniAccountState () {
 
 export default AlumniAccountState;
 
-const Nom= styled.p`
+const Nom= styled.span`
 font-family: 'montserrat';
 font-weight: 800;
 color: #4981f5;
-font-size: 3.5vw;
+font-size: 3rem;
 width:fit-content;
 margin: 0;
+@media (max-width: 460px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const Prenom= styled.p`
 font-family: 'montserrat';
 font-weight: 300;
 color: black;
-font-size: 2.5vw;
+font-size: 2.5rem;
 width:fit-content;
 margin: 0;
+@media (max-width: 460px) {
+    font-size: 1.6rem;
+  }
 `;
 
 const Title= styled.p`
 font-family: 'montserrat';
 font-weight: 600;
 color: black;
-font-size: 1.5vw;
+font-size: 1.5rem;
 width:fit-content;
 width:30%;
 margin:0;
 margin-bottom:20px;
+@media (max-width: 768px) {
+    margin:0;
+    width:100%;
+}
+@media (max-width: 460px) {
+    font-size: 1.2rem;
+  }
 
 `;
 
@@ -104,9 +117,15 @@ const Value= styled.p`
 font-family: 'montserrat';
 font-weight: 300;
 color: black;
-font-size: 1.4vw;
+font-size: 1.4rem;
 width:30%;
 margin: 0;
+@media (max-width: 768px) {
+    width:100%;
+  }
+@media (max-width: 460px) {
+  font-size: 1rem;
+}
 `;
 
 const Container = styled.div`
@@ -141,18 +160,30 @@ const InformationRow = styled.div`
   text-align:left;
   width: 100%;
   justify-content:space-evenly;
+
+  @media (max-width: 768px) {
+    flex-direction:column;
+    text-align:center;
+    margin-bottom:2em;
+  }
 `
 
 const AccountStatus= styled.p`
 font-family: 'montserrat';
 font-weight: 300;
 color: black;
-font-size: 1.7vw;
+font-size: 1.7rem;
 width:100%;
 text-align: center;
 margin: 0;
 align-self: center;
 margin-top: 3%;
+@media (max-width: 768px) {
+  font-size: 1.4rem;
+  }
+@media (max-width: 460px) {
+font-size: 1rem;
+}
 `;
 
 const Status= styled.span`
@@ -167,6 +198,10 @@ const ProfilePicture = styled.img`
  width: 15%;
  height: 15%;
  margin-top: -10%;
+@media (max-width: 768px) {
+  width: 35%;
+  margin-top: -15%;
+}
 `
 const Loading= styled.p`
 font-family: 'montserrat';
@@ -188,4 +223,5 @@ animation: 2s breath infinite;
     opacity: 0;
   }
 }
+
 `;
