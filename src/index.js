@@ -4,14 +4,21 @@ import "./index.css";
 import AlumniAccountState from "./components/AlumniAccountState/AlumniAccountState";
 import App from "./App";
 import { BrowserRouter } from 'react-router-dom';
-
+/*
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 
   <React.StrictMode>
     <AlumniAccountState />
   </React.StrictMode>
- /* <BrowserRouter>
+  <BrowserRouter>
     <App />
   </BrowserRouter>*/
+
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );
