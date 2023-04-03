@@ -7,17 +7,21 @@ export default function FormComponent(props) {
     <>
       <Container>
         <FormContainer>
-          <ImgContainer>
-            <img
-              src={
-                props.imgLink == null
-                  ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPER3IadGxhpKdcbTts8Oj4lgtZH0bxMjLMNhLvmaiWghkfS-2HQmFP2lRtFRLICRx4qk&usqp=CAU"
-                  : props.imgLink
-              }
-              width="200px"
-              height="200px"
-            />
-          </ImgContainer>
+          {props.display == false
+            ? false
+            : true && (
+                <ImgContainer>
+                  <img
+                    src={
+                      props.imgLink == null
+                        ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPER3IadGxhpKdcbTts8Oj4lgtZH0bxMjLMNhLvmaiWghkfS-2HQmFP2lRtFRLICRx4qk&usqp=CAU"
+                        : props.imgLink
+                    }
+                    width="200px"
+                    height="200px"
+                  />
+                </ImgContainer>
+              )}
           <Form>{props.children}</Form>
         </FormContainer>
       </Container>
@@ -41,7 +45,7 @@ const Container = styled.div`
 
 const FormContainer = styled.div`
   background-color: white;
-  width : 55%;
+  width : ${(props) => (props.display == false ? "100%" : "55%")};
   
   box-shadow:
   2.8px 2.8px 2.2px rgba(0, 0, 0, 0.008),
