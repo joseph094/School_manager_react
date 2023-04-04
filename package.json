@@ -5,7 +5,6 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-<<<<<<< HEAD
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.14",
     "@mui/x-date-pickers": "^6.0.3",
@@ -14,7 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.3.4",
     "dayjs": "^1.11.7",
-=======
+
     "@emotion/unitless": "^0.8.0",
     "@mui/material": "^5.11.14",
     "@testing-library/jest-dom": "^5.16.5",
@@ -23,16 +22,12 @@
     "add": "^2.0.6",
     "axios": "^1.3.4",
     "bootstrap": "^5.2.3",
->>>>>>> 38799e68268cda1c8397d02660dc018b4fb7d8ed
     "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
     "react-router-dom": "^6.9.0",
-=======
     "react-router-dom": "^6.10.0",
->>>>>>> 38799e68268cda1c8397d02660dc018b4fb7d8ed
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.9",
     "web-vitals": "^2.1.4"
