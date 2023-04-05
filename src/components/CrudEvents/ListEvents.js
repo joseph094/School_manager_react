@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Button, Table } from "react-bootstrap";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import './Events.css'
@@ -48,10 +47,10 @@ function ListEvents() {
                     {i.description}
                 </td>
                 <td className="colonne">
-                    <Button onClick={() => navigate(`/Events/${i.idEvenement}`, { replace: true })} >edit</Button>
+                    <button className="list_btn" onClick={() => navigate(`/Events/${i.idEvenement}`, { replace: true })} >edit</button>
                 </td>
                 <td className="colonne">
-                    <Button onClick={() => DeleteEvent(i.idEvenement)} >delete</Button>
+                    <button className="list_btn" onClick={() => DeleteEvent(i.idEvenement)} >delete</button>
                 </td>
             </tr>
         )

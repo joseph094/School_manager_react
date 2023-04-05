@@ -45,17 +45,17 @@ function ListEnseignants() {
         <td className="colonne">{i.login}</td>
         <td className="colonne">{i.mdp}</td>
         <td className="colonne">{i.email}</td>
-        <td>
-          <Button
+        <td className="colonne">
+          <button className="list_btn"
             onClick={() =>
               navigate(`/enseignants/${i.idEnseignant}`, { replace: true })
             }
           >
             edit
-          </Button>
+          </button>
         </td>
-        <td>
-          <Button onClick={() => DeleteEvent(i.idEnseignant)}>delete</Button>
+        <td className="colonne">
+          <button className="list_btn" onClick={() => DeleteEvent(i.idEnseignant)}>delete</button>
         </td>
       </tr>
     );
@@ -63,7 +63,7 @@ function ListEnseignants() {
   return (
     <Fragment>
       <div className="container">
-        <h2>La Liste des Enseignants </h2>
+        <h2 className="titre">La Liste des Enseignants </h2>
         <div style={{ margin: "4rem", marginTop: "3rem" }}>
           <table className="custom-table" striped bordered hover size="sm">
             <thead>
@@ -74,8 +74,13 @@ function ListEnseignants() {
                 <th className="table_head">Login</th>
                 <th className="table_head">Mot De Passe</th>
                 <th className="table_head">Email</th>
-                <th className="table_head"></th>
-                <th className="table_head" ></th>
+
+                <th className="table_head">
+
+                </th>
+                <th className="table_head">
+
+                </th>
               </tr>
             </thead>
             <tbody>{arr}</tbody>
