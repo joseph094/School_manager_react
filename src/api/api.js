@@ -1,11 +1,17 @@
 import axios from 'axios';
+
+export const getToken = () => {
+  return localStorage.getItem('token');
+}
+
 const api = axios.create({
   baseURL: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwibWRwIjoiJGFyZ29uMmlkJHY9MTkkbT02NTUzNix0PTMscD00JHV6cXh6R2Jva2RYclVseGJlR2l1T0EkUXJJVUNtci9wVmNZTmU0Q1JyZTNTM2RyTnBpclNIdXFiNm9SVUhIUmdDdyIsInJvbGVzIjpbImFkbWluIl0sImlhdCI6MTY3OTc1OTcwMSwiZXhwIjoxNjc5NzYwNjAxfQ.d9fsJYMNE55FmSKDCPGTV2oYa3FHpJx7E-qqDYcRTjs`,
+    'Authorization': `Bearer ${getToken()}`,
   },
 });
+
 
 export const changerPassEnseignant = async (id,role, oldPassword, newPassword) => {
   const myObj = {

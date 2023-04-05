@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import jwt_decode from 'jwt-decode';
-import {changerPassEnseignant, changerPassAdmin, changerPassResponsable, changerPassEtudiant} from '../../api/api';
+import {changerPassEnseignant, changerPassAdmin, changerPassResponsable, changerPassEtudiant, getToken} from '../../api/api';
 import "./style/style.css";
 
 function UpdatePassword() {
@@ -9,7 +9,8 @@ function UpdatePassword() {
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const decodedToken = jwt_decode('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwibWRwIjoiJGFyZ29uMmlkJHY9MTkkbT02NTUzNix0PTMscD00JHV6cXh6R2Jva2RYclVseGJlR2l1T0EkUXJJVUNtci9wVmNZTmU0Q1JyZTNTM2RyTnBpclNIdXFiNm9SVUhIUmdDdyIsInJvbGVzIjpbImFkbWluIl0sImlhdCI6MTY3OTc1OTcwMSwiZXhwIjoxNjc5NzYwNjAxfQ.d9fsJYMNE55FmSKDCPGTV2oYa3FHpJx7E-qqDYcRTjs');
+  
+  const decodedToken = jwt_decode(getToken());
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (newPassword !== confirmNewPassword) {
