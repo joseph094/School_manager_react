@@ -13,7 +13,7 @@ export const changerPassEnseignant = async (id,role, oldPassword, newPassword) =
     oldmdp: oldPassword,
     mdp: newPassword
   };
-  const response = await api.put(`/${role}`, myObj);
+  const response = await api.put(`/${role}/changepass`, myObj);
   return response.data;
 };
 
