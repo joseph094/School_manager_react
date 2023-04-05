@@ -11,6 +11,7 @@ function UpdatePassword() {
 
   const decodedToken = jwt_decode(getToken());
   const handleSubmit = async (event) => {
+    console.log(decodedToken.sub);
     event.preventDefault();
     if (newPassword !== confirmNewPassword) {
       setErrorMessage('Les mots de passe ne correspondent pas.');
