@@ -17,8 +17,8 @@ export default function FormComponent(props) {
                         ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPER3IadGxhpKdcbTts8Oj4lgtZH0bxMjLMNhLvmaiWghkfS-2HQmFP2lRtFRLICRx4qk&usqp=CAU"
                         : props.imgLink
                     }
-                    width="200px"
-                    height="200px"
+                    width="300px"
+                    height="250px"
                   />
                 </ImgContainer>
               )}
@@ -33,7 +33,7 @@ const Container = styled.div`
   background-color: #dfdfdf;
   position: absolute;
   width: 100%;
-  height: ${(props) => (props.height == undefined ? "160%" : props.height)};
+  height: ${(props) => (props.height == undefined ? "100%" : props.height)};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -86,10 +86,6 @@ const ImgContainer = styled.div`
   margin-top: 22%;
   margin-left: 10%;
   @media (max-width: 768px) {
-    margin: 0px;
-    margin-left: 3.5em;
-    flex-direction: column;
-    width: 2em;
-    height: 1em;
+    display: none;
   }
 `;

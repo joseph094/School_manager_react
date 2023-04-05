@@ -22,7 +22,7 @@ export default function GetallEtudiants() {
     <Container>
       <TableContainer component={Paper}>
         <FormContainer>
-          <Table sx={{ minWidth: 750 }} aria-label="simple table">
+          <Table sx={{ minWidth: 350 }} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell>Nom</TableCell>
@@ -72,14 +72,7 @@ const FormContainer = styled.div`
   background-color: white;
   width : 90%;
   
-  box-shadow:
-  2.8px 2.8px 2.2px rgba(0, 0, 0, 0.008),
-  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.012),
-  12.5px 12.5px 10px rgba(0, 0, 0, 0.015),
-  22.3px 22.3px 17.9px rgba(0, 0, 0, 0.018),
-  41.8px 41.8px 33.4px rgba(0, 0, 0, 0.022),
-  100px 100px 80px rgba(0, 0, 0, 0.03)
-;
+
 
  margin-left:3em;
 ;

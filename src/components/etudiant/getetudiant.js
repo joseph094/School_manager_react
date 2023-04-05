@@ -21,6 +21,7 @@ export default function GetEtudiant() {
 
   const [isNotFound, setIsNotFound] = useState(false);
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
   const handleChange = (event) => {
     const { name, value } = event.target;
     setEtudiantData((prevState) => {
@@ -34,7 +35,10 @@ export default function GetEtudiant() {
     if (etudiantData.type == "Alumni") {
       axios
         .delete("http://localhost:3000/etudiant-alumni/" + etudiantData.cin)
-        .then(setError(false))
+        .then(() => {
+          setError(false);
+          navigate("/");
+        })
         .catch((err) => {
           setError(true);
           console.log(err);
@@ -42,7 +46,10 @@ export default function GetEtudiant() {
     } else if (etudiantData.type == "Actuel") {
       axios
         .delete("http://localhost:3000/etudiant-actuel/" + etudiantData.cin)
-        .then(setError(false))
+        .then(() => {
+          setError(false);
+          navigate("/");
+        })
         .catch((err) => {
           setError(true);
           console.log(err);

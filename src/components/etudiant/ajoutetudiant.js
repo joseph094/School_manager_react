@@ -83,7 +83,7 @@ export default function EtudiantADD() {
     setError(false);
   }, [etudiantData]);
   return (
-    <FormComponent height="130%">
+    <FormComponent height="160%">
       <TitleLogin>Ajouter un Etudiant</TitleLogin>
       <InputName>Nom</InputName>
       <TextField

@@ -35,7 +35,10 @@ export default function EtudiantPUT() {
           email: etudiantData.email,
           EtudiantActId: etudiantData.cin,
         })
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res);
+          navigate("/");
+        })
         .catch((err) => setError(true));
     } else {
       axios
@@ -48,7 +51,7 @@ export default function EtudiantPUT() {
           email: etudiantData.email,
           EtudiantAluId: etudiantData.cin,
         })
-
+        .then(() => navigate("/"))
         .catch((err) => setError(true));
     }
   };
@@ -74,7 +77,6 @@ export default function EtudiantPUT() {
           etudiantData.email = response.data.email;
           etudiantData.DOB = response.data.dateNaissance;
           setIsNotFound(false);
-          navigate("/");
         })
         .catch(setIsNotFound(true));
     } else if (etudiantData.type == "Actuel") {
@@ -88,7 +90,6 @@ export default function EtudiantPUT() {
           etudiantData.classe = response.data.Classe;
           etudiantData.niveau = response.data.niveau;
           setIsNotFound(false);
-          navigate("/");
         })
         .catch(setIsNotFound(true));
     } else {
@@ -100,8 +101,6 @@ export default function EtudiantPUT() {
     if (
       etudiantData.type == "" ||
       etudiantData.DOB == "" ||
-      etudiantData.niveau == "" ||
-      etudiantData.classe == "" ||
       etudiantData.email == "" ||
       etudiantData.cin == 0
     ) {
