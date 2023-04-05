@@ -36,22 +36,22 @@ function ListEvents() {
     const arr = data.map((i) => {
         return (
             <tr>
-                <td>
+                <td className="colonne">
                     {i.idEvenement}
                 </td>
-                <td>
+                <td className="colonne">
                     {i.nom}
                 </td>
-                <td>
+                <td className="colonne">
                     {i.dateEvenement}
                 </td>
-                <td>
+                <td className="colonne">
                     {i.description}
                 </td>
-                <td>
+                <td className="colonne">
                     <Button onClick={() => navigate(`/Events/${i.idEvenement}`, { replace: true })} >edit</Button>
                 </td>
-                <td>
+                <td className="colonne">
                     <Button onClick={() => DeleteEvent(i.idEvenement)} >delete</Button>
                 </td>
             </tr>
@@ -61,27 +61,27 @@ function ListEvents() {
     return (
         <Fragment>
             <div className="container">
-                <h2 >La Liste des Evenements </h2>
+                <h2 className="list_title" >La Liste des Evenements </h2>
                 <div style={{ margin: "4rem", marginTop: "3rem" }}>
                     <table className="custom-table" striped bordered hover size="sm">
                         <thead>
                             <tr>
-                                <th>
+                                <th className="table_head">
                                     IdEvent
                                 </th>
-                                <th>
+                                <th className="table_head">
                                     Even Name
                                 </th>
-                                <th>
+                                <th className="table_head">
                                     Date
                                 </th>
-                                <th>
+                                <th className="table_head">
                                     Description
                                 </th>
-                                <th>
+                                <th className="table_head">
 
                                 </th>
-                                <th>
+                                <th className="table_head">
 
                                 </th>
                             </tr>

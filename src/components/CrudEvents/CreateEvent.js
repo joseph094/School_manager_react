@@ -25,7 +25,7 @@ function CreateEvent() {
     return (<div className="contact1">
         <div className="container-contact1">
             <div className="contact1-pic js-tilt" data-tilt>
-                <img src="/event.png" alt="IMG" />
+                <img src="/event.png" alt="IMG"/>
             </div>
 
             <div className="contact1-form">

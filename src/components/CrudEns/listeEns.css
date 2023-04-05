@@ -1,12 +1,12 @@
-table {
+.custom-table {
     border-collapse: collapse;
     border-radius: 1em;
     overflow: hidden;
     width: 100%;
 }
 
-th,
-td {
+.table_head,
+.colonne {
     padding: 1em;
     background: white;
     border-bottom: 4px solid #d3d0d0;
@@ -24,18 +24,18 @@ body {
 
 @media only screen and (max-width: 768px) {
     /* display the table as a block */
-    table {
+    .custom_table {
       display: block;
       overflow-x: auto;
     }
   
     /* hide the table header */
-    table thead {
+    .custom-table thead {
       display: flex;
     }
     
     /* display each table row as a block */
-    table tbody {
+    .custom-table tbody {
       display: block;
       width: auto;
       position: relative;
@@ -43,7 +43,7 @@ body {
     }
     
     /* display each cell as a block with a label */
-    td:before {
+    .colonne:before {
       content: attr(data-label);
       font-weight: bold;
       display: inline-block;
