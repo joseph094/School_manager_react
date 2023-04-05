@@ -16,6 +16,8 @@ import InsertPFE from "./components/etudiant/insertPFE";
 import GetallEtudiants from "./components/etudiant/getallEtudiants";
 import EtudiantADD from "./components/etudiant/ajoutetudiant";
 import EtudiantPUT from "./components/etudiant/modifieretudiant";
+import UpdatePassword from "./components/UpdatePassword/UpdatePassword";
+import AlumniAccountState from "./components/AlumniAccountState/AlumniAccountState";
 function App() {
   return (
     <Routes>
@@ -30,6 +32,8 @@ function App() {
       <Route path="/modifyetudiants" element={<EtudiantPUT />} />
       <Route path="/ajouteretudiant" element={<EtudiantADD />} />
       <Route path="/signin" element={<Signin />} />
+      <Route path="/alumnistatus" element={<AlumniAccountState />} />
+      <Route path="/passreset" element={<UpdatePassword />} />
       <Route path="/insertstage" element={<InsertStageEte />} />
       <Route path="/insertpfe" element={<InsertPFE />} />
       <Route path="/getalletudiant" element={<GetallEtudiants />} />
