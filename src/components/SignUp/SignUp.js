@@ -73,7 +73,7 @@ function SignupAlumni() {
         const etudiant = {
             EtudiantAluId: (formData.login).toString(),
             dateObtentionDiplome: formData.dateObtentionDiplome,
-            dateEmbauche: formData.dateEmbauche,
+            dateEmbacuhe: formData.dateEmbacuhe,
             nom : formData.nom,
             prenom : formData.prenom,
             dateNaissance : formData.dateNaissance,
