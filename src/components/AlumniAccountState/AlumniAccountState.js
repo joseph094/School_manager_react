@@ -56,7 +56,7 @@ function AlumniAccountState () {
           <Title>Date Obtention Diplome</Title><Value>{etudiantAlumni.dateObtentionDiplome}</Value>
         </InformationRow>
         <InformationRow>
-          <Title>Date Embauche</Title><Value>{etudiantAlumni.dateEmbauche}</Value>
+          <Title>Date Embauche</Title><Value>{etudiantAlumni.dateEmbacuhe}</Value>
         </InformationRow>
         <AccountStatus>Votre Compte Est <Status status={status}>{status}</Status></AccountStatus>
       </Container>
