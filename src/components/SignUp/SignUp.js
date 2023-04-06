@@ -82,7 +82,8 @@ function SignupAlumni() {
             login : Number(formData.login),
             mdp : formData.mdp,
             vacation : formData.vacation,
-            ContratExpert : formData.contratExpert
+            ContratExpert : formData.contratExpert,
+            verified : false
         };
         console.log(etudiant);
         const response = await sighUpAlumni(etudiant);
