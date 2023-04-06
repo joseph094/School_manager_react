@@ -80,6 +80,7 @@ function SignupAlumni() {
             formation : formData.formation,
             poste : formData.poste,
             login : Number(formData.login),
+            email : formData.email,
             mdp : formData.mdp,
             vacation : formData.vacation,
             ContratExpert : formData.contratExpert,
