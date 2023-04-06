@@ -13,7 +13,7 @@ function SignupAlumni() {
     mdp: "",
     confirmPassword: "",
     dateObtentionDiplome: "",
-    dateEmbauche: "",
+    dateEmbacuhe: "",
     vacation: false,
     contratExpert: false,
   });
@@ -30,7 +30,7 @@ function SignupAlumni() {
         break;
       case 'dateObtentionDiplome' : setInputDateObtType("date");
         break;
-      case 'dateEmbauche' : setInputDateEmbType("date");
+      case 'dateEmbacuhe' : setInputDateEmbType("date");
         break;
       default : break;
 
@@ -44,7 +44,7 @@ function SignupAlumni() {
         break;
       case 'dateObtentionDiplome' : if (!e.target.value) { setInputDateObtType("text");}
         break;
-      case 'dateEmbauche' : if (!e.target.value) { setInputDateEmbType("text");}
+      case 'dateEmbacuhe' : if (!e.target.value) { setInputDateEmbType("text");}
         break;
       default : break;
     }
@@ -246,10 +246,9 @@ function SignupAlumni() {
                   type={inputDateEmbType}
                   onFocus={handleFocus}
                   onBlur={handleBlur}
-                  id="dateEmbauche"
-                  name="dateEmbauche"
+                  id="dateEmbacuhe"
+                  name="dateEmbacuhe"
                   placeholder="Date d'embauche"
-                  onfocus="(this.type='date')"
                   value={formData.dateEmbacuhe}
                   onChange={handleChange}/>
                 </div>
