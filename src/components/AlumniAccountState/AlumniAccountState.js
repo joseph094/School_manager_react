@@ -70,7 +70,7 @@ function AlumniAccountState () {
 
 export default AlumniAccountState;
 
-const Nom= styled.span`
+export const Nom= styled.span`
 font-family: 'montserrat';
 font-weight: 800;
 color: #4981f5;
@@ -82,7 +82,7 @@ margin: 0;
   }
 `;
 
-const Prenom= styled.p`
+export const Prenom= styled.p`
 font-family: 'montserrat';
 font-weight: 300;
 color: black;
@@ -94,7 +94,7 @@ margin: 0;
   }
 `;
 
-const Title= styled.p`
+export const Title= styled.p`
 font-family: 'montserrat';
 font-weight: 600;
 color: black;
@@ -113,7 +113,7 @@ margin-bottom:20px;
 
 `;
 
-const Value= styled.p`
+export const Value= styled.p`
 font-family: 'montserrat';
 font-weight: 300;
 color: black;
@@ -128,7 +128,7 @@ margin: 0;
 }
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 75%; 
@@ -144,7 +144,7 @@ const Container = styled.div`
   padding-block: 20px;
 `
 
-const NameRow = styled.div`
+export const NameRow = styled.div`
   display: flex;
   flex-direction: row;
   align-items:center;
@@ -154,7 +154,7 @@ const NameRow = styled.div`
   
 `
 
-const InformationRow = styled.div`
+export const InformationRow = styled.div`
   display: flex;
   flex-direction: row;
   text-align:left;
@@ -168,7 +168,7 @@ const InformationRow = styled.div`
   }
 `
 
-const AccountStatus= styled.p`
+export const AccountStatus= styled.p`
 font-family: 'montserrat';
 font-weight: 300;
 color: black;
@@ -186,14 +186,14 @@ font-size: 1rem;
 }
 `;
 
-const Status= styled.span`
+export const Status= styled.span`
 font-family: 'montserrat';
 font-weight: 800;
 color: ${({ status }) => (status === 'Non Validé' ? 'red' : 'green')};
 
 `;
 
-const ProfilePicture = styled.img`
+export const ProfilePicture = styled.img`
  align-self: center;
  width: 15%;
  height: 15%;
@@ -203,7 +203,7 @@ const ProfilePicture = styled.img`
   margin-top: -15%;
 }
 `
-const Loading= styled.p`
+export const Loading= styled.p`
 font-family: 'montserrat';
 font-weight: 300;
 color: black;
