@@ -63,6 +63,16 @@ export const getEtudiantAlumni = async (id) => {
   return response.data;
 }
 
+export const getUnverifiedAlumniAccounts = async () => {
+  const response = await api.get('/etudiant-alumni/all');
+  return response.data;
+}
+
+export const ValiderCompteAlu = async (id) => {
+  
+  const response = await api.put(`/etudiant-alumni/valider/${id}`);
+  return response.data;
+};
 
 
 
