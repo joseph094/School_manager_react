@@ -66,6 +66,7 @@ const Container = styled.div`
 const LeftSide = styled.div`
 transition: all ease-in .3s;
 height:100vh;
+z-index:99;
 `;
 
 const RightSide = styled.div`

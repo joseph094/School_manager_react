@@ -85,7 +85,7 @@ export default function SideBar() {
 }
 const Container = styled.div`   
     height:100vh;
-    z-index:999 ;
+    z-index:99;
     @media (max-width: 730px) {
         width:100%;
         height:130%;
