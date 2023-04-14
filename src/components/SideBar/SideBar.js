@@ -11,7 +11,7 @@ export default function SideBar() {
 
     const navigate = useNavigate();
     const toggle = ()=> setIsOpen(!isOpen);
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const decodedToken = jwt_decode(getToken());
     const [user, setUser] = useState(null);
 
