@@ -74,6 +74,41 @@ export const ValiderCompteAlu = async (id) => {
   return response.data;
 };
 
+export const GetUser = async (id,role) => {
+  switch (role){
+    case 'enseignant' :   
+    try{
+      const response = await api.get(`/enseignant/${id}`)
+      return response.data;
+    }catch(error){
+      console.error(error.response.data.message);
+    };
+      break;
+    case 'responsable' : try{ 
+      const response = await api.get(`/responsable/${id}`)
+      return response.data;
+    }catch(error){
+      console.error(error.response.data.message);
+    };
+      break;
+    case 'admin' :  try{
+      const response = await api.get(`/admin/${id}`)
+      return response.data;
+    }catch(error){
+      console.error(error.response.data.message);
+    };
+      break;
+    case 'etudiant' :  try{
+      const response = await api.get(`/etudiant/${id}`)
+      return response.data;
+    }catch(error){
+      console.error(error.response.data.message);
+    };
+      break;
+  }
+  
+  
+};
 
 
 
