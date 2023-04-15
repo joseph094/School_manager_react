@@ -55,9 +55,7 @@ export default function Getpfe() {
 }
 const Container = styled.div`
   background-color: #dfdfdf;
-  position: absolute;
   width: auto;
-  height: auto;
   display: flex;
   jusitfy-content : center;
     @media (max-width: 768px) {
@@ -67,7 +65,6 @@ const Container = styled.div`
   }
 `;
 const FormContainer = styled.div`
-  background-color: white;
   width : 90%;
   height : auto;
 

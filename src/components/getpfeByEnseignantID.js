@@ -7,19 +7,23 @@ import {
   TableRow,
 } from "@mui/material";
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import styled from "styled-components";
 
-export default function Getpfe() {
+export default function GetpfeByEnseignantId() {
   const [data, setData] = useState([""]);
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-    axios.get("http://localhost:3000/pfe").then((res) => {
-      setData(res.data);
-      console.log(res.data);
-    });
+    const user = jwtDecode(token);
+    axios
+      .get("http://localhost:3000/pfe/enseignant/" + user.sub)
+      .then((res) => {
+        setData(res.data);
+        console.log(res.data);
+      });
   }, []);
   return (
     <Container>
@@ -37,7 +41,7 @@ export default function Getpfe() {
             <TableBody>
               {data.map((row) => (
                 <TableRow
-                  key={row.idpfe}
+                  key={row.idEnseignant}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell align="right">{row.sujet}</TableCell>

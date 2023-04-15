@@ -21,6 +21,7 @@ import AlumniAccountState from "./components/AlumniAccountState/AlumniAccountSta
 import GetUnverifiedAlumniAccounts from "./components/ValidateAlumniAccount/GetUnverifiedAlumniAccounts";
 import VerifyAlumniAccount from "./components/ValidateAlumniAccount/VerifyAlumniAccount";
 import Getpfe from "./components/getpfe";
+import GetpfeByEnseignantId from "./components/getpfeByEnseignantID";
 function App() {
   return (
     <Routes>
@@ -43,6 +44,7 @@ function App() {
       <Route path="/insertpfe" element={<InsertPFE />} />
       <Route path="/getalletudiant" element={<GetallEtudiants />} />
       <Route path="/getpfe" element={<Getpfe />} />
+      <Route path="/getpfeenseignant" element={<GetpfeByEnseignantId />} />
     </Routes>
   );
 }

@@ -41,7 +41,7 @@ export default function GetallEtudiants() {
                   <TableCell component="th" scope="row">
                     {row.nom}
                   </TableCell>
-                  <TableCell align="right">{row.nom}</TableCell>
+                  <TableCell align="right">{row.prenom}</TableCell>
                   <TableCell align="right">{row.formation}</TableCell>
                   <TableCell align="right">{row.dateNaissance}</TableCell>
                   <TableCell align="right">{row.email}</TableCell>
@@ -58,8 +58,7 @@ export default function GetallEtudiants() {
 const Container = styled.div`
   background-color: #dfdfdf;
   position: absolute;
-  width: 100%;
-  height: ${(props) => (props.height == undefined ? "160%" : props.height)};
+  width: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
