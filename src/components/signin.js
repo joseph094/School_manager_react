@@ -86,7 +86,9 @@ export default function Signin() {
         name="motdepasse"
         onChange={handleChange}
         value={form.motdepasse}
+        type="password"
       />
+
       <InputName>Type de Profil</InputName>
       <Select
         labelId="demo-simple-select-label"

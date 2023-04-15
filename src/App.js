@@ -20,6 +20,7 @@ import UpdatePassword from "./components/UpdatePassword/UpdatePassword";
 import AlumniAccountState from "./components/AlumniAccountState/AlumniAccountState";
 import GetUnverifiedAlumniAccounts from "./components/ValidateAlumniAccount/GetUnverifiedAlumniAccounts";
 import VerifyAlumniAccount from "./components/ValidateAlumniAccount/VerifyAlumniAccount";
+import Getpfe from "./components/getpfe";
 function App() {
   return (
     <Routes>
@@ -41,6 +42,7 @@ function App() {
       <Route path="/insertstage" element={<InsertStageEte />} />
       <Route path="/insertpfe" element={<InsertPFE />} />
       <Route path="/getalletudiant" element={<GetallEtudiants />} />
+      <Route path="/getpfe" element={<Getpfe />} />
     </Routes>
   );
 }
