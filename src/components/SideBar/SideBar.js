@@ -14,6 +14,7 @@ export default function SideBar() {
     const [isOpen, setIsOpen] = useState(true);
     const decodedToken = jwt_decode(getToken());
     const [user, setUser] = useState(null);
+    const [data, setData] = useState(null);
 
 
       
@@ -28,8 +29,24 @@ export default function SideBar() {
 
     useEffect(() => {
     const fetchData = async () => {
+        let data;
+        if (decodedToken.roles[0] === "etudiant") {
+            const userTypeData = await GetUser(decodedToken.sub, decodedToken.roles[0]);
+            if (userTypeData.verified != null) {
+                if(userTypeData.verified === true){
+                    data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0])); 
+                }else{
+                    data = SideBarData.filter((val) => val.roles.includes("alumni-unverified"));   
+                }
+            } else {
+            data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
+            }
+        } else {
+            data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
+        }
         const dat = await GetUser(decodedToken.sub,decodedToken.roles[0]);;
         setUser(dat);
+        setData(data);
         console.log(user);
     };
     fetchData();
@@ -61,7 +78,7 @@ export default function SideBar() {
                 </TopPart>
                 <MiddlePart isOpen={isOpen}>
                     <LinkList>
-                    { SideBarData.map((val) =>
+                    { data && data.map((val) =>
                         {
                             if (decodedToken && val.roles.includes(decodedToken.roles[0])){
                                 return (

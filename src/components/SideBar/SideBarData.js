@@ -36,7 +36,7 @@ export  const SideBarData= [
         title :"Voir Status" ,
         icon : <CheckCircleIcon/>,
         link: '/alumnistatus',
-        roles: ['etudiant']
+        roles: ['etudiant','alumni-unverified']
     },
     {
         title :"Valider Alumni" ,
