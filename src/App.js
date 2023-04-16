@@ -21,9 +21,10 @@ import AlumniAccountState from "./components/AlumniAccountState/AlumniAccountSta
 import GetUnverifiedAlumniAccounts from "./components/ValidateAlumniAccount/GetUnverifiedAlumniAccounts";
 import VerifyAlumniAccount from "./components/ValidateAlumniAccount/VerifyAlumniAccount";
 import SideBar from "./components/SideBar/SideBar";
+import AlumniGeneralStats from "./components/AlumniStats/AlumniGeneralStats";
 function App() {
   return (
-    <>
+ 
     <Container>
       <LeftSide>
         <SideBar/>
@@ -32,6 +33,7 @@ function App() {
         <Routes>
           <Route path="/Events" element={<ListEvents />} />
           <Route path="/newEvent" element={<CreateEvent />} />
+          <Route path="/generalstats" element={<AlumniGeneralStats />} />
           <Route path="/Events/:id" element={<UpdateEvent />} />
           <Route path="/signup" element={<SignupAlumni />} />
           <Route path="/enseignants" element={<ListEnseignants />} />
@@ -51,7 +53,7 @@ function App() {
         </Routes>
       </RightSide>
     </Container>
-    </>
+
   );
 }
 
@@ -60,16 +62,17 @@ export default App;
 const Container = styled.div`
   width: 100%;
   display: flex;
+  height:100vh;
   flex-direction: row;
 `;
 
 const LeftSide = styled.div`
 transition: all ease-in .3s;
-height:100vh;
 z-index:99;
 `;
 
 const RightSide = styled.div`
 width:100%;
-max-height:100%;
+overflow-y: auto;
+overflow-x: hidden;
 `;

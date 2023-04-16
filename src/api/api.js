@@ -74,6 +74,18 @@ export const ValiderCompteAlu = async (id) => {
   return response.data;
 };
 
+export const getGeneralStats = async () => {
+  
+  const response = await api.get(`/etudiant-alumni/stat`);
+  return response.data;
+};
+
+export const getPaysStats = async () => {
+  
+  const response = await api.get(`/etudiant-alumni/paysstat`);
+  return response.data;
+};
+
 export const GetUser = async (id,role) => {
   switch (role){
     case 'enseignant' :   
