@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PersonIcon from '@mui/icons-material/Person';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend ,ResponsiveContainer,Funnel,FunnelChart,LabelList } from 'recharts';
-import { getGeneralStats } from "../../api/api";
+import {Tooltip as Tip} from '@mui/material';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend ,Funnel,FunnelChart,LabelList } from 'recharts';
+import { getGeneralStats, getPaysStats } from "../../api/api";
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 
-const data = [
-    { promotion: '2023', NombresAlumni: 40 },
-    { promotion: '2022', NombresAlumni: 10 },
-    { promotion: '2021', NombresAlumni: 630 },
-    { promotion: '2020', NombresAlumni: 30 },
-    { promotion: '2019', NombresAlumni: 10 },
-    { promotion: '2018', NombresAlumni: 210 },
-    { promotion: '2017', NombresAlumni: 50 },
-  ];
+import { Tooltip as ReactTooltip } from 'react-tooltip'
+import { CountryCodes } from "./CountryCodes";
 
 
   
@@ -20,8 +16,23 @@ const data = [
 function AlumniGeneralStats() {
     const [width, setWidth] = useState(400);
     const [height, setHeight] = useState(350);
-    const [data, setData] = useState(null);
+    const [maxAlumni, setMaxAlumni] = useState(0);
+    const [promotionData, setPromotionData] = useState(null);
+    const [paysData, setPaysData] = useState(null);
+    const [societeData, setSocieteData] = useState(null);
     const [dataC, setDataC] = useState(null);
+    const dat = [
+        { countryCode: 'US', alumni: 100 },
+        { countryCode: 'CA', alumni: 50 },
+        { countryCode: 'MX', alumni: 20 },
+        // Add more countries and alumni counts here...
+      ];
+
+
+    const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json"
+
+
+
 
     const handleResize = () => {
         if (window.innerWidth <= 450 && window.innerWidth > 300) {
@@ -35,91 +46,177 @@ function AlumniGeneralStats() {
             setHeight(350);
         }
     };
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const stats = await getGeneralStats();
-            const data = stats.map((stat) => {
-                const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-                return {
-                  value: stat.etudiant,
-                  name: stat.DateObtention,
-                  fill: randomColor,
-                };
-              });
-            const datac = stats.map((stat) => {
+    const fetchPromotionData = async () => {
+        const stats = await getGeneralStats();
+        const data = stats.map((stat) => {
+            const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
             return {
-                promotion: stat.DateObtention,
-                NombresAlumni: stat.etudiant,
+              value: stat.etudiant,
+              name: stat.DateObtention,
+              fill: randomColor,
             };
-            });
-            setData(data);
-            setDataC(datac);
-            console.log(data);
-            console.log(datac);
+          });
+        const datac = stats.map((stat) => {
+        return {
+            promotion: stat.DateObtention,
+            NombresAlumni: stat.etudiant,
         };
+        });
+        setPromotionData(data);
+        setDataC(datac);
+        console.log(datac);
+    };
+    const fetchPaysData = async () => {
+        const stats = await getPaysStats();
+        const data = stats.map((stat) => {
+            const countryCode = CountryCodes.find(country =>
+                country.countryName.toLowerCase() === stat.country.toLowerCase()
+              )?.countryCode;
+            return {
+              CountryCode: countryCode,
+              Alumni: stat.count,
+            };
+          });
+        data.sort((a, b) => b.Alumni - a.Alumni);
+        const topCountries = data.slice(0, 5);
+        setPaysData(data);
+        const maxAlumni = data.reduce((max, d) => (d.alumni > max ? d.alumni : max), 0);
+        setMaxAlumni(maxAlumni);
+    };
+    
+    useEffect(() => {
         window.addEventListener("resize", handleResize);
-        console.log(data)
-        fetchData();
+        fetchPromotionData();
+        fetchPaysData();
     },[]);
+
+    
 
 
   return (
     <Container>
-        <TopPart>
-            <SectionTitle>
-                Promotions
-            </SectionTitle>
-            <PromotionCounts>
-            { dataC && dataC.map((val) =>
-                {
-                    return (
-                        <CountBox>
-                            <Information>
-                                <Count>
-                                {val.NombresAlumni}
-                                </Count>
-                                <Title>
-                                    Etudiants Alumni
-                                </Title>
-                                <Year>
-                                    Promotion: {val.promotion}
-                                </Year>
-                            </Information>
-                            <Icon>
-                                <PersonIcon style={{'font-size':"5rem"}}/>
-                            </Icon>
-                        </CountBox>
-                    )
-                }
-            )}
-            </PromotionCounts>
-        </TopPart>
-        <BottomPart>
-        <SectionTitle>
-                Stats In Charts
-            </SectionTitle>
-            <ChartSection >
-                <LineChart  width={width} height={height} data={dataC}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey= "promotion" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="NombresAlumni" stroke="#82ca9d" />
-                </LineChart>
-                <FunnelChart  width={width} height={height} >
+        <Section>
+            <TopPart>
+                <SectionTitle>
+                    Promotions
+                </SectionTitle>
+                <PromotionCounts>
+                { dataC && dataC.map((val) =>
+                    {
+                        return (
+                            <CountBox>
+                                <Information>
+                                    <Count>
+                                    {val.NombresAlumni}
+                                    </Count>
+                                    <Title>
+                                        Etudiants Alumni
+                                    </Title>
+                                    <Year>
+                                        Promotion: {val.promotion}
+                                    </Year>
+                                </Information>
+                                <Icon>
+                                    <PersonIcon style={{'font-size':"5rem"}}/>
+                                </Icon>
+                            </CountBox>
+                        )
+                    }
+                )}
+                </PromotionCounts>
+            </TopPart>
+            <BottomPart>
+                <ChartSection >
+                    <LineChart  width={width} height={height} data={dataC}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey= "promotion" />
+                    <YAxis />
                     <Tooltip />
-                    <Funnel
-                        dataKey="value"
-                        data={data}
-                        isAnimationActive
-                    >
-                        <LabelList position="right" fill="#000" stroke="none" dataKey="name" />
-                    </Funnel>
-                </FunnelChart>
-            </ChartSection>
-        </BottomPart>
+                    <Legend />
+                    <Line type="monotone" dataKey="NombresAlumni" stroke="#4981f5" />
+                    </LineChart>
+                    <FunnelChart  width={width} height={height} >
+                        <Tooltip />
+                        <Funnel
+                            dataKey="value"
+                            data={promotionData}
+                            isAnimationActive
+                        >
+                            <LabelList position="right" fill="#000" stroke="none" dataKey="name" />
+                        </Funnel>
+                    </FunnelChart>
+                </ChartSection>
+            </BottomPart>
+        </Section>
+        <Section>
+            <TopPart>
+                <SectionTitle>
+                    Par Pays
+                </SectionTitle>
+                <PromotionCounts>
+                { paysData && paysData.map((val) =>
+                    {
+                        return (
+                            <CountBox>
+                                <Information>
+                                    <Count>
+                                    {val.Alumni}
+                                    </Count>
+                                    <Title>
+                                        Etudiants Alumni
+                                    </Title>
+                                    <Year>
+                                        Country: {val.CountryCode}
+                                    </Year>
+                                </Information>
+                                <Icon>
+                                    <WorkspacePremiumIcon style={{'font-size':"5rem"}}/>
+                                </Icon>
+                            </CountBox>
+                        )
+                    }
+                )}
+                </PromotionCounts>
+            </TopPart>
+            <BottomPart>
+                <ChartSection >
+                    <ComposableMap style={{ width: "80%", height: "50%" }}>
+                        <Geographies geography={geoUrl}>
+                            {({ geographies }) =>
+                            geographies.map((geo) => {
+                                const countryData = paysData.find((d) => d.CountryCode === geo.properties["Alpha-2"]);
+                                console.log(paysData);
+                                let fillColor = '#AFB3B6';
+
+                                if (countryData) {
+                                    fillColor = `rgba(0, 100, 200, ${countryData.alumni / maxAlumni})`;
+                                }
+                                return (
+                                    <Tip title={`${geo.properties.name}: ${countryData ? countryData.Alumni : 0} alumni`}>
+                                    <Geography
+                                    key={geo.rsmKey}
+                                    geography={geo}
+                                    style={{
+                                        default: {
+                                            fill: fillColor,
+                                            },
+                                            hover: {
+                                                fill: `${fillColor}50`,
+                                            },
+                                            pressed: {
+                                                fill: `${fillColor}B0`,
+                                            },
+                                    }}
+                                    data-tip={`${geo.properties.name}: ${countryData ? countryData.alumni : 0} alumni`}
+                                    />
+                                </Tip>);
+                                    })
+                                    }
+                        </Geographies>
+                        </ComposableMap>
+                    </ChartSection>
+            </BottomPart>
+        </Section>
     </Container>
   )
 }
@@ -142,13 +239,13 @@ const Container = styled.div`
   border-radius: 15px;
   background-color:rgb(255, 255, 255) ;
   padding: 20px;
-  gap:10em;
+  gap:3em;
 `
 const CountBox = styled.div`
     display: flex;
     width : 23%;
     border-radius: 0.5em;
-    background-color: green;
+    background-color: #4981f5 ;
     @media (max-width: 550px) {
         width : 90%;
     }
@@ -163,6 +260,24 @@ const Information = styled.div`
     @media (max-width: 1310px) {
     text-align: center;
   }
+
+`
+
+const Section = styled.div`
+    width : 100%;
+    color: white;
+    display: flex;
+    background-color: #F0F0F0;
+    flex-direction: column;
+    border-radius: 12px;
+    border-style: solid;
+    border-width: 0.3px;
+    border-color: rgb(230, 230, 230);
+    -webkit-box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.16);
+    box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.16);
+    gap:3em;
+    
 
 `
 
@@ -195,6 +310,7 @@ const PromotionCounts=styled.div`
     width: 100%;
     gap: 2em;
     flex-wrap: wrap;
+    padding: 1em;
     @media (max-width: 550px) {
     flex-direction: column;
     align-content: center;
@@ -216,15 +332,28 @@ const TopPart=styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 1em;
     
 `
 const SectionTitle=styled.h2`
     font-family: 'montserrat';
-    color:#4981f5 ;
-    font-size: 2rem;
-    margin-bottom: 2em;
-    text-align: center;
+    color:white ;
+    font-size: 2.5rem;
+    background-color: #4981f5;
+    border-radius: 0px 30px 30px 0px;
+    width: 10em;
+    padding-left:0.5em;
+    margin-bottom: 1em;
+    text-align: start;
+    @media (max-width: 460px) {
+        font-size: 2rem;
+        width: 7em;
+    }
+    @media (max-width: 280px) {
+        background-color:#F0F0F0;
+        color:#4981f5;
+        width:fit-content;
+        font-size: 1.5rem;
+    }
 `
 
 const BottomPart=styled.div`
