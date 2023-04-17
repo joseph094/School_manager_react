@@ -92,6 +92,12 @@ export const getSocieteStats = async () => {
   return response.data;
 };
 
+export const getChomageStats = async () => {
+  
+  const response = await api.get(`/etudiant-alumni/chomage`);
+  return response.data;
+};
+
 export const GetUser = async (id,role) => {
   switch (role){
     case 'enseignant' :   

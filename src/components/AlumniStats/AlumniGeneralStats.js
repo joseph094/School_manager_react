@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PersonIcon from '@mui/icons-material/Person';
 import {Tooltip as Tip} from '@mui/material';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend ,Funnel,FunnelChart,LabelList } from 'recharts';
-import { getGeneralStats, getPaysStats } from "../../api/api";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid,BarChart, Tooltip, Legend ,Funnel,FunnelChart,LabelList,Bar } from 'recharts';
+import { getGeneralStats, getPaysStats,getSocieteStats,getChomageStats } from "../../api/api";
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
-
-import { Tooltip as ReactTooltip } from 'react-tooltip'
 import { CountryCodes } from "./CountryCodes";
+import Flag from 'react-world-flags'
+
 
 
   
@@ -21,13 +21,8 @@ function AlumniGeneralStats() {
     const [paysData, setPaysData] = useState(null);
     const [societeData, setSocieteData] = useState(null);
     const [dataC, setDataC] = useState(null);
-    const dat = [
-        { countryCode: 'US', alumni: 100 },
-        { countryCode: 'CA', alumni: 50 },
-        { countryCode: 'MX', alumni: 20 },
-        // Add more countries and alumni counts here...
-      ];
-
+    const [dataS, setDataS] = useState(null);
+    const [chomage, setChomage] = useState('');
 
     const geoUrl = "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json"
 
@@ -55,7 +50,7 @@ function AlumniGeneralStats() {
               name: stat.DateObtention,
               fill: randomColor,
             };
-          });
+        });
         const datac = stats.map((stat) => {
         return {
             promotion: stat.DateObtention,
@@ -64,18 +59,21 @@ function AlumniGeneralStats() {
         });
         setPromotionData(data);
         setDataC(datac);
-        console.log(datac);
     };
     const fetchPaysData = async () => {
         const stats = await getPaysStats();
         const data = stats.map((stat) => {
-            const countryCode = CountryCodes.find(country =>
+            if(CountryCodes){const countryCode = CountryCodes.find(country =>
                 country.countryName.toLowerCase() === stat.country.toLowerCase()
               )?.countryCode;
-            return {
-              CountryCode: countryCode,
-              Alumni: stat.count,
-            };
+              const countryName = CountryCodes.find(country =>
+                country.countryName.toLowerCase() === stat.country.toLowerCase()
+              )?.countryName;
+              return {
+                CountryName:countryName,
+                CountryCode: countryCode,
+                Alumni: stat.count,
+            };}
           });
         data.sort((a, b) => b.Alumni - a.Alumni);
         const topCountries = data.slice(0, 5);
@@ -83,11 +81,39 @@ function AlumniGeneralStats() {
         const maxAlumni = data.reduce((max, d) => (d.alumni > max ? d.alumni : max), 0);
         setMaxAlumni(maxAlumni);
     };
+    const fetchSocieteData = async () => {
+        const stats = await getSocieteStats();
+        const data = stats.map((stat) => {  
+            return {
+                Societe: stat.societe,
+                Alumni: stat.count,
+            };
+        }
+        );
+        const dataS = stats.map((stat) => {
+            return {
+              value: stat.count,
+              name: stat.societe,
+            };
+        });
+        data.sort((a, b) => b.Alumni - a.Alumni);
+        const topSociete = data.slice(0, 5);
+        setSocieteData(data);
+        setDataS(dataS);
+    };
+
+    const fetchChomageData = async () => {
+        const chomage = await getChomageStats();
+        setChomage(chomage);
+        console.log(chomage);
+    };
     
     useEffect(() => {
         window.addEventListener("resize", handleResize);
         fetchPromotionData();
         fetchPaysData();
+        fetchSocieteData();
+        fetchChomageData();
     },[]);
 
     
@@ -100,6 +126,7 @@ function AlumniGeneralStats() {
                 <SectionTitle>
                     Promotions
                 </SectionTitle>
+                <SubSectionTitle>Top 5 Promotions</SubSectionTitle>
                 <PromotionCounts>
                 { dataC && dataC.map((val) =>
                     {
@@ -126,6 +153,7 @@ function AlumniGeneralStats() {
                 </PromotionCounts>
             </TopPart>
             <BottomPart>
+            <SubSectionTitle>Charts</SubSectionTitle>
                 <ChartSection >
                     <LineChart  width={width} height={height} data={dataC}>
                     <CartesianGrid strokeDasharray="3 3" />
@@ -153,6 +181,7 @@ function AlumniGeneralStats() {
                 <SectionTitle>
                     Par Pays
                 </SectionTitle>
+                <SubSectionTitle>Top 5 Pays</SubSectionTitle>
                 <PromotionCounts>
                 { paysData && paysData.map((val) =>
                     {
@@ -166,8 +195,11 @@ function AlumniGeneralStats() {
                                         Etudiants Alumni
                                     </Title>
                                     <Year>
-                                        Country: {val.CountryCode}
+                                        Pays: {val.CountryName}
+                                        
+                                        
                                     </Year>
+                                    <Flag code={val.CountryCode} height="35" />
                                 </Information>
                                 <Icon>
                                     <WorkspacePremiumIcon style={{'font-size':"5rem"}}/>
@@ -179,20 +211,20 @@ function AlumniGeneralStats() {
                 </PromotionCounts>
             </TopPart>
             <BottomPart>
+            <SubSectionTitle>Map Chart</SubSectionTitle>
                 <ChartSection >
-                    <ComposableMap style={{ width: "80%", height: "50%" }}>
+                    <ComposableMap style={{ width: "70%", height: "30%" }}>
                         <Geographies geography={geoUrl}>
                             {({ geographies }) =>
                             geographies.map((geo) => {
-                                const countryData = paysData.find((d) => d.CountryCode === geo.properties["Alpha-2"]);
-                                console.log(paysData);
+                                if (paysData){const countryData = paysData.find((d) => d.CountryCode === geo.properties["Alpha-2"]);
                                 let fillColor = '#AFB3B6';
 
                                 if (countryData) {
                                     fillColor = `rgba(0, 100, 200, ${countryData.alumni / maxAlumni})`;
                                 }
                                 return (
-                                    <Tip title={`${geo.properties.name}: ${countryData ? countryData.Alumni : 0} alumni`}>
+                                    <Tip title={`${geo.properties.name}: ${countryData ? countryData.Alumni : 0} alumnis`}>
                                     <Geography
                                     key={geo.rsmKey}
                                     geography={geo}
@@ -207,15 +239,71 @@ function AlumniGeneralStats() {
                                                 fill: `${fillColor}B0`,
                                             },
                                     }}
-                                    data-tip={`${geo.properties.name}: ${countryData ? countryData.alumni : 0} alumni`}
                                     />
-                                </Tip>);
+                                </Tip>);}
+                                
                                     })
                                     }
                         </Geographies>
-                        </ComposableMap>
-                    </ChartSection>
+                    </ComposableMap>
+                </ChartSection>
             </BottomPart>
+        </Section>
+        <Section>
+            <TopPart>
+                <SectionTitle>
+                    Par Societe
+                </SectionTitle>
+                <SubSectionTitle>Top 5 Societes</SubSectionTitle>
+                <PromotionCounts>
+                { societeData && societeData.map((val) =>
+                    {
+                        return (
+                            <CountBox>
+                                <Information>
+                                    <Count>
+                                    {val.Alumni}
+                                    </Count>
+                                    <Title>
+                                        Etudiants Alumni
+                                    </Title>
+                                    <Year>
+                                        Societe: {val.Societe}
+                                        
+                                        
+                                    </Year>
+                                </Information>
+                                <Icon>
+                                    <WorkspacePremiumIcon style={{'font-size':"5rem"}}/>
+                                </Icon>
+                            </CountBox>
+                        )
+                    }
+                )}
+                </PromotionCounts>
+            </TopPart>
+            <BottomPart>
+            <SubSectionTitle>Map Chart</SubSectionTitle>
+                <ChartSection >
+                <BarChart width={width} height={height} data={dataS}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="value" fill="#8884d8" />
+                </BarChart>
+                </ChartSection>
+            </BottomPart>
+        </Section>
+        <Section>
+            <TopPart>
+                <SectionTitle>
+                    Chomage
+                </SectionTitle>
+                <SubSectionTitle>Top 5 Societes</SubSectionTitle>
+                <Chomage>La moyenne des jours au chomage est <Avg>{chomage}</Avg> jours</Chomage>
+            </TopPart>
         </Section>
     </Container>
   )
@@ -277,10 +365,7 @@ const Section = styled.div`
     -moz-box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.16);
     box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.16);
     gap:3em;
-    
-
 `
-
 const Count = styled.h3`
 margin : 0;
 font-size: 2rem;
@@ -361,4 +446,45 @@ const BottomPart=styled.div`
     flex-direction: column;
     width: 100%;
     height:100%;
+`
+
+const SubSectionTitle = styled.h3`
+    font-family: 'montserrat';
+    color:black ;
+    font-size: 2rem;
+    border-bottom: 3px solid #4981f5 ;
+    margin-left: 1em;
+    width: 10em;
+    @media (max-width: 460px) {
+        font-size: 1.5rem;
+        width: 7em;
+    }
+    @media (max-width: 280px) {
+        font-size: 1rem;
+    }
+`
+
+const Chomage = styled.p`
+    align-self: center;
+    font-family: 'montserrat';
+    color:black ;
+    text-align: center;
+    font-size: 3rem;
+    margin-left: 1em;
+    height: 5em;
+    @media (max-width: 460px) {
+        font-size: 1rem;
+    }
+    
+`
+const Avg = styled.span`
+    font-family: 'montserrat';
+    border-radius: 5px;
+    background-color:#4981f5 ;
+    font-size: 3.5rem;
+    color: white;
+    @media (max-width: 460px) {
+        font-size: 1.5rem;
+    }
+    
 `
