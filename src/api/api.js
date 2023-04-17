@@ -74,6 +74,30 @@ export const ValiderCompteAlu = async (id) => {
   return response.data;
 };
 
+export const getGeneralStats = async () => {
+  
+  const response = await api.get(`/etudiant-alumni/stat`);
+  return response.data;
+};
+
+export const getPaysStats = async () => {
+  
+  const response = await api.get(`/etudiant-alumni/paysstat`);
+  return response.data;
+};
+
+export const getSocieteStats = async () => {
+  
+  const response = await api.get(`/etudiant-alumni/societestat`);
+  return response.data;
+};
+
+export const getChomageStats = async () => {
+  
+  const response = await api.get(`/etudiant-alumni/chomage`);
+  return response.data;
+};
+
 export const GetUser = async (id,role) => {
   switch (role){
     case 'enseignant' :   
