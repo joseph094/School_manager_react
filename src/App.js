@@ -22,6 +22,7 @@ import GetUnverifiedAlumniAccounts from "./components/ValidateAlumniAccount/GetU
 import VerifyAlumniAccount from "./components/ValidateAlumniAccount/VerifyAlumniAccount";
 import SideBar from "./components/SideBar/SideBar";
 import AlumniGeneralStats from "./components/AlumniStats/AlumniGeneralStats";
+import DemanderVacation from "./components/Vacation/DemanderVacation";
 function App() {
   return (
  
@@ -37,6 +38,7 @@ function App() {
           <Route path="/Events/:id" element={<UpdateEvent />} />
           <Route path="/signup" element={<SignupAlumni />} />
           <Route path="/enseignants" element={<ListEnseignants />} />
+          <Route path="/demandervacation" element={<DemanderVacation />} />
           <Route path="/NewEnseignant" element={<CreateTeacher />} />
           <Route path="/enseignants/:id" element={<UpdateEns />} />
           <Route path="/getetudiant" element={<GetEtudiant />} />
