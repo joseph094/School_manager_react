@@ -58,6 +58,11 @@ const response = await api.post('/etudiant/auth/signup/alumni', formData);
 return response.data;
 }
 
+export const demanderVacation = async (obj) => {
+  const response = await api.post('/vacation/create', obj);
+  return response.data;
+}
+
 export const getEtudiantAlumni = async (id) => {
   const response = await api.get(`/etudiant-alumni/${id}`);
   return response.data;
