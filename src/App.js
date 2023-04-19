@@ -28,6 +28,8 @@ import PostPublication from "./components/Publications/PostPublication";
 import ViewPublication from "./components/Publications/ViewPublication";
 import UpdatePublication from "./components/Publications/UpdatePublication";
 import ViewMyPublications from "./components/Publications/ViewMyPublications";
+import DemanderContratExpert from "./components/ContratExpert/DemanderContratExpert";
+import VoirContratExpert from "./components/ContratExpert/VoirContratExpert";
 function App() {
   return (
  
@@ -43,8 +45,10 @@ function App() {
           <Route path="/Events/:id" element={<UpdateEvent />} />
           <Route path="/signup" element={<SignupAlumni />} />
           <Route path="/vacations" element={<VoirVacation />} />
+          <Route path="/contrats" element={<VoirContratExpert />} />
           <Route path="/enseignants" element={<ListEnseignants />} />
           <Route path="/demandervacation" element={<DemanderVacation />} />
+          <Route path="/demandercontratexpert" element={<DemanderContratExpert />} />
           <Route path="/NewEnseignant" element={<CreateTeacher />} />
           <Route path="/enseignants/:id" element={<UpdateEns />} />
           <Route path="/getetudiant" element={<GetEtudiant />} />
