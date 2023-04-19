@@ -69,6 +69,11 @@ export const demanderVacation = async (obj) => {
   return response.data;
 }
 
+export const demanderContratExpert = async (obj) => {
+  const response = await api.post('/contrat-expert/create', obj);
+  return response.data;
+}
+
 export const publier = async (obj) => {
   const response = await api.post('/publication/create', obj);
   return response.data;
@@ -97,6 +102,11 @@ export const getEtudiantAlumni = async (id) => {
 
 export const getVacations = async () => {
   const response = await api.get(`/vacation`);
+  return response.data;
+}
+
+export const getContratExperts = async () => {
+  const response = await api.get(`/contrat-expert`);
   return response.data;
 }
 
