@@ -68,6 +68,11 @@ export const getEtudiantAlumni = async (id) => {
   return response.data;
 }
 
+export const getVacations = async () => {
+  const response = await api.get(`/vacation`);
+  return response.data;
+}
+
 export const getUnverifiedAlumniAccounts = async () => {
   const response = await api.get('/etudiant-alumni/all');
   return response.data;
