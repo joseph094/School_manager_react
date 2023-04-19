@@ -53,6 +53,12 @@ export const changerPassAdmin = async (id,role, oldPassword, newPassword) => {
   return response.data;
 };
 
+export const modifierPublication = async (obj) => {
+  const response = await api.put(`publication`, obj);
+  return response.data;
+};
+
+
 export const sighUpAlumni = async (formData) => {
 const response = await api.post('/etudiant/auth/signup/alumni', formData);
 return response.data;
@@ -62,6 +68,27 @@ export const demanderVacation = async (obj) => {
   const response = await api.post('/vacation/create', obj);
   return response.data;
 }
+
+export const publier = async (obj) => {
+  const response = await api.post('/publication/create', obj);
+  return response.data;
+}
+
+export const viewPublications = async () => {
+  const response = await api.get('/publication');
+  return response.data;
+}
+
+export const viewPublication = async (id) => {
+  const response = await api.get(`/publication/${id}`);
+  return response.data;
+}
+
+export const deletePublication = async (id) => {
+  const response = await api.delete(`/publication/${id}`);
+  return response.data;
+}
+
 
 export const getEtudiantAlumni = async (id) => {
   const response = await api.get(`/etudiant-alumni/${id}`);
