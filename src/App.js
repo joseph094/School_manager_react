@@ -24,6 +24,10 @@ import SideBar from "./components/SideBar/SideBar";
 import AlumniGeneralStats from "./components/AlumniStats/AlumniGeneralStats";
 import DemanderVacation from "./components/Vacation/DemanderVacation";
 import VoirVacation from "./components/Vacation/VoirVacation";
+import PostPublication from "./components/Publications/PostPublication";
+import ViewPublication from "./components/Publications/ViewPublication";
+import UpdatePublication from "./components/Publications/UpdatePublication";
+import ViewMyPublications from "./components/Publications/ViewMyPublications";
 function App() {
   return (
  
@@ -45,6 +49,10 @@ function App() {
           <Route path="/enseignants/:id" element={<UpdateEns />} />
           <Route path="/getetudiant" element={<GetEtudiant />} />
           <Route path="/modifyetudiants" element={<EtudiantPUT />} />
+          <Route path="/postpublication" element={<PostPublication />} />
+          <Route path="/viewpublications" element={<ViewPublication />} />
+          <Route path="/mypublications" element={<ViewMyPublications />} />
+          <Route path="/updatepublication/:id" element={<UpdatePublication />} />
           <Route path="/ajouteretudiant" element={<EtudiantADD />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/alumnistatus" element={<AlumniAccountState />} />
