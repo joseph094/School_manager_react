@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 } */
+
+body{
+  margin:0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: 'proximanovasemi';
+  src: url("./fonts/Semibold.otf");
+}
+@font-face {
+  font-family: 'proximanovaregular';
+  src: url("./fonts/Proxima Nova Regular.otf");
+}
+

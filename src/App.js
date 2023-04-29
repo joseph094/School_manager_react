@@ -8,7 +8,7 @@ import CreateTeacher from "./components/CrudEns/CreateEnseig";
 import ListEnseignants from "./components/CrudEns/ListEnseignents";
 import UpdateEns from "./components/CrudEns/updateEns";
 import SignupAlumni from "./components/SignUp/SignUp";
-
+import styled from "styled-components";
 import InsertStageEte from "./components/etudiant/insertStageEte";
 import GetEtudiant from "./components/etudiant/getetudiant";
 import Signin from "./components/signin";
@@ -20,13 +20,6 @@ import UpdatePassword from "./components/UpdatePassword/UpdatePassword";
 import AlumniAccountState from "./components/AlumniAccountState/AlumniAccountState";
 import GetUnverifiedAlumniAccounts from "./components/ValidateAlumniAccount/GetUnverifiedAlumniAccounts";
 import VerifyAlumniAccount from "./components/ValidateAlumniAccount/VerifyAlumniAccount";
-import Getpfe from "./components/pfe/getpfe";
-import GetpfeByEnseignantId from "./components/pfe/getpfeByEnseignantID";
-import PfeStats from "./components/pfe/pfeStats";
-import EnseignantDashboard from "./components/enseignantDashboard";
-import Choisirpfe from "./components/pfe/choisirpfe";
-import GetEtudiantByParam from "./components/etudiant/getetudiantbyParam";
-import GetPfeByParam from "./components/pfe/getPfeByParam";
 function App() {
   return (
     <Routes>
@@ -48,15 +41,26 @@ function App() {
       <Route path="/insertstage" element={<InsertStageEte />} />
       <Route path="/insertpfe" element={<InsertPFE />} />
       <Route path="/getalletudiant" element={<GetallEtudiants />} />
-      <Route path="/getpfe" element={<Getpfe />} />
-      <Route path="/getpfeenseignant" element={<GetpfeByEnseignantId />} />
-      <Route path="/getpfeStats" element={<PfeStats />} />
-      <Route path="/enseignantdashboard" element={<EnseignantDashboard />} />
-      <Route path="/choisirpfe" element={<Choisirpfe />} />
-      <Route path="/etudiant/:id" element={<GetEtudiantByParam />} />
-      <Route path="/pfe/:id" element={<GetPfeByParam />} />
     </Routes>
   );
 }
 
 export default App;
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  height:100vh;
+  flex-direction: row;
+`;
+
+const LeftSide = styled.div`
+transition: all ease-in .3s;
+z-index:99;
+`;
+
+const RightSide = styled.div`
+width:100%;
+overflow-y: auto;
+overflow-x: hidden;
+`;
