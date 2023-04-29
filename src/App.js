@@ -20,8 +20,13 @@ import UpdatePassword from "./components/UpdatePassword/UpdatePassword";
 import AlumniAccountState from "./components/AlumniAccountState/AlumniAccountState";
 import GetUnverifiedAlumniAccounts from "./components/ValidateAlumniAccount/GetUnverifiedAlumniAccounts";
 import VerifyAlumniAccount from "./components/ValidateAlumniAccount/VerifyAlumniAccount";
-import Getpfe from "./components/getpfe";
-import GetpfeByEnseignantId from "./components/getpfeByEnseignantID";
+import Getpfe from "./components/pfe/getpfe";
+import GetpfeByEnseignantId from "./components/pfe/getpfeByEnseignantID";
+import PfeStats from "./components/pfe/pfeStats";
+import EnseignantDashboard from "./components/enseignantDashboard";
+import Choisirpfe from "./components/pfe/choisirpfe";
+import GetEtudiantByParam from "./components/etudiant/getetudiantbyParam";
+import GetPfeByParam from "./components/pfe/getPfeByParam";
 function App() {
   return (
     <Routes>
@@ -45,6 +50,11 @@ function App() {
       <Route path="/getalletudiant" element={<GetallEtudiants />} />
       <Route path="/getpfe" element={<Getpfe />} />
       <Route path="/getpfeenseignant" element={<GetpfeByEnseignantId />} />
+      <Route path="/getpfeStats" element={<PfeStats />} />
+      <Route path="/enseignantdashboard" element={<EnseignantDashboard />} />
+      <Route path="/choisirpfe" element={<Choisirpfe />} />
+      <Route path="/etudiant/:id" element={<GetEtudiantByParam />} />
+      <Route path="/pfe/:id" element={<GetPfeByParam />} />
     </Routes>
   );
 }

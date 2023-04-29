@@ -39,9 +39,9 @@ export default function GetpfeByEnseignantId() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((row) => (
+              {data.map((row, index) => (
                 <TableRow
-                  key={row.idEnseignant}
+                  key={index}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell align="right">{row.sujet}</TableCell>
