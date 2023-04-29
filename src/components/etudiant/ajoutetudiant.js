@@ -83,95 +83,97 @@ export default function EtudiantADD() {
     setError(false);
   }, [etudiantData]);
   return (
-    <FormComponent height="160%">
-      <TitleLogin>Ajouter un Etudiant</TitleLogin>
-      <InputName>Nom</InputName>
-      <TextField
-        id="filled-basic"
-        label="nom"
-        variant="filled"
-        name="nom"
-        value={etudiantData.nom}
-        onChange={handleChange}
-      />
-      <InputName>Prénom</InputName>
-      <TextField
-        id="filled-basic"
-        label="prénom"
-        variant="filled"
-        name="prenom"
-        value={etudiantData.prenom}
-        onChange={handleChange}
-      />
+    <AllContainer>
+      <FormComponent height="160%">
+        <TitleLogin>Ajouter un Etudiant</TitleLogin>
+        <InputName>Nom</InputName>
+        <TextField
+          id="filled-basic"
+          label="nom"
+          variant="filled"
+          name="nom"
+          value={etudiantData.nom}
+          onChange={handleChange}
+        />
+        <InputName>Prénom</InputName>
+        <TextField
+          id="filled-basic"
+          label="prénom"
+          variant="filled"
+          name="prenom"
+          value={etudiantData.prenom}
+          onChange={handleChange}
+        />
 
-      <InputName>CIN</InputName>
-      <TextField
-        id="filled-basic"
-        label="cin"
-        variant="filled"
-        name="cin"
-        value={etudiantData.cin}
-        onChange={handleChange}
-      />
-      <InputName>Email</InputName>
-      <TextField
-        id="filled-basic"
-        label="email"
-        variant="filled"
-        name="email"
-        value={etudiantData.email}
-        onChange={handleChange}
-      />
-      <InputName>Classe</InputName>
-      <TextField
-        id="filled-basic"
-        label="classe"
-        variant="filled"
-        name="classe"
-        value={etudiantData.classe}
-        onChange={handleChange}
-      />
-      <InputName>Niveau</InputName>
-      <TextField
-        id="filled-basic"
-        label="niveau"
-        variant="filled"
-        name="niveau"
-        value={etudiantData.niveau}
-        onChange={handleChange}
-      />
-      <DobContainer>
-        <div>
-          <InputName>Date de naissance</InputName>
-          <DatePicker type="date" name="DOB" onChange={handleChange} />
-        </div>
-        <div>
-          <InputName>Type</InputName>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            label="Type"
-            name="type"
-            style={{ padding: "1px" }}
-            onChange={handleChange}
-            value={etudiantData.type}
+        <InputName>CIN</InputName>
+        <TextField
+          id="filled-basic"
+          label="cin"
+          variant="filled"
+          name="cin"
+          value={etudiantData.cin}
+          onChange={handleChange}
+        />
+        <InputName>Email</InputName>
+        <TextField
+          id="filled-basic"
+          label="email"
+          variant="filled"
+          name="email"
+          value={etudiantData.email}
+          onChange={handleChange}
+        />
+        <InputName>Classe</InputName>
+        <TextField
+          id="filled-basic"
+          label="classe"
+          variant="filled"
+          name="classe"
+          value={etudiantData.classe}
+          onChange={handleChange}
+        />
+        <InputName>Niveau</InputName>
+        <TextField
+          id="filled-basic"
+          label="niveau"
+          variant="filled"
+          name="niveau"
+          value={etudiantData.niveau}
+          onChange={handleChange}
+        />
+        <DobContainer>
+          <div>
+            <InputName>Date de naissance</InputName>
+            <DatePicker type="date" name="DOB" onChange={handleChange} />
+          </div>
+          <div>
+            <InputName>Type</InputName>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Type"
+              name="type"
+              style={{ padding: "1px" }}
+              onChange={handleChange}
+              value={etudiantData.type}
+            >
+              <MenuItem value={"Alumni"}>Alumni</MenuItem>
+              <MenuItem value={"Actuel"}>Actuel</MenuItem>
+            </Select>
+          </div>
+        </DobContainer>
+        <ButtonDiv>
+          <Button
+            variant="contained"
+            onClick={handleSubmit}
+            disabled={disableButton}
           >
-            <MenuItem value={"Alumni"}>Alumni</MenuItem>
-            <MenuItem value={"Actuel"}>Actuel</MenuItem>
-          </Select>
-        </div>
-      </DobContainer>
-      <ButtonDiv>
-        <Button
-          variant="contained"
-          onClick={handleSubmit}
-          disabled={disableButton}
-        >
-          Valider
-        </Button>
-        {error && <Alert severity="error">Un erreur est survenue!</Alert>}
-      </ButtonDiv>
-    </FormComponent>
+            Valider
+          </Button>
+          {error && <Alert severity="error">Un erreur est survenue!</Alert>}
+        </ButtonDiv>
+      </FormComponent>
+    </AllContainer>
   );
 }
 
@@ -206,4 +208,10 @@ const ButtonDiv = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
+`;
+const AllContainer = styled.div`
+  margin-top: 10em;
+  @media (max-width: 768px) {
+    margin-top: 0.5em;
+  }
 `;

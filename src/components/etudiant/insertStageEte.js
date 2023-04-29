@@ -50,7 +50,7 @@ export default function InsertStageEte() {
       <InputName>Sujet</InputName>
       <TextField
         id="filled-basic"
-        label="Filled"
+        label="sujet"
         variant="filled"
         name="sujet"
         onChange={handleChange}
@@ -58,7 +58,7 @@ export default function InsertStageEte() {
       <InputName>Description</InputName>
       <TextField
         id="filled-multiline-flexible"
-        label="Multiline"
+        label="Description"
         multiline
         maxRows={4}
         variant="filled"
@@ -68,7 +68,7 @@ export default function InsertStageEte() {
       <InputName>Societe</InputName>
       <TextField
         id="filled-basic"
-        label="Filled"
+        label="Societe"
         variant="filled"
         name="societe"
         onChange={handleChange}
