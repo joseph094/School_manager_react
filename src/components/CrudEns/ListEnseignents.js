@@ -40,12 +40,12 @@ function ListEnseignants() {
   const arr = data.map((i) => {
     return (
       <tr>
-        <td>{i.idEnseignant}</td>
-        <td>{i.nom}</td>
-        <td>{i.prenom}</td>
-        <td>{i.login}</td>
-        <td>{i.mdp}</td>
-        <td>{i.email}</td>
+        <td className="theRest">{i.idEnseignant}</td>
+        <td className="theRest">{i.nom}</td>
+        <td className="theRest">{i.prenom}</td>
+        <td className="theRest">{i.login}</td>
+        <td className="theRest">{i.mdp}</td>
+        <td className="theRest">{i.email}</td>
         <td>
           <Button
             onClick={() =>
@@ -69,14 +69,14 @@ function ListEnseignants() {
           <table className="custom-table" striped bordered hover size="sm">
             <thead>
               <tr>
-                <th>Id Enseignant</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Login</th>
-                <th>Mot De Passe</th>
-                <th>Email</th>
-                <th></th>
-                <th></th>
+                <th className="theHead">Id Enseignant</th>
+                <th className="theHead">Nom</th>
+                <th className="theHead">Prenom</th>
+                <th className="theHead">Login</th>
+                <th className="theHead">Mot De Passe</th>
+                <th className="theHead">Email</th>
+                <th className="theHead"></th>
+                <th className="theHead"></th>
               </tr>
             </thead>
             <tbody>{arr}</tbody>
