@@ -146,7 +146,10 @@
   }
   
   .contact1-pic img {
-    max-width: 100%;
+
+width: 500px;
+    height: 400px;
+
   }
   
   
@@ -304,25 +307,25 @@
   
   @media (max-width: 1200px) {
     .contact1-pic {
-      width: 33.5%;
+      width: 20.5%;
     }
   
     .contact1-form {
-      width: 44%;
+      width: 40%;
     }
   }
   
-  @media (max-width: 992px) {
+  @media (max-width: 1000px) {
     .container-contact1 {
       padding: 90px 80px 88px 90px;
     }
   
     .contact1-pic {
-      width: 35%;
+      display: none;
     }
   
     .contact1-form {
-      width: 55%;
+      width: 100%;
     }
   }
   
@@ -343,6 +346,9 @@
   @media (max-width: 576px) {
     .container-contact1 {
       padding: 90px 15px 88px 15px;
+    }
+    .input1{
+      width: 85%;
     }
   }
   
