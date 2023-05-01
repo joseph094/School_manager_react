@@ -1,86 +1,89 @@
-import React,{useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from "styled-components";
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { SideBarData } from './SideBarData';
-import {getToken , GetUser} from '../../api/api';
+import { getToken, GetUser } from '../../api/api';
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from "react-router-dom";
 
 export default function SideBar() {
 
     const navigate = useNavigate();
-    const toggle = ()=> setIsOpen(!isOpen);
+    const toggle = () => setIsOpen(!isOpen);
     const [isOpen, setIsOpen] = useState(true);
     const decodedToken = jwt_decode(getToken());
     const [user, setUser] = useState(null);
     const [data, setData] = useState(null);
 
 
-      
+
     // Change the isOpen state value on screen size change
     const handleResize = () => {
         if (window.innerWidth <= 1000) {
-        setIsOpen(true);
+            setIsOpen(true);
         } else {
-        setIsOpen(false);
+            setIsOpen(false);
         }
     };
 
     useEffect(() => {
-    const fetchData = async () => {
-        let data;
-        if (decodedToken.roles[0] === "etudiant") {
-            const userTypeData = await GetUser(decodedToken.sub, decodedToken.roles[0]);
-            if (userTypeData.verified != null) {
-                if(userTypeData.verified === true){
-                    data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0])); 
-                }else{
-                    data = SideBarData.filter((val) => val.roles.includes("alumni-unverified"));   
+        const fetchData = async () => {
+            let data;
+            if (decodedToken.roles[0] === "etudiant") {
+                const userTypeData = await GetUser(decodedToken.sub, decodedToken.roles[0]);
+                if (userTypeData.EtudiantActId != null) {
+                    data = SideBarData.filter((val) => val.roles.includes("actuel"));
+                } else {
+                    if (userTypeData.verified != null) {
+                        if (userTypeData.verified === true) {
+                            data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
+                        } else {
+                            data = SideBarData.filter((val) => val.roles.includes("alumni-unverified"));
+                        }
+                    } else {
+                        data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
+                    }
                 }
             } else {
-            data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
+                data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
             }
-        } else {
-            data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
-        }
-        const dat = await GetUser(decodedToken.sub,decodedToken.roles[0]);;
-        setUser(dat);
-        setData(data);
-        console.log(user);
-    };
-    fetchData();
-    window.addEventListener("resize", handleResize);
+            const dat = await GetUser(decodedToken.sub, decodedToken.roles[0]);;
+            setUser(dat);
+            setData(data);
+            console.log(user);
+        };
+        fetchData();
+        window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
     }, []);
-    
+
     return (
-        
+
         <Container isOpen={isOpen} >
             <SwitcherTop isOpen={isOpen}>
-                    <DensityMediumIcon style={{cursor : 'pointer'}} onClick={toggle}/>
+                <DensityMediumIcon style={{ cursor: 'pointer' }} onClick={toggle} />
             </SwitcherTop>
             <SideBarE isOpen={isOpen}>
                 <Switcher isOpen={isOpen}>
-                    <DensityMediumIcon style={{cursor : 'pointer'}} onClick={toggle}/>
+                    <DensityMediumIcon style={{ cursor: 'pointer' }} onClick={toggle} />
                 </Switcher>
                 <TopPart>
                     <Logo src='..\logo.png' isOpen={isOpen}></Logo>
-                    { decodedToken &&
-                    <UserContainer isOpen={isOpen}>
-                        <Profile src='..\profile.png' isOpen={isOpen}></Profile>
-                        <Name isOpen={isOpen}>{user?.prenom} {user?.nom} </Name>
-                    </UserContainer>
+                    {decodedToken &&
+                        <UserContainer isOpen={isOpen}>
+                            <Profile src='..\profile.png' isOpen={isOpen}></Profile>
+                            <Name isOpen={isOpen}>{user?.prenom} {user?.nom} </Name>
+                        </UserContainer>
                     }
                 </TopPart>
                 <MiddlePart isOpen={isOpen}>
                     <LinkList>
-                    { data && data.map((val) =>
-                        {
-                            if (decodedToken && val.roles.includes(decodedToken.roles[0])){
+                        {data && data.map((val) => {
+                            if (decodedToken && val.roles.includes(decodedToken.roles[0])) {
                                 return (
                                     <ListItem isOpen={isOpen} onClick={() => navigate(`${val.link}`, { replace: true })}>
                                         <Icon>{val.icon}</Icon>
@@ -89,12 +92,12 @@ export default function SideBar() {
                                 )
                             }
                         }
-                    )}
-                       {} 
+                        )}
+                        { }
                     </LinkList>
                 </MiddlePart>
                 <BottomPart>
-                    <Logout><PowerSettingsNewIcon/><ButtonText isOpen={isOpen}>Logout</ButtonText> </Logout>
+                    <Logout><PowerSettingsNewIcon /><ButtonText isOpen={isOpen}>Logout</ButtonText> </Logout>
                 </BottomPart>
             </SideBarE>
         </Container>
@@ -161,7 +164,7 @@ const Text = styled.div`
     font-weight: 300;
     flex:70%;
     font-size: 0.95rem;
-    display:${(props) => (props.isOpen === false? "flex" : "none")};
+    display:${(props) => (props.isOpen === false ? "flex" : "none")};
     align-items: center;
 
 `

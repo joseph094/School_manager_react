@@ -55,7 +55,19 @@ export  const SideBarData= [
         icon : <CreateIcon/>,
         link: '/insertpfe',
         roles: ['responsable','enseignant','admin']
-    }
+    },
+    {
+        title :"Import Excel" ,
+        icon : <AddIcon/>,
+        link: '/import',
+        roles: ['admin']
+    },
+    {
+        title :"Account" ,
+        icon : <CreateIcon/>,
+        link: '/make-public',
+        roles: ['actuel']
+    },
 
     
 ]

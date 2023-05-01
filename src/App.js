@@ -28,10 +28,11 @@ import PfeStats from "./components/pfe/pfeStats";
 import EnseignantDashboard from "./components/enseignantDashboard";
 import GetEtudiantByParam from "./components/etudiant/getetudiantbyParam";
 import GetPfeByParam from "./components/pfe/getPfeByParam";
+import Excel from "./components/importExcel/excel";
 function App() {
   return (
     <Container>
-      <LeftSide>{/* <SideBar /> */}</LeftSide>
+      <LeftSide>{<SideBar />}</LeftSide>
       <RightSide>
         <Routes>
           <Route path="/Events" element={<ListEvents />} />
@@ -46,6 +47,7 @@ function App() {
           <Route path="/ajouteretudiant" element={<EtudiantADD />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/alumnistatus" element={<AlumniAccountState />} />
+          <Route path="/import" element={<Excel />} />
           <Route
             path="/getunverified"
             element={<GetUnverifiedAlumniAccounts />}
