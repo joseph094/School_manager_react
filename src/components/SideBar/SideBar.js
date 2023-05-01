@@ -32,19 +32,19 @@ export default function SideBar() {
             let data;
             if (decodedToken.roles[0] === "etudiant") {
                 const userTypeData = await GetUser(decodedToken.sub, decodedToken.roles[0]);
-                if (userTypeData.EtudiantActId != null) {
-                    data = SideBarData.filter((val) => val.roles.includes("actuel"));
-                } else {
-                    if (userTypeData.verified != null) {
-                        if (userTypeData.verified === true) {
-                            data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
-                        } else {
-                            data = SideBarData.filter((val) => val.roles.includes("alumni-unverified"));
-                        }
-                    } else {
+
+                if (userTypeData.verified != null) {
+                    data = SideBarData.filter((val) => val.roles.includes("alumni"));
+
+                    if (userTypeData.verified === true) {
                         data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
+                    } else {
+                        data = SideBarData.filter((val) => val.roles.includes("alumni-unverified"));
                     }
+                } else {
+                    data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
                 }
+
             } else {
                 data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
             }

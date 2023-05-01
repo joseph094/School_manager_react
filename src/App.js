@@ -29,6 +29,7 @@ import EnseignantDashboard from "./components/enseignantDashboard";
 import GetEtudiantByParam from "./components/etudiant/getetudiantbyParam";
 import GetPfeByParam from "./components/pfe/getPfeByParam";
 import Excel from "./components/importExcel/excel";
+import MakeAccountPublic from "./components/makepublic/makepublic";
 function App() {
   return (
     <Container>
@@ -48,6 +49,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/alumnistatus" element={<AlumniAccountState />} />
           <Route path="/import" element={<Excel />} />
+          <Route path="/make-public" element={<MakeAccountPublic />} />
           <Route
             path="/getunverified"
             element={<GetUnverifiedAlumniAccounts />}

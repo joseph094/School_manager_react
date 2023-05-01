@@ -36,7 +36,7 @@ export  const SideBarData= [
         title :"Voir Status" ,
         icon : <CheckCircleIcon/>,
         link: '/alumnistatus',
-        roles: ['etudiant','alumni-unverified']
+        roles: ['alumni']
     },
     {
         title :"Valider Alumni" ,
@@ -66,7 +66,7 @@ export  const SideBarData= [
         title :"Account" ,
         icon : <CreateIcon/>,
         link: '/make-public',
-        roles: ['actuel']
+        roles: ['etudiant',]
     },
 
     
