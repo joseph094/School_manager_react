@@ -68,6 +68,12 @@ export  const SideBarData= [
         link: '/make-public',
         roles: ['etudiant',]
     },
+    {
+        title :"Consult Comptes publiques" ,
+        icon : <FormatListNumberedRtlIcon/>,
+        link: '/publicaccounts',
+        roles: ['etudiant',]
+    },
 
     
 ]

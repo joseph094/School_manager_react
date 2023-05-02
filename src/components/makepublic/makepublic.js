@@ -10,13 +10,12 @@ import styled from "styled-components";
 
 function MakeAccountPublic() {
     const [visible, setStatus] = useState();
-    const [count, setcount] = useState(0);
     const [etudiant, setEtudiant] = useState(null);
     const decodedToken = jwt_decode(getToken());
 
     function checkVerificationStatus() {
         if (etudiant != null) {
-            if (etudiant.visibilite === "FALSE") {
+            if (etudiant.visibilite ===false) {
                 setStatus('Private')
             } else {
                 setStatus('Public')
@@ -32,7 +31,7 @@ function MakeAccountPublic() {
             //console.log("data",data)
             const data = await getEudiantActuel(decodedToken.sub);
             setEtudiant(data);
-            etudiant.visibilite = "TRUE";
+            etudiant.visibilite = true;
             const res = await axios.put("http://localhost:3000/etudiant-actuel/update", etudiant, {
                 headers: { 'Authorization': `Bearer ${getToken()}` }
             })
@@ -40,7 +39,7 @@ function MakeAccountPublic() {
             window.location.replace('/make-public');
         } else {
             setEtudiant(data);
-            etudiant.visibilite = "TRUE";
+            etudiant.visibilite = true;
             const res = await axios.put("http://localhost:3000/etudiant-alumni/update", etudiant, {
                 headers: { 'Authorization': `Bearer ${getToken()}` }
             })
@@ -61,7 +60,7 @@ function MakeAccountPublic() {
             //console.log("data",data)
             const data = await getEudiantActuel(decodedToken.sub);
             setEtudiant(data);
-            etudiant.visibilite = "FALSE";
+            etudiant.visibilite = false;
             const res = await axios.put("http://localhost:3000/etudiant-actuel/update", etudiant, {
                 headers: { 'Authorization': `Bearer ${getToken()}` }
             })
@@ -69,7 +68,7 @@ function MakeAccountPublic() {
             window.location.replace('/make-public');
         } else {
             setEtudiant(data);
-            etudiant.visibilite = "FALSE";
+            etudiant.visibilite = false;
             const res = await axios.put("http://localhost:3000/etudiant-alumni/update", etudiant, {
                 headers: { 'Authorization': `Bearer ${getToken()}` }
 
@@ -129,11 +128,11 @@ function MakeAccountPublic() {
                             <Title>Formation</Title><Value>{etudiant.formation}</Value>
                         </InformationRow>
 
-                        {etudiant.visibilite === "TRUE" && <div>
-                            <AccountStatus>Votre Compte Est <Status status="TRUE">Public</Status></AccountStatus>
+                        {etudiant.visibilite === true && <div>
+                            <AccountStatus>Votre Compte Est <Status status="true">Public</Status></AccountStatus>
                             <Button onClick={MakePrivate} > Make it Private </Button></div>}
                             
-                        {etudiant.visibilite === "FALSE" && <div><AccountStatus>Votre Compte Est <Status status="FALSE">Private</Status></AccountStatus> <Button onClick={MakePublic} >  Make it Public </Button></div>}
+                        {etudiant.visibilite === false && <div><AccountStatus>Votre Compte Est <Status status="false">Private</Status></AccountStatus> <Button onClick={MakePublic} >  Make it Public </Button></div>}
 
 
 
