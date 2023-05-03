@@ -28,6 +28,15 @@ import PfeStats from "./components/pfe/pfeStats";
 import EnseignantDashboard from "./components/enseignantDashboard";
 import GetEtudiantByParam from "./components/etudiant/getetudiantbyParam";
 import GetPfeByParam from "./components/pfe/getPfeByParam";
+import AlumniGeneralStats from "./components/AlumniStats/AlumniGeneralStats";
+import DemanderVacation from "./components/Vacation/DemanderVacation";
+import VoirVacation from "./components/Vacation/VoirVacation";
+import PostPublication from "./components/Publications/PostPublication";
+import ViewPublication from "./components/Publications/ViewPublication";
+import UpdatePublication from "./components/Publications/UpdatePublication";
+import ViewMyPublications from "./components/Publications/ViewMyPublications";
+import DemanderContratExpert from "./components/ContratExpert/DemanderContratExpert";
+import VoirContratExpert from "./components/ContratExpert/VoirContratExpert";
 function App() {
   return (
     <Container>
@@ -65,6 +74,14 @@ function App() {
           <Route path="/choisirpfe" element={<Choisirpfe />} />
           <Route path="/etudiant/:id" element={<GetEtudiantByParam />} />
           <Route path="/pfe/:id" element={<GetPfeByParam />} />
+          <Route path="/vacations" element={<VoirVacation />} />
+          <Route path="/contrats" element={<VoirContratExpert />} />
+          <Route path="/demandervacation" element={<DemanderVacation />} />
+          <Route path="/demandercontratexpert" element={<DemanderContratExpert />} />
+          <Route path="/generalstats" element={<AlumniGeneralStats />} />
+          <Route path="/postpublication" element={<PostPublication />} />
+          <Route path="/viewpublications" element={<ViewPublication />} />
+          <Route path="/updatepublication/:id" element={<UpdatePublication />} />
         </Routes>
       </RightSide>
     </Container>
