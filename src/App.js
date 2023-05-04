@@ -31,6 +31,7 @@ import GetPfeByParam from "./components/pfe/getPfeByParam";
 import Excel from "./components/importExcel/excel";
 import MakeAccountPublic from "./components/makepublic/makepublic";
 import ConsultPublicAccounts from "./components/publicaccounts/ConsultAccounts";
+import GetDetailEtudiant from "./components/DetailEtudiant/etudiantdetail";
 function App() {
   return (
     <Container>
@@ -38,6 +39,7 @@ function App() {
       <RightSide>
         <Routes>
           <Route path="/Events" element={<ListEvents />} />
+          <Route path="/detail-etudiant/:id" element={<GetDetailEtudiant />} />
           <Route path="/newEvent" element={<CreateEvent />} />
           <Route path="/Events/:id" element={<UpdateEvent />} />
           <Route path="/signup" element={<SignupAlumni />} />
@@ -51,7 +53,7 @@ function App() {
           <Route path="/alumnistatus" element={<AlumniAccountState />} />
           <Route path="/import" element={<Excel />} />
           <Route path="/make-public" element={<MakeAccountPublic />} />
-          <Route path="/publicaccounts" element={< ConsultPublicAccounts/>} />
+          <Route path="/publicaccounts" element={< ConsultPublicAccounts />} />
           <Route
             path="/getunverified"
             element={<GetUnverifiedAlumniAccounts />}

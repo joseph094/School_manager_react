@@ -1,16 +1,16 @@
-.container{
+.container1{
     display: flex;
     justify-content: space-around;
 }
-.custom-table {
+.custom-table1{
     border-collapse: collapse;
     border-radius: 1em;
     overflow: hidden;
     width: 90%;
   }
   
-  .table_head,
-  .colonne {
+  .table_head1,
+  .colonne1 {
     text-align: left;
     padding: 1em;
     background: white;
@@ -29,18 +29,18 @@
   
   @media only screen and (max-width: 768px) {
     /* display the table as a block */
-    .custom_table {
+    .custom_table1 {
       display: block;
       overflow-x: auto;
     }
   
     /* hide the table header */
-    .custom-table thead {
+    .custom-table1 thead {
       display: flex;
     }
     
     /* display each table row as a block */
-    .custom-table tbody {
+    .custom-table1 tbody {
       display: block;
       width: auto;
       position: relative;
@@ -48,7 +48,7 @@
     }
     
     /* display each cell as a block with a label */
-    .colonne:before {
+    .colonne1:before {
       content: attr(data-label);
       font-weight: bold;
       display: inline-block;
@@ -61,7 +61,7 @@
       left: 0;
     }
   }
-    .list_btn{
+    .list_btn1{
       
       cursor: pointer;
       outline: 0;
@@ -78,12 +78,12 @@
       border-radius: .25rem;
       transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     }
-    .list_btn:hover{
+    .list_btn1:hover{
       color: #fff;
       background-color: #0b5ed7;
       border-color: #0a58ca;
     }
-    .titre{
+    .titre1{
   margin-left: 40%;
   color: #0a58ca;
     }

@@ -59,7 +59,7 @@ function ListEvents() {
     return (
         <Fragment>
             <div className="container">
-                <h2 className="list_title" >La Liste des Evenements </h2>
+                <h2 className="titre" >La Liste des Evenements </h2>
                 <div style={{ margin: "4rem", marginTop: "3rem" }}>
                     <table className="custom-table" striped bordered hover size="sm">
                         <thead>

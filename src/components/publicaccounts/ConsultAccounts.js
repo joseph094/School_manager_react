@@ -31,16 +31,16 @@ function ConsultPublicAccounts() {
       <h1 className="titre">Liste des comptes publiques</h1>
       {error && <p>Une erreur est survenue lors de la récupération des données.</p>}
       {!error && (
-        <div className="container">
-          <table className="custom-table">
+        <div className="container1">
+          <table className="custom-table1">
             <thead>
               <tr>
-                <th className="table_head">Nom</th>
-                <th className="table_head">Prénom</th>
-                <th className="table_head">email</th>
-                <th className="table_head">Date de naissance </th>
-                <th className="table_head">Type</th>
-                <th className="table_head">CV</th>
+                <th className="table_head1">Nom</th>
+                <th className="table_head1">Prénom</th>
+                <th className="table_head1">email</th>
+                <th className="table_head1">Date de naissance </th>
+                <th className="table_head1">Type</th>
+                <th className="table_head1">CV</th>
               </tr>
             </thead>
             <tbody>
@@ -48,14 +48,14 @@ function ConsultPublicAccounts() {
                 if (row.visibilite === true) {
                   return (
                     <tr key={row.id}>
-                      <td className="colonne">{row.nom}</td>
-                      <td className="colonne" >{row.prenom}</td>
-                      <td className="colonne">{row.email}</td>
-                      <td className="colonne">{row.dateNaissance}</td>
-                      {row.vacation!=null&&<td className="colonne">Alumni</td>}
-                      {row.vacation==null&&<td className="colonne">Actuel</td>}
+                      <td className="colonne1">{row.nom}</td>
+                      <td className="colonne1" >{row.prenom}</td>
+                      <td className="colonne1">{row.email}</td>
+                      <td className="colonne1">{row.dateNaissance}</td>
+                      {row.vacation!=null&&<td className="colonne1">Alumni</td>}
+                      {row.vacation==null&&<td className="colonne1">Actuel</td>}
                       
-                      <td className="colonne">
+                      <td className="colonne1">
                         <i> cv </i>
                       </td>
                     </tr>

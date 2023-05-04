@@ -10,14 +10,19 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import styled from "styled-components";
+import InfoIcon from '@mui/icons-material/Info';
+import { useNavigate } from "react-router-dom";
 
 export default function GetallEtudiants() {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
     axios.get("http://localhost:3000/etudiant/all").then((res) => {
       setData(res.data);
     });
   });
+
   return (
     <Container>
       <TableContainer component={Paper}>
@@ -30,6 +35,7 @@ export default function GetallEtudiants() {
                 <TableCell align="right">Formation</TableCell>
                 <TableCell align="right">Date De naissance</TableCell>
                 <TableCell align="right">E-mail</TableCell>
+                <TableCell align="right">Detail</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -45,6 +51,13 @@ export default function GetallEtudiants() {
                   <TableCell align="right">{row.formation}</TableCell>
                   <TableCell align="right">{row.dateNaissance}</TableCell>
                   <TableCell align="right">{row.email}</TableCell>
+                  <TableCell align="right">{row.vacation != null ? <InfoIcon onClick={() => navigate(`/detail-etudiant/${row.EtudiantAluId}`, { replace: true })}> </InfoIcon> : <InfoIcon onClick={() => navigate(`/detail-etudiant/${row.EtudiantActId}`, { replace: true })}> </InfoIcon>}
+
+
+
+
+
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -54,6 +67,10 @@ export default function GetallEtudiants() {
     </Container>
   );
 }
+
+const Btn = styled.button`
+opacity:0;
+`
 
 const Container = styled.div`
   background-color: #dfdfdf;
