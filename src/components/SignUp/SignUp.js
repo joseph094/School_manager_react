@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {sighUpAlumni } from '../../api/api';
 import "./style/style.css";
 import { useNavigate } from "react-router-dom";
+import { CountryCodes } from "../AlumniStats/CountryCodes";
 
 function SignupAlumni() {
 
@@ -75,6 +76,14 @@ function SignupAlumni() {
     const age = calculateAge(formData.dateNaissance);
     if (age < 22) {
       setFormError("You must be at least 22 years old to sign up");
+      return;
+    }
+
+    // Check if dateEmbacuhe is after dateObtentionDiplome
+    const dateObt = new Date(formData.dateObtentionDiplome);
+    const dateEmb = new Date(formData.dateEmbacuhe);
+    if (dateEmb <= dateObt) {
+      setFormError("Date d'embauche must be after date d'obtention du diplôme");
       return;
     }
 
@@ -159,6 +168,7 @@ function SignupAlumni() {
                   required
                   placeholder='Date de Naissance'
                   value={formData.dateNaissance}
+                  max={new Date().toISOString().split("T")[0]}
                   onChange={handleChange}
                   />
 
@@ -246,6 +256,7 @@ function SignupAlumni() {
                   required
                   placeholder="Date d'obtention du diplôme"
                   value={formData.dateObtentionDiplome}
+                  max={new Date().toISOString().split("T")[0]}
                   onChange={handleChange}/>
 
                   <input
@@ -257,6 +268,7 @@ function SignupAlumni() {
                   name="dateEmbacuhe"
                   placeholder="Date d'embauche"
                   value={formData.dateEmbacuhe}
+                  max={new Date().toISOString().split("T")[0]}
                   onChange={handleChange}/>
                 </div>
 
@@ -271,17 +283,21 @@ function SignupAlumni() {
                   value={formData.societe}
                   onChange={handleChange}
                   />
-
-                  <input
-                  className='signInput'
-                  type="text"
-                  id="pays"
-                  name="pays"
-                  required
-                  placeholder='Pays'
-                  value={formData.pays}
-                  onChange={handleChange}
-                  />
+                  <select
+                    className='signInput'
+                    name='pays'
+                    id='pays'
+                    value={formData.pays}
+                    onChange={handleChange}
+                    required
+                    >
+                    <option value=''>Sélectionnez un pays</option>
+                    {CountryCodes.map((country) => (
+                    <option key={country.countryName} value={country.countryName}>
+                    {country.countryName}
+                    </option>
+                    ))}
+                  </select>
                 </div>
               </div>
               <div className='bottom-part'>

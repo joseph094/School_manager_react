@@ -367,8 +367,8 @@ const Section = styled.div`
     gap:3em;
 `
 const Count = styled.h3`
-margin : 0;
-font-size: 2rem;
+    margin : 0;
+    font-size: 2rem;
 `
 const Title = styled.p`
     font-size: 1rem;
