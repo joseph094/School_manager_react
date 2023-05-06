@@ -14,6 +14,8 @@ function AlumniAccountState () {
   function checkVerificationStatus() {
     if(etudiantAlumni != null){
       if(etudiantAlumni.verified === false){
+        setStatus('Refusé')
+      } else if (etudiantAlumni.verified === null)  {
         setStatus('Non Validé')
       } else {
         setStatus('Validé')
@@ -28,10 +30,8 @@ function AlumniAccountState () {
     };
     fetchData();
     checkVerificationStatus();
-  });
+  },[]);
   
-  
-
   return (
     <div>
       {etudiantAlumni ? (
@@ -189,7 +189,7 @@ font-size: 1rem;
 export const Status= styled.span`
 font-family: 'montserrat';
 font-weight: 800;
-color: ${({ status }) => (status === 'Non Validé' ? 'red' : 'green')};
+color: ${({ status }) => (status === 'Validé' ? 'green' : 'red')};
 
 `;
 

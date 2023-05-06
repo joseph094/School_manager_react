@@ -40,7 +40,7 @@ import VoirContratExpert from "./components/ContratExpert/VoirContratExpert";
 function App() {
   return (
     <Container>
-      <LeftSide>{/* <SideBar /> */}</LeftSide>
+      <LeftSide>{<SideBar />}</LeftSide>
       <RightSide>
         <Routes>
           <Route path="/Events" element={<ListEvents />} />

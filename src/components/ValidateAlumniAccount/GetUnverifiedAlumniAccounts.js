@@ -15,11 +15,11 @@ function GetUnverifiedAlumniAccounts () {
         };
         fetchData();
 
-      });
+    },[]);
 
     const arr = data.map((i,index) => {
         const isEven = (index ) % 2 === 0;
-        if (i.verified === false) {
+        if (i.verified === null) {
             return (
                 <>
                     <Row isEven={isEven}>
@@ -37,8 +37,66 @@ function GetUnverifiedAlumniAccounts () {
             );
         }
     })
-    const arrphone = data.map((i,index) => {
+
+    const arrrefused = data.map((i,index) => {
         const isEven = (index ) % 2 === 0;
+        if (i.verified === false) {
+            return (
+            <>
+                <Row isEven={isEven}>
+                    <Column>{i.EtudiantAluId}</Column>
+                    <Column>{i.nom}</Column>
+                    <Column>{i.prenom}</Column>
+                    <Column>{i.dateNaissance}</Column>
+                    <Column>{i.formation}</Column>
+                    <Column>{i.poste}</Column>
+                </Row>
+            </>
+            );
+        }
+    })
+
+    const arrphone = data.map((i,index) => {
+        if (i.verified === null) {
+            return (
+                <>
+                <GridBox>
+                    <Top>
+                        <InfoRow>
+                            <Title>ID</Title>
+                            <Value>{i.EtudiantAluId}</Value>  
+                        </InfoRow>
+                        <InfoRow>
+                            <Title>Nom</Title>
+                            <Value>{i.nom}</Value>
+                        </InfoRow>
+                        <InfoRow>
+                            <Title>Prenom</Title>
+                            <Value>{i.prenom}</Value>
+                        </InfoRow>
+                        <InfoRow>
+                            <Title>Date Naissance</Title>
+                            <Value>{i.dateNaissance}</Value>
+                        </InfoRow>
+                        <InfoRow>
+                            <Title>Formation</Title>
+                            <Value>{i.formation}</Value>
+                        </InfoRow>
+                        <InfoRow>
+                        <Title>Poste</Title>
+                            <Value>{i.poste}</Value>
+                        </InfoRow>
+                    </Top>
+                    <Bottom>
+                        <Button  onClick={() => navigate(`/valider/${i.EtudiantAluId}`, { replace: true })} >Details</Button>
+                    </Bottom>
+                </GridBox>
+            </>
+            );
+        }
+    })
+
+    const arrphonerefused = data.map((i,index) => {
         if (i.verified === false) {
             return (
                 <>
@@ -69,32 +127,46 @@ function GetUnverifiedAlumniAccounts () {
                                 <Value>{i.poste}</Value>
                             </InfoRow>
                         </Top>
-                        <Bottom>
-                            <Button  onClick={() => navigate(`/valider/${i.EtudiantAluId}`, { replace: true })} >Details</Button>
-                        </Bottom>
                     </GridBox>
-            </>
+                </>
             );
         }
     })
     
     return (
-        <Container>
-            <PageTitle>Unverified Accounts List</PageTitle>
-           <Table>
-            <Head>
-                <HeadColumn>ID</HeadColumn>
-                <HeadColumn>Nom</HeadColumn>
-                <HeadColumn>Prenom</HeadColumn>
-                <HeadColumn>Date Naissance</HeadColumn>
-                <HeadColumn>Formation</HeadColumn>
-                <HeadColumn>Poste</HeadColumn>
-                <HeadColumnAction>Action</HeadColumnAction>
-            </Head>
-                {arr}
-            </Table>
-            {arrphone}
-        </Container>
+        <>
+            <Container>
+                <PageTitle>Unverified Accounts List</PageTitle>
+            <Table>
+                <Head>
+                    <HeadColumn>ID</HeadColumn>
+                    <HeadColumn>Nom</HeadColumn>
+                    <HeadColumn>Prenom</HeadColumn>
+                    <HeadColumn>Date Naissance</HeadColumn>
+                    <HeadColumn>Formation</HeadColumn>
+                    <HeadColumn>Poste</HeadColumn>
+                    <HeadColumnAction>Action</HeadColumnAction>
+                </Head>
+                    {arr}
+                </Table>
+                {arrphone}
+            </Container>
+            <Container>
+                <PageTitle style={{color:"red"}}>Refused Accounts List</PageTitle>
+            <Table>
+                <Head>
+                    <HeadColumn>ID</HeadColumn>
+                    <HeadColumn>Nom</HeadColumn>
+                    <HeadColumn>Prenom</HeadColumn>
+                    <HeadColumn>Date Naissance</HeadColumn>
+                    <HeadColumn>Formation</HeadColumn>
+                    <HeadColumn>Poste</HeadColumn>
+                </Head>
+                    {arrrefused}
+                </Table>
+                {arrphonerefused}
+            </Container>
+        </> 
     )
 
     

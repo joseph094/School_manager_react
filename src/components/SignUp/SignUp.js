@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import {sighUpAlumni } from '../../api/api';
 import "./style/style.css";
+import { useNavigate } from "react-router-dom";
 
 function SignupAlumni() {
+
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nom: "",
     prenom: "",
@@ -14,8 +17,8 @@ function SignupAlumni() {
     confirmPassword: "",
     dateObtentionDiplome: "",
     dateEmbacuhe: "",
-    vacation: false,
-    contratExpert: false,
+    societe: "",
+    pays: "",
   });
   const [formError, setFormError] = useState("");
   const [inputDateNaisType, setInputDateNaisType] = useState("text");
@@ -51,12 +54,11 @@ function SignupAlumni() {
     
   };
 
-  const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: checked,
-    }));
+  const calculateAge = (birthdayString) => {
+    const birthday = new Date(birthdayString);
+    const ageDifMs = Date.now() - birthday.getTime();
+    const ageDate = new Date(ageDifMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
   };
 
   const handleSubmit = async (e) => {
@@ -66,6 +68,13 @@ function SignupAlumni() {
     // Check if passwords match
     if (formData.mdp !== formData.confirmPassword) {
       setFormError("Passwords do not match");
+      return;
+    }
+
+     // Check if age is at least 22
+    const age = calculateAge(formData.dateNaissance);
+    if (age < 22) {
+      setFormError("You must be at least 22 years old to sign up");
       return;
     }
 
@@ -82,15 +91,13 @@ function SignupAlumni() {
             login : Number(formData.login),
             email : formData.email,
             mdp : formData.mdp,
-            vacation : formData.vacation,
-            ContratExpert : formData.contratExpert,
-            verified : false
+            societe : formData.societe,
+            pays : formData.pays,
+            verified : null
         };
-        console.log(etudiant);
         const response = await sighUpAlumni(etudiant);
         console.log(response);
-        //redirect to success page
-        console.log('redirect');
+        navigate("/signin")
   
     } catch (error) {
       if ((error.response.data.message).includes("duplicate key")){
@@ -253,33 +260,28 @@ function SignupAlumni() {
                   onChange={handleChange}/>
                 </div>
 
-                <div className='row-2'>
-                  <div className='boolean'>
-                    <label className='label' htmlFor="vacation">
-                    Vacation:
-                    </label>
-                    <input
-                    type="checkbox"
-                    className="checkbox"
-                    id="vacation"
-                    name="vacation"
-                    checked={formData.vacation}
-                    onChange={handleCheckboxChange}
-                    />
-                  </div>
-                  <div className='boolean'>
-                    <label className='label' htmlFor="contratExpert">
-                    Contrat Expert:
-                    </label>
-                    <input
-                    type="checkbox"
-                    className="checkbox"
-                    id="contratExpert"
-                    name="contratExpert"
-                    checked={formData.contratExpert}
-                    onChange={handleCheckboxChange}
-                    />
-                  </div>
+                <div className='row-1'>
+                <input
+                  className='signInput'
+                  type="text"
+                  name="societe"
+                  id="societe"
+                  required
+                  placeholder='Societé'
+                  value={formData.societe}
+                  onChange={handleChange}
+                  />
+
+                  <input
+                  className='signInput'
+                  type="text"
+                  id="pays"
+                  name="pays"
+                  required
+                  placeholder='Pays'
+                  value={formData.pays}
+                  onChange={handleChange}
+                  />
                 </div>
               </div>
               <div className='bottom-part'>

@@ -121,6 +121,12 @@ export const ValiderCompteAlu = async (id) => {
   return response.data;
 };
 
+export const RefuserCompteAlu = async (id) => {
+  
+  const response = await api.put(`/etudiant-alumni/refuser/${id}`);
+  return response.data;
+};
+
 export const getGeneralStats = async () => {
   
   const response = await api.get(`/etudiant-alumni/stat`);
