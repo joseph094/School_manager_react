@@ -28,34 +28,34 @@ export default function SideBar() {
     };
 
     useEffect(() => {
-    const fetchData = async () => {
-        let data;
-        if (decodedToken.roles[0] === "etudiant") {
+        const fetchData = async () => {
+            let data;
             const userTypeData = await GetUser(decodedToken.sub, decodedToken.roles[0]);
-            if (userTypeData.verified != false) {
-                if(userTypeData.verified === true){
-                    data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0])); 
-                }else if (userTypeData.verified === null) {
-                    data = SideBarData.filter((val) => val.roles.includes("alumni-unverified"));   
+            if (decodedToken.roles[0] === "etudiant") {
+                if (userTypeData.verified != false) {
+                    if(userTypeData.verified === true){
+                        data = SideBarData.filter((val) => val.roles.includes("alumni")); 
+                    }else if (userTypeData.verified === null) {
+                        data = SideBarData.filter((val) => val.roles.includes("alumni-unverified"));   
+                    }
+                } else {
+                data = SideBarData.filter((val) => val.roles.includes("alumni-refused"));
                 }
             } else {
-            data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
+                data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
             }
-        } else {
-            data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
-        }
-        const dat = await GetUser(decodedToken.sub,decodedToken.roles[0]);;
-        setUser(dat);
-        setData(data);
-        console.log(user);
-    };
-    fetchData();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-    }, []);
+          setUser(userTypeData);
+          setData(data);
+          console.log(data);
+        };
+      
+        fetchData();
+        window.addEventListener("resize", handleResize);
+      
+        return () => {
+          window.removeEventListener("resize", handleResize);
+        };
+      }, []);
     
     return (
         
@@ -80,7 +80,7 @@ export default function SideBar() {
                     <LinkList>
                     { data && data.map((val) =>
                         {
-                            if (decodedToken && val.roles.includes(decodedToken.roles[0])){
+                            if (decodedToken){
                                 return (
                                     <ListItem isOpen={isOpen} onClick={() => navigate(`${val.link}`, { replace: true })}>
                                         <Icon>{val.icon}</Icon>
@@ -116,7 +116,7 @@ const SideBarE = styled.div`
     display: flex;
     flex-direction: column;
     margin:0;
-    width: ${(props) => (props.isOpen === false ? "15em" : "5em")};
+    width: ${(props) => (props.isOpen === false ? "18em" : "5em")};
     background-color:#145369 ;
     height: 100%;
     transition: all ease-in .3s;
@@ -181,7 +181,7 @@ const ListItem = styled.li`
         -webkit-box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.16);
         -moz-box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.16);
         box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.16);
-        width: ${(props) => (props.isOpen === false ? "90%" : "220%")};
+        width: ${(props) => (props.isOpen === false ? "91.5%" : "350%")};
         align-self:left;
         margin-left: 1.55em;
         ${Text} {

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes,useLocation } from "react-router-dom";
 import "./App.css";
 import CreateEvent from "./components/CrudEvents/CreateEvent";
 import ListEvents from "./components/CrudEvents/ListEvents";
@@ -38,9 +38,14 @@ import ViewMyPublications from "./components/Publications/ViewMyPublications";
 import DemanderContratExpert from "./components/ContratExpert/DemanderContratExpert";
 import VoirContratExpert from "./components/ContratExpert/VoirContratExpert";
 function App() {
+  const location = useLocation();
   return (
     <Container>
-      <LeftSide>{<SideBar />}</LeftSide>
+      {location.pathname !== "/signin" && location.pathname !== "/signup" && (
+        <LeftSide>
+          <SideBar />
+        </LeftSide>
+      )}
       <RightSide>
         <Routes>
           <Route path="/Events" element={<ListEvents />} />
@@ -81,6 +86,7 @@ function App() {
           <Route path="/generalstats" element={<AlumniGeneralStats />} />
           <Route path="/postpublication" element={<PostPublication />} />
           <Route path="/viewpublications" element={<ViewPublication />} />
+          <Route path="/mypublications" element={<ViewMyPublications />} />
           <Route path="/updatepublication/:id" element={<UpdatePublication />} />
         </Routes>
       </RightSide>

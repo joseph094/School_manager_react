@@ -12,12 +12,14 @@ function AlumniAccountState () {
   const decodedToken = jwt_decode(getToken());
   
   function checkVerificationStatus() {
-    if(etudiantAlumni.verified === false){
-      setStatus('Refusé')
-    } else if (etudiantAlumni.verified === null)  {
-      setStatus('Non Validé')
-    } else {
-      setStatus('Validé')
+    if (etudiantAlumni !=null){
+      if(etudiantAlumni.verified === false){
+        setStatus('Refusé')
+      } else if (etudiantAlumni.verified === null)  {
+        setStatus('Non Validé')
+      } else {
+        setStatus('Validé')
+      }
     }
   }
 
@@ -27,8 +29,11 @@ function AlumniAccountState () {
       setEtudiantAlumni(data);
     };
     fetchData();
-    checkVerificationStatus();
   },[]);
+  
+  useEffect(() => {
+    checkVerificationStatus();
+  },[etudiantAlumni]);
   
   return (
     <div>
