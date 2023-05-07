@@ -50,7 +50,7 @@ function VoirContratExpert() {
   return (
     <Container>
         <PageTitle>Demandes de contrat d'expert</PageTitle>
-        {data}
+        {contratExpert.length === 0 ? <Empty>Aucun contrat d'expert n'est demandé</Empty> : data}
     </Container>
   )
 }
@@ -141,6 +141,20 @@ const GridBox = styled.div`
     -webkit-box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.16);
     -moz-box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.16);
     
+`
+export const Empty = styled.p`
+    font-size: 1.5rem;
+    font-family: "montserrat";
+    font-weight: 1000;
+    width: 100%;
+    color: black;
+    text-align:center;
+    @media (max-width: 3.50px) {
+        font-size: 0.8rem;
+    }
+    @media (max-width: 300px) {
+        font-size: 0.75rem;
+    }
 `
 const InfoRow = styled.div`
     display: flex;

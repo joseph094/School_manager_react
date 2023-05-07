@@ -35,7 +35,7 @@
     justify-content: space-evenly;
 }
 
-.bottom-part{
+.bottom-partS{
     display: flex;
     flex-direction: column;
     margin-top: 2.5vw;

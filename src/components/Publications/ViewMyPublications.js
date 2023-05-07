@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { getToken } from '../../api/api';
 import { IconButton } from "@mui/material";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { Empty } from "../ContratExpert/VoirContratExpert";
 
 function ViewMyPublications() {
     const [publication, setPublication] = useState([]);
@@ -35,7 +36,7 @@ function ViewMyPublications() {
           setPublication(myPosts);
         };
         fetchData();
-    },[decodedToken.sub]);
+    },[]);
 
     const DeletePublication = (id) => {
         deletePublication(id).then((res) => {
@@ -74,7 +75,7 @@ function ViewMyPublications() {
         <IconButton onClick={() => navigate(`/postpublication` , { replace: true })}>
             <AddCircleIcon style={{"color":"#4981f5" , "font-size":"4rem"}}/><p style={{fontFamily:'proximanovasemi',fontSize:"2rem",color:"#4981f5"}}> Add</p>
         </IconButton>
-        {data}
+        {publication.length === 0 ? <Empty>Vous n'avez aucune publication</Empty> : data}
     </Container>
   )
 }

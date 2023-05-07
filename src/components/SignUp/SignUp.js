@@ -300,7 +300,7 @@ function SignupAlumni() {
                   </select>
                 </div>
               </div>
-              <div className='bottom-part'>
+              <div className='bottom-partS'>
                 <button type="submit" className="btn">
                   S'inscrire
                 </button>

@@ -21,6 +21,8 @@ function AlumniGeneralStats() {
     const [paysData, setPaysData] = useState(null);
     const [societeData, setSocieteData] = useState(null);
     const [dataC, setDataC] = useState(null);
+    const [dataCP, setDataCP] = useState(null);
+    const [dataP, setDataP] = useState(null);
     const [dataS, setDataS] = useState(null);
     const [chomage, setChomage] = useState('');
 
@@ -52,13 +54,22 @@ function AlumniGeneralStats() {
             };
         });
         const datac = stats.map((stat) => {
-        return {
-            promotion: stat.DateObtention,
-            NombresAlumni: stat.etudiant,
-        };
+            return {
+                promotion: stat.DateObtention,
+                NombresAlumni: stat.etudiant,
+            };
         });
+        const datacp = stats.map((stat) => {
+            return {
+                promotion: stat.DateObtention,
+                NombresAlumni: stat.etudiant,
+            };
+        });
+        datacp.sort((a, b) => b.NombresAlumni - a.NombresAlumni);
+        const topPromotions = datacp.slice(0, 5);
         setPromotionData(data);
         setDataC(datac);
+        setDataCP(topPromotions);
     };
     const fetchPaysData = async () => {
         const stats = await getPaysStats();
@@ -78,6 +89,7 @@ function AlumniGeneralStats() {
         data.sort((a, b) => b.Alumni - a.Alumni);
         const topCountries = data.slice(0, 5);
         setPaysData(data);
+        setDataP(topCountries)
         const maxAlumni = data.reduce((max, d) => (d.alumni > max ? d.alumni : max), 0);
         setMaxAlumni(maxAlumni);
     };
@@ -98,7 +110,7 @@ function AlumniGeneralStats() {
         });
         data.sort((a, b) => b.Alumni - a.Alumni);
         const topSociete = data.slice(0, 5);
-        setSocieteData(data);
+        setSocieteData(topSociete);
         setDataS(dataS);
     };
 
@@ -128,7 +140,7 @@ function AlumniGeneralStats() {
                 </SectionTitle>
                 <SubSectionTitle>Top 5 Promotions</SubSectionTitle>
                 <PromotionCounts>
-                { dataC && dataC.map((val) =>
+                { dataCP && dataCP.map((val) =>
                     {
                         return (
                             <CountBox>
@@ -183,7 +195,7 @@ function AlumniGeneralStats() {
                 </SectionTitle>
                 <SubSectionTitle>Top 5 Pays</SubSectionTitle>
                 <PromotionCounts>
-                { paysData && paysData.map((val) =>
+                { dataP && dataP.map((val) =>
                     {
                         return (
                             <CountBox>
@@ -285,7 +297,7 @@ function AlumniGeneralStats() {
             <BottomPart>
             <SubSectionTitle>Map Chart</SubSectionTitle>
                 <ChartSection >
-                <BarChart width={width} height={height} data={dataS}>
+                <BarChart width={width+50} height={height} data={dataS}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
