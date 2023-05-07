@@ -12,7 +12,7 @@ export  const SideBarData= [
         title :"Lister Etudiants" ,
         icon : <FormatListBulletedIcon/>,
         link: '/getalletudiant',
-        roles: ['responsable','admin']
+        roles: ['responsable','admin','enseignant']
     },
     {
         title :"Lister Events" ,

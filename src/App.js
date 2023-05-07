@@ -32,6 +32,7 @@ import Excel from "./components/importExcel/excel";
 import MakeAccountPublic from "./components/makepublic/makepublic";
 import ConsultPublicAccounts from "./components/publicaccounts/ConsultAccounts";
 import GetDetailEtudiant from "./components/DetailEtudiant/etudiantdetail";
+import GetCvParEns from "./components/Cv-par-enseignant/ConsultCvEnseignant";
 function App() {
   return (
     <Container>
@@ -40,6 +41,8 @@ function App() {
         <Routes>
           <Route path="/Events" element={<ListEvents />} />
           <Route path="/detail-etudiant/:id" element={<GetDetailEtudiant />} />
+          <Route path="/consult-cv/:id" element={<GetCvParEns />} />
+
           <Route path="/newEvent" element={<CreateEvent />} />
           <Route path="/Events/:id" element={<UpdateEvent />} />
           <Route path="/signup" element={<SignupAlumni />} />

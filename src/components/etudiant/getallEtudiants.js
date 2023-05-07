@@ -12,16 +12,20 @@ import axios from "axios";
 import styled from "styled-components";
 import InfoIcon from '@mui/icons-material/Info';
 import { useNavigate } from "react-router-dom";
+import jwt_decode from 'jwt-decode';
+import { getEtudiantAlumni, getToken, getEudiantActuel } from '../../api/api';
 
 export default function GetallEtudiants() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const decodedToken = jwt_decode(getToken());
 
   useEffect(() => {
     axios.get("http://localhost:3000/etudiant/all").then((res) => {
       setData(res.data);
+      console.log(decodedToken);
     });
-  });
+  }, []);
 
   return (
     <Container>
@@ -35,7 +39,9 @@ export default function GetallEtudiants() {
                 <TableCell align="right">Formation</TableCell>
                 <TableCell align="right">Date De naissance</TableCell>
                 <TableCell align="right">E-mail</TableCell>
-                <TableCell align="right">Detail</TableCell>
+                {decodedToken.roles[0] === 'admin' ?
+                  <TableCell align="right">Detail</TableCell>
+                  : <TableCell align="right">Cv</TableCell>}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -51,13 +57,18 @@ export default function GetallEtudiants() {
                   <TableCell align="right">{row.formation}</TableCell>
                   <TableCell align="right">{row.dateNaissance}</TableCell>
                   <TableCell align="right">{row.email}</TableCell>
-                  <TableCell align="right">{row.vacation != null ? <InfoIcon onClick={() => navigate(`/detail-etudiant/${row.EtudiantAluId}`, { replace: true })}> </InfoIcon> : <InfoIcon onClick={() => navigate(`/detail-etudiant/${row.EtudiantActId}`, { replace: true })}> </InfoIcon>}
+                  {decodedToken.roles[0] === 'admin' ?
+                    <div>
+                      <TableCell align="right">{row.vacation != null ?
+                        <InfoIcon onClick={() => navigate(`/detail-etudiant/${row.EtudiantAluId}`, { replace: true })}> </InfoIcon> : <InfoIcon onClick={() => navigate(`/detail-etudiant/${row.EtudiantActId}`, { replace: true })}> </InfoIcon>}
 
+                      </TableCell>
+                    </div> : <div>
+                      <TableCell align="right">{row.vacation != null ?
+                        <InfoIcon onClick={() => navigate(`/consult-cv/${row.EtudiantAluId}`, { replace: true })}> </InfoIcon> : <InfoIcon onClick={() => navigate(`/consult-cv/${row.EtudiantActId}`, { replace: true })}> </InfoIcon>}
 
-
-
-
-                  </TableCell>
+                      </TableCell>
+                    </div>}
                 </TableRow>
               ))}
             </TableBody>
