@@ -2,12 +2,15 @@ import React ,{useState} from 'react'
 import styled from "styled-components";
 import { TextField } from "@mui/material";
 import jwt_decode from 'jwt-decode';
+import { useNavigate } from "react-router-dom";
 import { styled  as style} from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { demanderContratExpert, getToken } from '../../api/api';
 
 function DemanderContratExpert() {
+  const navigate = useNavigate();
+  const[formError,setFormError] = useState('')
     const [formData, setFormData] = useState({
         titre: "",
         description: "",
@@ -16,7 +19,11 @@ function DemanderContratExpert() {
       const [competences, setCompetences] = useState(['']);
     
       const handleAddField = () => {
-        setCompetences([...competences, '']);
+        if (competences.includes("")){
+          setFormError('veuillez remplir le champs de comptence vide')
+        }else{
+          setCompetences([...competences, '']);
+        }
       }
     
       const handleSubmit = async (e) => {
@@ -32,11 +39,11 @@ function DemanderContratExpert() {
             console.log(contratExpert);
             const response = await demanderContratExpert(contratExpert);
             console.log(response);
-            //redirect to success page
-            console.log('redirect');
+            navigate("/");
       
         } catch (error) {
           console.log('Something Wrong Happened ... Try Again Later'); 
+          setFormError('Something Wrong Happened ... Try Again Later')
         }
         };
     
@@ -53,12 +60,13 @@ function DemanderContratExpert() {
         <LeftSide>
         </LeftSide>
         <RightSide>
+        {formError && <div className='error'>{formError}</div>}
             <PageTitle>
                 Demander un contrat d'expert
             </PageTitle>
             <Form onSubmit={handleSubmit}>
                 <InputArea>
-                    <Input id="standard-basic" label="Titre" variant="standard" size='normal' name='titre' onChange={handleChange} fullWidth/>
+                    <Input id="standard-basic" label="Titre" variant="standard" size='normal' name='titre' onChange={handleChange} required fullWidth/>
                 </InputArea>
                 <InputArea>
                     <Input
@@ -67,6 +75,7 @@ function DemanderContratExpert() {
                     name='description'
                     multiline
                     rows={7}
+                    required
                     variant="standard"
                     onChange={handleChange}
                     fullWidth
@@ -80,6 +89,7 @@ function DemanderContratExpert() {
                     variant="standard"
                     label="Competence"
                     size='normal' 
+                    required
                     value={competence}
                     onChange={event => handleChangeCompetence(index, event)}
                     />

@@ -70,57 +70,60 @@ function UpdatePassword() {
             break;
           default: break;     
       }
-      console.log(errorMessage);
     }
   };
 
   return (
     <div className='form-container'>
-      {errorMessage && <div className='error'>{errorMessage}</div>}
-      <div className='left-block'>
-          <img src='.\password-icon.png' alt='hi'/>
-          <h1 class="title-changer">Changer Mot De Passe</h1>
+      <div className='error-placeholder'>
+        {errorMessage && <div className='error'>{errorMessage}</div>}
       </div>
-      <div className="vl"></div>
-      <div className='right-block'>
-        <form className='right-form' onSubmit={handleSubmit}>
-            <div className='row'>
-              <input
-                id="old-password"
-                type="password"
-                placeholder='Old password'
-                className='passInput'
-                value={oldPassword}
-                onChange={(event) => setOldPassword(event.target.value)}
-                required
-              />
-            </div>
-            <div className='row'>
-              <input
-                id="new-password"
-                type="password"
-                placeholder='New password'
-                className='passInput'
-                value={newPassword}
-                onChange={(event) => setNewPassword(event.target.value)}
-                required
-              />
-            </div>
-            <div className='row' >
-              <input
-                id="confirm-new-password"
-                type="password"
-                placeholder='Confirm password'
-                className='passInput'
-                value={confirmNewPassword}
-                onChange={(event) => setConfirmNewPassword(event.target.value)}
-                required
-              />
-            </div>
-            <div className='button-grp'>
-              <button type="submit" className='changer'>Changer</button>
-            </div> 
-        </form>
+      <div className='bottom-part'>
+        <div className='left-block'>
+            <img src='.\password-icon.png' alt='hi'/>
+            <h1 class="title-changer">Changer Mot De Passe</h1>
+        </div>
+        <div className="vl"></div>
+        <div className='right-block'>
+          <form className='right-form' onSubmit={handleSubmit}>
+              <div className='row'>
+                <input
+                  id="old-password"
+                  type="password"
+                  placeholder='Old password'
+                  className='passInput'
+                  value={oldPassword}
+                  onChange={(event) => setOldPassword(event.target.value)}
+                  required
+                />
+              </div>
+              <div className='row'>
+                <input
+                  id="new-password"
+                  type="password"
+                  placeholder='New password'
+                  className='passInput'
+                  value={newPassword}
+                  onChange={(event) => setNewPassword(event.target.value)}
+                  required
+                />
+              </div>
+              <div className='row' >
+                <input
+                  id="confirm-new-password"
+                  type="password"
+                  placeholder='Confirm password'
+                  className='passInput'
+                  value={confirmNewPassword}
+                  onChange={(event) => setConfirmNewPassword(event.target.value)}
+                  required
+                />
+              </div>
+              <div className='button-grp'>
+                <button type="submit" className='changer'>Changer</button>
+              </div> 
+          </form>
+        </div>
       </div>
     </div>
   );

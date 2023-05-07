@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {getEtudiantAlumni,ValiderCompteAlu} from '../../api/api';
+import {getEtudiantAlumni,ValiderCompteAlu,RefuserCompteAlu} from '../../api/api';
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { Container, ProfilePicture , NameRow , Prenom , Nom , InformationRow , Title , Value  , Loading} from "../AlumniAccountState/AlumniAccountState";
@@ -10,30 +10,39 @@ import { Container, ProfilePicture , NameRow , Prenom , Nom , InformationRow , T
 
 function VerifyAlumniAccount () {
 
-    const { id } = useParams();
-    const navigate = useNavigate();
-    const [etudiantAlumni, setEtudiantAlumni] = useState(null);
-    const [isVerified, setIsVerified] = useState(false);
-    
-    useEffect(() => {
-        const fetchData = async () => {
-        const data = await getEtudiantAlumni(id);
-        setEtudiantAlumni(data);
-        };
-        fetchData();
-        if (isVerified==true) {
-            return navigate("/getunverified");
-        }
-    });
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [etudiantAlumni, setEtudiantAlumni] = useState(null);
+  const [isVerified, setIsVerified] = useState(null);
   
-    const ValiderCompte = (id) => {
-        ValiderCompteAlu(id).then((res) => {
-            console.log(res);
-            setIsVerified(true);
-        }).catch((er) => {
-            console.log("ERROR CATCHED BY ME ", er);
-        });
-    };
+  useEffect(() => {
+      const fetchData = async () => {
+      const data = await getEtudiantAlumni(id);
+      setEtudiantAlumni(data);
+      };
+      fetchData();
+      if (isVerified!=null) {
+        return navigate("/getunverified");
+      }
+  },[isVerified]);
+
+  const ValiderCompte = (id) => {
+      ValiderCompteAlu(id).then((res) => {
+          console.log(res);
+          setIsVerified(true);
+      }).catch((er) => {
+          console.log("ERROR CATCHED BY ME ", er);
+      });
+  };
+
+  const RefuserCompte = (id) => {
+    RefuserCompteAlu(id).then((res) => {
+        console.log(res);
+        setIsVerified(true);
+    }).catch((er) => {
+        console.log("ERROR CATCHED BY ME ", er);
+    });
+  };
 
   return (
     <div>
@@ -62,6 +71,7 @@ function VerifyAlumniAccount () {
           <Title>Date Embauche</Title><Value>{etudiantAlumni.dateEmbacuhe}</Value>
         </InformationRow>
         <Button onClick={() => ValiderCompte(etudiantAlumni.EtudiantAluId)}>Valider</Button>
+        <Button style={{backgroundColor:"red"}} onClick={() => RefuserCompte(etudiantAlumni.EtudiantAluId)}>Refuser</Button>
       </Container>
       ) : (
         <Container><Loading>Loading...</Loading> </Container>

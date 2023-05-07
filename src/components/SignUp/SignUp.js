@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import {sighUpAlumni } from '../../api/api';
 import "./style/style.css";
+import { useNavigate } from "react-router-dom";
+import { CountryCodes } from "../AlumniStats/CountryCodes";
 
 function SignupAlumni() {
+
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nom: "",
     prenom: "",
@@ -14,8 +18,8 @@ function SignupAlumni() {
     confirmPassword: "",
     dateObtentionDiplome: "",
     dateEmbacuhe: "",
-    vacation: false,
-    contratExpert: false,
+    societe: "",
+    pays: "",
   });
   const [formError, setFormError] = useState("");
   const [inputDateNaisType, setInputDateNaisType] = useState("text");
@@ -51,12 +55,11 @@ function SignupAlumni() {
     
   };
 
-  const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: checked,
-    }));
+  const calculateAge = (birthdayString) => {
+    const birthday = new Date(birthdayString);
+    const ageDifMs = Date.now() - birthday.getTime();
+    const ageDate = new Date(ageDifMs);
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
   };
 
   const handleSubmit = async (e) => {
@@ -66,6 +69,21 @@ function SignupAlumni() {
     // Check if passwords match
     if (formData.mdp !== formData.confirmPassword) {
       setFormError("Passwords do not match");
+      return;
+    }
+
+     // Check if age is at least 22
+    const age = calculateAge(formData.dateNaissance);
+    if (age < 22) {
+      setFormError("You must be at least 22 years old to sign up");
+      return;
+    }
+
+    // Check if dateEmbacuhe is after dateObtentionDiplome
+    const dateObt = new Date(formData.dateObtentionDiplome);
+    const dateEmb = new Date(formData.dateEmbacuhe);
+    if (dateEmb <= dateObt) {
+      setFormError("Date d'embauche must be after date d'obtention du diplôme");
       return;
     }
 
@@ -82,15 +100,13 @@ function SignupAlumni() {
             login : Number(formData.login),
             email : formData.email,
             mdp : formData.mdp,
-            vacation : formData.vacation,
-            ContratExpert : formData.contratExpert,
-            verified : false
+            societe : formData.societe,
+            pays : formData.pays,
+            verified : null
         };
-        console.log(etudiant);
         const response = await sighUpAlumni(etudiant);
         console.log(response);
-        //redirect to success page
-        console.log('redirect');
+        navigate("/signin")
   
     } catch (error) {
       if ((error.response.data.message).includes("duplicate key")){
@@ -152,6 +168,7 @@ function SignupAlumni() {
                   required
                   placeholder='Date de Naissance'
                   value={formData.dateNaissance}
+                  max={new Date().toISOString().split("T")[0]}
                   onChange={handleChange}
                   />
 
@@ -239,6 +256,7 @@ function SignupAlumni() {
                   required
                   placeholder="Date d'obtention du diplôme"
                   value={formData.dateObtentionDiplome}
+                  max={new Date().toISOString().split("T")[0]}
                   onChange={handleChange}/>
 
                   <input
@@ -250,39 +268,39 @@ function SignupAlumni() {
                   name="dateEmbacuhe"
                   placeholder="Date d'embauche"
                   value={formData.dateEmbacuhe}
+                  max={new Date().toISOString().split("T")[0]}
                   onChange={handleChange}/>
                 </div>
 
-                <div className='row-2'>
-                  <div className='boolean'>
-                    <label className='label' htmlFor="vacation">
-                    Vacation:
-                    </label>
-                    <input
-                    type="checkbox"
-                    className="checkbox"
-                    id="vacation"
-                    name="vacation"
-                    checked={formData.vacation}
-                    onChange={handleCheckboxChange}
-                    />
-                  </div>
-                  <div className='boolean'>
-                    <label className='label' htmlFor="contratExpert">
-                    Contrat Expert:
-                    </label>
-                    <input
-                    type="checkbox"
-                    className="checkbox"
-                    id="contratExpert"
-                    name="contratExpert"
-                    checked={formData.contratExpert}
-                    onChange={handleCheckboxChange}
-                    />
-                  </div>
+                <div className='row-1'>
+                <input
+                  className='signInput'
+                  type="text"
+                  name="societe"
+                  id="societe"
+                  required
+                  placeholder='Societé'
+                  value={formData.societe}
+                  onChange={handleChange}
+                  />
+                  <select
+                    className='signInput'
+                    name='pays'
+                    id='pays'
+                    value={formData.pays}
+                    onChange={handleChange}
+                    required
+                    >
+                    <option value=''>Sélectionnez un pays</option>
+                    {CountryCodes.map((country) => (
+                    <option key={country.countryName} value={country.countryName}>
+                    {country.countryName}
+                    </option>
+                    ))}
+                  </select>
                 </div>
               </div>
-              <div className='bottom-part'>
+              <div className='bottom-partS'>
                 <button type="submit" className="btn">
                   S'inscrire
                 </button>
