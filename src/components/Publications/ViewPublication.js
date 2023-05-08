@@ -70,7 +70,7 @@ function ViewPublication() {
         {isAlumni && <IconButton onClick={() => navigate(`/postpublication` , { replace: true })}>
             <AddCircleIcon style={{"color":"#4981f5" , "font-size":"4rem"}}/><p style={{fontFamily:'proximanovasemi',fontSize:"2rem",color:"#4981f5"}}> Add</p>
         </IconButton>}
-        {publication.length === 0 ? <Empty>Vous n'avez aucune publication</Empty> : data}
+        {publication.length === 0 ? <Empty>Aucune publication n'est disponible</Empty> : data}
     </Container>
   )
 }
