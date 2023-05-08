@@ -33,6 +33,7 @@ import MakeAccountPublic from "./components/makepublic/makepublic";
 import ConsultPublicAccounts from "./components/publicaccounts/ConsultAccounts";
 import GetDetailEtudiant from "./components/DetailEtudiant/etudiantdetail";
 import GetCvParEns from "./components/Cv-par-enseignant/ConsultCvEnseignant";
+import AddingAdmin from "./components/AddAdmin/AddAdmin";
 function App() {
   return (
     <Container>
@@ -42,7 +43,7 @@ function App() {
           <Route path="/Events" element={<ListEvents />} />
           <Route path="/detail-etudiant/:id" element={<GetDetailEtudiant />} />
           <Route path="/consult-cv/:id" element={<GetCvParEns />} />
-
+          <Route path="/gestion-acces" element={<AddingAdmin   />} />
           <Route path="/newEvent" element={<CreateEvent />} />
           <Route path="/Events/:id" element={<UpdateEvent />} />
           <Route path="/signup" element={<SignupAlumni />} />

@@ -29,7 +29,7 @@ export default function SideBar() {
 
     useEffect(() => {
         const fetchData = async () => {
-            let data;
+            let data = [];
             if (decodedToken.roles[0] === "etudiant") {
                 const userTypeData = await GetUser(decodedToken.sub, decodedToken.roles[0]);
 
@@ -45,13 +45,48 @@ export default function SideBar() {
                     data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
                 }
 
-            } else {
-                data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
+            }
+            else {
+                if (decodedToken.roles[0] === "admin") {
+                    const Admin = await GetUser(decodedToken.sub, decodedToken.roles[0]);
+
+                    if (Admin.SuperAdmin === false) {
+                        if (Admin.OperationsDemande === true) {
+                            data = data.concat(SideBarData.filter((val) => val.roles.includes('DroitDemande')));
+                        }
+                        if (Admin.ImportExcel === true) {
+                            data = data.concat(SideBarData.filter((val) => val.roles.includes('DroitExcel')));
+                        }
+                        if (Admin.OperationsEtud === true) {
+                            data = data.concat(SideBarData.filter((val) => val.roles.includes('DroitEtud')));
+                        }
+                        if (Admin.OperationsEvent === true) {
+                            data = data.concat(SideBarData.filter((val) => val.roles.includes('Droitevent')));
+                        }
+                        if (Admin.OperationsEns === true) {
+                            data = data.concat(SideBarData.filter((val) => val.roles.includes('DroitEns')));
+                        }
+                        
+                        if (Admin.OperationsStats === true) {
+                            data = data.concat(SideBarData.filter((val) => val.roles.includes('DroitStats')));
+                        }
+                        console.log(data)
+                    } else {
+                        data = SideBarData.filter((val) => val.roles.includes('admin'));
+
+                    }
+
+
+                } else {
+                    data = SideBarData.filter((val) => val.roles.includes(decodedToken.roles[0]));
+                }
             }
             const dat = await GetUser(decodedToken.sub, decodedToken.roles[0]);;
             setUser(dat);
             setData(data);
-            console.log(user);
+            console.log(dat);
+            console.log(data, "sidebar");
+
         };
         fetchData();
         window.addEventListener("resize", handleResize);

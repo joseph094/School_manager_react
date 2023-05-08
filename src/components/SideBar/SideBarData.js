@@ -6,74 +6,80 @@ import FormatListNumberedRtlIcon from '@mui/icons-material/FormatListNumberedRtl
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import UnpublishedIcon from '@mui/icons-material/Unpublished';
 import CreateIcon from '@mui/icons-material/Create';
-export  const SideBarData= [
+export const SideBarData = [
 
     {
-        title :"Lister Etudiants" ,
-        icon : <FormatListBulletedIcon/>,
+        title: "Lister Etudiants",
+        icon: <FormatListBulletedIcon />,
         link: '/getalletudiant',
-        roles: ['responsable','admin','enseignant']
+        roles: ['responsable', 'admin', 'enseignant', 'DroitEtud']
     },
     {
-        title :"Lister Events" ,
-        icon : <EventIcon/>,
+        title: "Lister Events",
+        icon: <EventIcon />,
         link: '/Events',
-        roles: ['responsable','admin','etudiant']
+        roles: ['responsable', 'admin', 'etudiant', 'Droitevent']
     },
     {
-        title :"Créer Event" ,
-        icon : <AddIcon/>,
+        title: "Créer Event",
+        icon: <AddIcon />,
         link: '/newEvent',
-        roles: ['responsable','admin']
+        roles: ['responsable', 'admin', 'Droitevent']
     },
     {
-        title :"Lister Enseignants" ,
-        icon : <FormatListNumberedRtlIcon/>,
+        title: "Ajouter Admin",
+        icon: <AddIcon />,
+        link: '/gestion-acces',
+        roles: ['admin']
+    },
+    {
+        title: "Lister Enseignants",
+        icon: <FormatListNumberedRtlIcon />,
         link: '/enseignants',
-        roles: ['responsable','admin']
+        roles: ['responsable', 'admin', 'DroitEns']
     },
     {
-        title :"Voir Status" ,
-        icon : <CheckCircleIcon/>,
+        title: "Voir Status",
+        icon: <CheckCircleIcon />,
         link: '/alumnistatus',
         roles: ['alumni']
     },
     {
-        title :"Valider Alumni" ,
-        icon : <UnpublishedIcon/>,
+        title: "Valider Alumni",
+        icon: <UnpublishedIcon />,
         link: '/getunverified',
-        roles: ['admin']
+        roles: ['admin', 'DroitEtud']
     },
     {
-        title :"Insérer Stage" ,
-        icon : <CreateIcon/>,
+        title: "Insérer Stage",
+        icon: <CreateIcon />,
         link: '/insertstage',
-        roles: ['responsable','enseignant','admin']
+        roles: ['responsable', 'enseignant', 'admin', 'DroitEtud']
     },
     {
-        title :"Insérer PFE" ,
-        icon : <CreateIcon/>,
+        title: "Insérer PFE",
+        icon: <CreateIcon />,
         link: '/insertpfe',
-        roles: ['responsable','enseignant','admin']
+        roles: ['responsable', 'enseignant', 'admin', 'DroitEtud']
     },
     {
-        title :"Import Excel" ,
-        icon : <AddIcon/>,
+        title: "Import Excel",
+        icon: <AddIcon />,
         link: '/import',
-        roles: ['admin']
+        roles: ['admin', 'DroitExcel']
     },
     {
-        title :"Account" ,
-        icon : <CreateIcon/>,
+        title: "Account",
+        icon: <CreateIcon />,
         link: '/make-public',
         roles: ['etudiant',]
     },
     {
-        title :"Consult Comptes publiques" ,
-        icon : <FormatListNumberedRtlIcon/>,
+        title: "Consult Comptes publiques",
+        icon: <FormatListNumberedRtlIcon />,
         link: '/publicaccounts',
         roles: ['etudiant',]
     },
 
-    
+
 ]
