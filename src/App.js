@@ -28,6 +28,11 @@ import PfeStats from "./components/pfe/pfeStats";
 import EnseignantDashboard from "./components/enseignantDashboard";
 import GetEtudiantByParam from "./components/etudiant/getetudiantbyParam";
 import GetPfeByParam from "./components/pfe/getPfeByParam";
+import EtudiantDashboard from "./components/etudiant/etudiantDashboard";
+import { io } from "socket.io-client";
+import { useState } from "react";
+import AjouterAnneUniversitaire from "./components/AnneUniversitaire/ajouterAnneUniversitaire";
+import BasculerAnne from "./components/AnneUniversitaire/basculerAnne";
 import AlumniGeneralStats from "./components/AlumniStats/AlumniGeneralStats";
 import DemanderVacation from "./components/Vacation/DemanderVacation";
 import VoirVacation from "./components/Vacation/VoirVacation";
@@ -79,6 +84,14 @@ function App() {
           <Route path="/choisirpfe" element={<Choisirpfe />} />
           <Route path="/etudiant/:id" element={<GetEtudiantByParam />} />
           <Route path="/pfe/:id" element={<GetPfeByParam />} />
+
+          <Route path="/etudiantDashboard" element={<EtudiantDashboard />} />
+          <Route
+            path="/ajouteranneuniversitaire"
+            element={<AjouterAnneUniversitaire />}
+          />
+          <Route path="/basculer" element={<BasculerAnne />} />
+
           <Route path="/vacations" element={<VoirVacation />} />
           <Route path="/contrats" element={<VoirContratExpert />} />
           <Route path="/demandervacation" element={<DemanderVacation />} />
@@ -88,6 +101,7 @@ function App() {
           <Route path="/viewpublications" element={<ViewPublication />} />
           <Route path="/mypublications" element={<ViewMyPublications />} />
           <Route path="/updatepublication/:id" element={<UpdatePublication />} />
+
         </Routes>
       </RightSide>
     </Container>
