@@ -94,113 +94,121 @@ export default function GetEtudiant() {
     setError(false);
   }, [etudiantData, setIsNotFound]);
   return (
-    <FormComponent height="160%">
-      <TitleLogin>Chercher un Etudiant</TitleLogin>
-      <InputName>CIN</InputName>
-      <TextField
-        id="filled-basic"
-        label="cin"
-        variant="filled"
-        name="cin"
-        value={etudiantData.cin}
-        onChange={handleChange}
-      />
-      <div>
-        <InputName>Type</InputName>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          label="Type"
-          name="type"
-          style={{ padding: "1px" }}
+    <AllContainer>
+      <FormComponent height="160%">
+        <TitleLogin>Chercher un Etudiant</TitleLogin>
+        <InputName>CIN</InputName>
+        <TextField
+          id="filled-basic"
+          label="cin"
+          variant="filled"
+          name="cin"
+          value={etudiantData.cin}
           onChange={handleChange}
-          value={etudiantData.type}
-        >
-          <MenuItem value={"Alumni"}>Alumni</MenuItem>
-          <MenuItem value={"Actuel"}>Actuel</MenuItem>
-        </Select>
-      </div>
-      <Button variant="contained" onClick={handleSearch}>
-        Checher
-      </Button>
-      {isNotFound && (
-        <Alert severity="error"> Impossible de trouver cet Etudiant !</Alert>
-      )}
-
-      <InputName>Nom</InputName>
-      <TextField
-        id="filled-basic"
-        label="nom"
-        variant="filled"
-        name="nom"
-        value={etudiantData.nom}
-        disabled={true}
-      />
-      <InputName>Prénom</InputName>
-      <TextField
-        id="filled-basic"
-        label="prénom"
-        variant="filled"
-        name="prenom"
-        value={etudiantData.prenom}
-        disabled={true}
-      />
-      <InputName>Email</InputName>
-      <TextField
-        id="filled-basic"
-        label="email"
-        variant="filled"
-        name="email"
-        value={etudiantData.email}
-        disabled={true}
-      />
-      {etudiantData.type == "Actuel" ? (
+          data-test="cin"
+        />
         <div>
-          <InputName>Classe</InputName>
-          <TextField
-            id="filled-basic"
-            label="classe"
-            variant="filled"
-            name="classe"
-            value={etudiantData.classe}
+          <InputName>Type</InputName>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Type"
+            name="type"
+            style={{ padding: "1px" }}
             onChange={handleChange}
-            disabled={etudiantData.type == "Alumni" ? true : false}
-          />
-          <InputName>Niveau</InputName>
-          <TextField
-            id="filled-basic"
-            label="niveau"
-            variant="filled"
-            name="niveau"
-            value={etudiantData.niveau}
-            onChange={handleChange}
-            disabled={etudiantData.type == "Alumni" ? true : false}
-          />
+            value={etudiantData.type}
+            data-test="type"
+          >
+            <MenuItem value={"Alumni"}>Alumni</MenuItem>
+            <MenuItem value={"Actuel"}>Actuel</MenuItem>
+          </Select>
         </div>
-      ) : (
-        ""
-      )}
-      <DobContainer>
-        <div>
-          <InputName>Date de naissance</InputName>
-          <p>{etudiantData.DOB}</p>
-        </div>
-      </DobContainer>
-      <DobContainer>
-        <Button
-          variant="outlined"
-          startIcon={<DeleteIcon />}
-          onClick={handleDelete}
-        >
-          Delete
+        <Button variant="contained" onClick={handleSearch} data-test="chercher">
+          Checher
         </Button>
-      </DobContainer>
-      {error && (
+        {isNotFound && (
+          <Alert severity="error"> Impossible de trouver cet Etudiant !</Alert>
+        )}
+
+        <InputName>Nom</InputName>
+        <TextField
+          id="filled-basic"
+          label="nom"
+          variant="filled"
+          name="nom"
+          value={etudiantData.nom}
+          disabled={true}
+          data-test="nom"
+        />
+        <InputName>Prénom</InputName>
+        <TextField
+          id="filled-basic"
+          label="prénom"
+          variant="filled"
+          name="prenom"
+          value={etudiantData.prenom}
+          disabled={true}
+          data-test="prenom"
+        />
+        <InputName>Email</InputName>
+        <TextField
+          id="filled-basic"
+          label="email"
+          variant="filled"
+          name="email"
+          value={etudiantData.email}
+          disabled={true}
+          data-test="email"
+        />
+        {etudiantData.type == "Actuel" ? (
+          <div>
+            <InputName>Classe</InputName>
+            <TextField
+              id="filled-basic"
+              label="classe"
+              variant="filled"
+              name="classe"
+              value={etudiantData.classe}
+              onChange={handleChange}
+              disabled={etudiantData.type == "Alumni" ? true : false}
+            />
+            <InputName>Niveau</InputName>
+            <TextField
+              id="filled-basic"
+              label="niveau"
+              variant="filled"
+              name="niveau"
+              value={etudiantData.niveau}
+              onChange={handleChange}
+              disabled={etudiantData.type == "Alumni" ? true : false}
+            />
+          </div>
+        ) : (
+          ""
+        )}
         <DobContainer>
-          <Alert severity="error">Un erreur est survenue ... !</Alert>
+          <div>
+            <InputName>Date de naissance</InputName>
+            <p data-test="date">{etudiantData.DOB}</p>
+          </div>
         </DobContainer>
-      )}
-    </FormComponent>
+        <DobContainer>
+          <Button
+            variant="outlined"
+            startIcon={<DeleteIcon />}
+            onClick={handleDelete}
+            data-test="delete"
+          >
+            Delete
+          </Button>
+        </DobContainer>
+        {error && (
+          <DobContainer>
+            <Alert severity="error">Un erreur est survenue ... !</Alert>
+          </DobContainer>
+        )}
+      </FormComponent>
+    </AllContainer>
   );
 }
 
@@ -221,4 +229,12 @@ const DobContainer = styled.div`
   flex-direction: row;
   justify-content: space-around;
   margin-bottom: 0.5em;
+`;
+const AllContainer = styled.div`
+  height: 110%;
+  width: 100;
+  margin: 10% auto;
+  @media (max-width: 768px) {
+    margin-top: 0.5em;
+  }
 `;

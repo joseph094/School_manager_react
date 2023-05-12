@@ -22,7 +22,7 @@ export default function GetpfeByEnseignantId() {
       .get("http://localhost:3000/pfe/enseignant/" + user.sub)
       .then((res) => {
         setData(res.data);
-        console.log(res.data);
+        console.log("pfeEnseignant", res.data);
       });
   }, []);
   return (

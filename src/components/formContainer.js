@@ -30,16 +30,15 @@ export default function FormComponent(props) {
 }
 
 const Container = styled.div`
-  background-color: #dfdfdf;
-  position: absolute;
+  position: relative;
   width: 100%;
-  height: ${(props) => (props.height == undefined ? "100%" : props.height)};
+  margin-top: 25vh;
+  height: ${(props) => (props.height == undefined ? "100vh" : props.height)};
   display: flex;
   justify-content: center;
   align-items: center;
   @media (max-width: 768px) {
-    
-    height 190%;
+    height: 190%;
   }
 `;
 

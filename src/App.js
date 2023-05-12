@@ -1,4 +1,4 @@
-import { Route, Routes,useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import CreateEvent from "./components/CrudEvents/CreateEvent";
 import ListEvents from "./components/CrudEvents/ListEvents";
@@ -42,6 +42,7 @@ import UpdatePublication from "./components/Publications/UpdatePublication";
 import ViewMyPublications from "./components/Publications/ViewMyPublications";
 import DemanderContratExpert from "./components/ContratExpert/DemanderContratExpert";
 import VoirContratExpert from "./components/ContratExpert/VoirContratExpert";
+import FormComponent from "./components/formContainer";
 function App() {
   const location = useLocation();
   return (
@@ -95,13 +96,18 @@ function App() {
           <Route path="/vacations" element={<VoirVacation />} />
           <Route path="/contrats" element={<VoirContratExpert />} />
           <Route path="/demandervacation" element={<DemanderVacation />} />
-          <Route path="/demandercontratexpert" element={<DemanderContratExpert />} />
+          <Route
+            path="/demandercontratexpert"
+            element={<DemanderContratExpert />}
+          />
           <Route path="/generalstats" element={<AlumniGeneralStats />} />
           <Route path="/postpublication" element={<PostPublication />} />
           <Route path="/viewpublications" element={<ViewPublication />} />
           <Route path="/mypublications" element={<ViewMyPublications />} />
-          <Route path="/updatepublication/:id" element={<UpdatePublication />} />
-
+          <Route
+            path="/updatepublication/:id"
+            element={<UpdatePublication />}
+          />
         </Routes>
       </RightSide>
     </Container>
@@ -113,7 +119,7 @@ export default App;
 const Container = styled.div`
   width: 100%;
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   flex-direction: row;
 `;
 

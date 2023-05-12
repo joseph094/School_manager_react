@@ -12,7 +12,6 @@ export default function InsertPFE() {
     type: "",
     societe: "",
     pays: "",
-    idEnseignant: "",
   });
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -25,20 +24,27 @@ export default function InsertPFE() {
       };
     });
   };
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const token = localStorage.getItem("token");
     const user = jwtDecode(token);
-
-    axios
-      .post(
-        "http://localhost:3000/etudiant-actuel/addpfe/" + user.sub,
-        stagePFE
-      )
-      .then(setError(false), navigate("/"))
-      .catch((error) => {
-        console.log(error);
-        setError(true);
-      });
+    const etud = await axios.get(
+      "http://localhost:3000/etudiant-actuel/" + user.sub
+    );
+    console.log("user", etud);
+    if (etud.data.niveau === "3") {
+      axios
+        .post(
+          "http://localhost:3000/etudiant-actuel/addpfe/" + user.sub,
+          stagePFE
+        )
+        .then(setError(false), navigate("/"))
+        .catch((error) => {
+          console.log(error);
+          setError(true);
+        });
+    } else {
+      setError(true);
+    }
   };
   useEffect(() => {
     console.log(stagePFE);
@@ -75,14 +81,7 @@ export default function InsertPFE() {
         name="societe"
         onChange={handleChange}
       />
-      <InputName> Enseignant </InputName>
-      <TextField
-        id="filled-basic"
-        label="Filled"
-        variant="filled"
-        name="idEnseignant"
-        onChange={handleChange}
-      />
+
       <InputName> Pays </InputName>
       <TextField
         id="filled-basic"

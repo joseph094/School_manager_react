@@ -37,18 +37,17 @@
   }
 } */
 
-body{
-  margin:0 !important;
+body {
+  margin: 0 !important;
   padding: 0 !important;
   overflow: hidden;
 }
 
 @font-face {
-  font-family: 'proximanovasemi';
+  font-family: "proximanovasemi";
   src: url("./fonts/Semibold.otf");
 }
 @font-face {
-  font-family: 'proximanovaregular';
+  font-family: "proximanovaregular";
   src: url("./fonts/Proxima Nova Regular.otf");
 }
-

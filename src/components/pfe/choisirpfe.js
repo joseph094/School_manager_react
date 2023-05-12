@@ -32,7 +32,7 @@ export default function Choisirpfe() {
         idEnseignant: sub,
       })
       .then(() => {
-        navigate("/getpfeenseignant");
+        navigate("/enseignantdashboard");
         setButton(false);
       })
       .catch(setButton(true));

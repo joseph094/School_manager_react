@@ -115,107 +115,129 @@ export default function EtudiantPUT() {
     setError(false);
   }, [etudiantData, setIsNotFound]);
   return (
-    <FormComponent height="160%">
-      <TitleLogin>Modifier un Etudiant</TitleLogin>
-      <InputName>CIN</InputName>
-      <TextField
-        id="filled-basic"
-        label="cin"
-        variant="filled"
-        name="cin"
-        value={etudiantData.cin}
-        onChange={handleChange}
-      />
-      <div>
-        <InputName>Type</InputName>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          label="Type"
-          name="type"
-          style={{ padding: "1px" }}
+    <AllContainer>
+      <FormComponent height="160%">
+        <TitleLogin>Modifier un Etudiant</TitleLogin>
+        <InputName>CIN</InputName>
+        <TextField
+          id="filled-basic"
+          label="cin"
+          variant="filled"
+          name="cin"
+          value={etudiantData.cin}
           onChange={handleChange}
-          value={etudiantData.type}
-        >
-          <MenuItem value={"Alumni"}>Alumni</MenuItem>
-          <MenuItem value={"Actuel"}>Actuel</MenuItem>
-        </Select>
-      </div>
-      <Button variant="contained" onClick={handleSearch}>
-        Checher
-      </Button>
-      {isNotFound && (
-        <Alert severity="error"> Impossible de trouver cet Etudiant !</Alert>
-      )}
-
-      <InputName>Nom</InputName>
-      <TextField
-        id="filled-basic"
-        label="nom"
-        variant="filled"
-        name="nom"
-        value={etudiantData.nom}
-        onChange={handleChange}
-      />
-      <InputName>Prénom</InputName>
-      <TextField
-        id="filled-basic"
-        label="prénom"
-        variant="filled"
-        name="prenom"
-        value={etudiantData.prenom}
-        onChange={handleChange}
-      />
-      <InputName>Email</InputName>
-      <TextField
-        id="filled-basic"
-        label="email"
-        variant="filled"
-        name="email"
-        value={etudiantData.email}
-        onChange={handleChange}
-      />
-      <InputName>Classe</InputName>
-      <TextField
-        id="filled-basic"
-        label="classe"
-        variant="filled"
-        name="classe"
-        value={etudiantData.classe}
-        onChange={handleChange}
-        disabled={etudiantData.type == "Alumni" ? true : false}
-      />
-      <InputName>Niveau</InputName>
-      <TextField
-        id="filled-basic"
-        label="niveau"
-        variant="filled"
-        name="niveau"
-        value={etudiantData.niveau}
-        onChange={handleChange}
-        disabled={etudiantData.type == "Alumni" ? true : false}
-      />
-
-      <DobContainer>
+          data-test="cin"
+        />
         <div>
-          <InputName>Date de naissance</InputName>
-          <DatePicker type="date" name="DOB" onChange={handleChange} />
+          <InputName>Type</InputName>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Type"
+            name="type"
+            style={{ padding: "1px" }}
+            onChange={handleChange}
+            value={etudiantData.type}
+            data-test="type"
+          >
+            <MenuItem value={"Alumni"}>Alumni</MenuItem>
+            <MenuItem value={"Actuel"}>Actuel</MenuItem>
+          </Select>
         </div>
-      </DobContainer>
-      <ButtonDiv>
-        <Button
-          variant="contained"
-          onClick={handleSubmit}
-          disabled={disableButton && !isNotFound}
-        >
-          Valider
+        <Button variant="contained" onClick={handleSearch} data-test="chercher">
+          Checher
         </Button>
-        {error && <Alert severity="error">Un erreur est survenue!</Alert>}
-      </ButtonDiv>
-    </FormComponent>
+        {isNotFound && (
+          <Alert severity="error"> Impossible de trouver cet Etudiant !</Alert>
+        )}
+
+        <InputName>Nom</InputName>
+        <TextField
+          id="filled-basic"
+          label="nom"
+          variant="filled"
+          name="nom"
+          value={etudiantData.nom}
+          onChange={handleChange}
+          data-test="nom"
+        />
+        <InputName>Prénom</InputName>
+        <TextField
+          id="filled-basic"
+          label="prénom"
+          variant="filled"
+          name="prenom"
+          value={etudiantData.prenom}
+          onChange={handleChange}
+          data-test="prenom"
+        />
+        <InputName>Email</InputName>
+        <TextField
+          id="filled-basic"
+          label="email"
+          variant="filled"
+          name="email"
+          value={etudiantData.email}
+          onChange={handleChange}
+          data-test="email"
+        />
+        <InputName>Classe</InputName>
+        <TextField
+          id="filled-basic"
+          label="classe"
+          variant="filled"
+          name="classe"
+          value={etudiantData.classe}
+          onChange={handleChange}
+          disabled={etudiantData.type == "Alumni" ? true : false}
+          data-test="classe"
+        />
+        <InputName>Niveau</InputName>
+        <TextField
+          id="filled-basic"
+          label="niveau"
+          variant="filled"
+          name="niveau"
+          value={etudiantData.niveau}
+          onChange={handleChange}
+          disabled={etudiantData.type == "Alumni" ? true : false}
+          data-test="niveau"
+        />
+
+        <DobContainer>
+          <div>
+            <InputName>Date de naissance</InputName>
+            <DatePicker
+              type="date"
+              name="DOB"
+              onChange={handleChange}
+              data-test="date"
+            />
+          </div>
+        </DobContainer>
+        <ButtonDiv>
+          <Button
+            variant="contained"
+            onClick={handleSubmit}
+            disabled={disableButton && !isNotFound}
+            data-test="valider"
+          >
+            Valider
+          </Button>
+          {error && <Alert severity="error">Un erreur est survenue!</Alert>}
+        </ButtonDiv>
+      </FormComponent>
+    </AllContainer>
   );
 }
-
+const AllContainer = styled.div`
+  height: 110%;
+  width: 100;
+  margin: 10% auto;
+  @media (max-width: 768px) {
+    margin-top: 0.5em;
+  }
+`;
 const InputName = styled.h3`
   color: #4981f5;
 `;

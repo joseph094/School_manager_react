@@ -94,6 +94,7 @@ export default function EtudiantADD() {
           name="nom"
           value={etudiantData.nom}
           onChange={handleChange}
+          data-test="nom"
         />
         <InputName>Prénom</InputName>
         <TextField
@@ -103,6 +104,7 @@ export default function EtudiantADD() {
           name="prenom"
           value={etudiantData.prenom}
           onChange={handleChange}
+          data-test="prenom"
         />
 
         <InputName>CIN</InputName>
@@ -113,6 +115,7 @@ export default function EtudiantADD() {
           name="cin"
           value={etudiantData.cin}
           onChange={handleChange}
+          data-test="cin"
         />
         <InputName>Email</InputName>
         <TextField
@@ -122,6 +125,7 @@ export default function EtudiantADD() {
           name="email"
           value={etudiantData.email}
           onChange={handleChange}
+          data-test="email"
         />
         <InputName>Classe</InputName>
         <TextField
@@ -131,6 +135,7 @@ export default function EtudiantADD() {
           name="classe"
           value={etudiantData.classe}
           onChange={handleChange}
+          data-test="classe"
         />
         <InputName>Niveau</InputName>
         <TextField
@@ -140,11 +145,17 @@ export default function EtudiantADD() {
           name="niveau"
           value={etudiantData.niveau}
           onChange={handleChange}
+          data-test="niveau"
         />
         <DobContainer>
           <div>
             <InputName>Date de naissance</InputName>
-            <DatePicker type="date" name="DOB" onChange={handleChange} />
+            <DatePicker
+              type="date"
+              name="DOB"
+              onChange={handleChange}
+              data-test="date"
+            />
           </div>
           <div>
             <InputName>Type</InputName>
@@ -156,6 +167,7 @@ export default function EtudiantADD() {
               style={{ padding: "1px" }}
               onChange={handleChange}
               value={etudiantData.type}
+              data-test="Type"
             >
               <MenuItem value={"Alumni"}>Alumni</MenuItem>
               <MenuItem value={"Actuel"}>Actuel</MenuItem>
@@ -167,6 +179,7 @@ export default function EtudiantADD() {
             variant="contained"
             onClick={handleSubmit}
             disabled={disableButton}
+            data-test="valider"
           >
             Valider
           </Button>
@@ -210,7 +223,9 @@ const ButtonDiv = styled.div`
   justify-content: center;
 `;
 const AllContainer = styled.div`
-  margin-top: 10em;
+  height: 100%;
+  width: 100;
+  margin: 10% auto;
   @media (max-width: 768px) {
     margin-top: 0.5em;
   }

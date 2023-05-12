@@ -77,6 +77,7 @@ export default function Signin() {
         name="login"
         onChange={handleChange}
         value={form.login}
+        data-test="login"
       />
       <InputName>Mot de passe</InputName>
       <TextField
@@ -87,6 +88,7 @@ export default function Signin() {
         onChange={handleChange}
         value={form.motdepasse}
         type="password"
+        data-test="mdp"
       />
 
       <InputName>Type de Profil</InputName>
@@ -96,13 +98,19 @@ export default function Signin() {
         label="Type"
         name="type"
         onChange={handleChange}
+        data-test="type"
       >
         <MenuItem value={"admin"}>Admin</MenuItem>
         <MenuItem value={"etudiant"}>Etudiant</MenuItem>
         <MenuItem value={"enseignant"}>Enseignant</MenuItem>
         <MenuItem value={"responsable"}>Responsable</MenuItem>
       </Select>
-      <Button variant="contained" onClick={authUser} disabled={disableButton}>
+      <Button
+        variant="contained"
+        onClick={authUser}
+        disabled={disableButton}
+        data-test="valider"
+      >
         Valider
       </Button>
       {error && (
