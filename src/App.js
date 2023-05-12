@@ -28,6 +28,11 @@ import PfeStats from "./components/pfe/pfeStats";
 import EnseignantDashboard from "./components/enseignantDashboard";
 import GetEtudiantByParam from "./components/etudiant/getetudiantbyParam";
 import GetPfeByParam from "./components/pfe/getPfeByParam";
+import EtudiantDashboard from "./components/etudiant/etudiantDashboard";
+import { io } from "socket.io-client";
+import { useState } from "react";
+import AjouterAnneUniversitaire from "./components/AnneUniversitaire/ajouterAnneUniversitaire";
+import BasculerAnne from "./components/AnneUniversitaire/basculerAnne";
 function App() {
   return (
     <Container>
@@ -65,6 +70,12 @@ function App() {
           <Route path="/choisirpfe" element={<Choisirpfe />} />
           <Route path="/etudiant/:id" element={<GetEtudiantByParam />} />
           <Route path="/pfe/:id" element={<GetPfeByParam />} />
+          <Route path="/etudiantDashboard" element={<EtudiantDashboard />} />
+          <Route
+            path="/ajouteranneuniversitaire"
+            element={<AjouterAnneUniversitaire />}
+          />
+          <Route path="/basculer" element={<BasculerAnne />} />
         </Routes>
       </RightSide>
     </Container>
