@@ -10,6 +10,7 @@ import Select from '@mui/material/Select';
 import { Loading } from "../AlumniAccountState/AlumniAccountState";
 
 function UpdatePublication() {
+    const[formError,setFormError] = useState('')
     const [publication, setPublication] = useState([{
         contenu : '',
         type : ''
@@ -43,6 +44,7 @@ function UpdatePublication() {
             navigate("/mypublications");
         }).catch((er) => {
             console.log("ERROR CATCHED BY ME ", er);
+            setFormError('Something Wrong Happened ... Try Again Later')
         });
     };
 
@@ -51,10 +53,11 @@ function UpdatePublication() {
         <LeftSide>
         </LeftSide>
         <RightSide>
+        {formError && <div className='error'>{formError}</div>}
             <PageTitle>
                 Modifier votre publication
             </PageTitle>
-            {publication ? (
+            {publication ? (    
             <Form >
                     <InputArea>
                     <TextField

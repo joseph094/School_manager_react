@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 export const getToken = () => {
+
   return localStorage.getItem('token');
+  
 }
 
 const api = axios.create({
@@ -118,6 +120,12 @@ export const getUnverifiedAlumniAccounts = async () => {
 export const ValiderCompteAlu = async (id) => {
   
   const response = await api.put(`/etudiant-alumni/valider/${id}`);
+  return response.data;
+};
+
+export const RefuserCompteAlu = async (id) => {
+  
+  const response = await api.put(`/etudiant-alumni/refuser/${id}`);
   return response.data;
 };
 

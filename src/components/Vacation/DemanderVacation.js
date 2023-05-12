@@ -1,6 +1,7 @@
 import React ,{useState} from 'react'
 import styled from "styled-components";
 import { TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode';
 import { styled  as style} from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
@@ -8,6 +9,8 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { demanderVacation, getToken } from '../../api/api';
 
 function DemanderVacation() {
+  const navigate = useNavigate();
+  const[formError,setFormError] = useState('')
   const [formData, setFormData] = useState({
     titre: "",
     description: "",
@@ -16,7 +19,11 @@ function DemanderVacation() {
   const [competences, setCompetences] = useState(['']);
 
   const handleAddField = () => {
-    setCompetences([...competences, '']);
+    if (competences.includes("")){
+      setFormError('veuillez remplir le champs de comptence vide')
+    }else{
+      setCompetences([...competences, '']);
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -29,14 +36,12 @@ function DemanderVacation() {
             description: formData.description,
             competences : competences
         };
-        console.log(vacation);
         const response = await demanderVacation(vacation);
-        console.log(response);
-        //redirect to success page
-        console.log('redirect');
+        navigate("/")
   
     } catch (error) {
       console.log('Something Wrong Happened ... Try Again Later'); 
+      setFormError('Something Wrong Happened ... Try Again Later')
     }
     };
 
@@ -53,12 +58,13 @@ function DemanderVacation() {
         <LeftSide>
         </LeftSide>
         <RightSide>
+        {formError && <div className='error'>{formError}</div>}
             <PageTitle>
                 Demander une vacation
             </PageTitle>
             <Form onSubmit={handleSubmit}>
                 <InputArea>
-                    <Input id="standard-basic" label="Titre" variant="standard" size='normal' name='titre' onChange={handleChange} fullWidth/>
+                    <Input id="standard-basic" label="Titre" variant="standard" size='normal' name='titre'  required onChange={handleChange} fullWidth/>
                 </InputArea>
                 <InputArea>
                     <Input
@@ -67,6 +73,7 @@ function DemanderVacation() {
                     name='description'
                     multiline
                     rows={7}
+                    required
                     variant="standard"
                     onChange={handleChange}
                     fullWidth
@@ -79,7 +86,8 @@ function DemanderVacation() {
                     key={index}
                     variant="standard"
                     label="Competence"
-                    size='normal' 
+                    size='normal'
+                    required
                     value={competence}
                     onChange={event => handleChangeCompetence(index, event)}
                     />

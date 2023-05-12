@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 function PostPublication() {
     const [type, setType] = useState('');
+    const[formError,setFormError] = useState('')
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         contenu: "",
@@ -42,6 +43,7 @@ function PostPublication() {
       
         } catch (error) {
           console.log('Something Wrong Happened ... Try Again Later'); 
+          setFormError('Something Wrong Happened ... Try Again Later')
         }
     };
 
@@ -52,6 +54,7 @@ function PostPublication() {
         <LeftSide>
         </LeftSide>
         <RightSide>
+        {formError && <div className='error'>{formError}</div>}
             <PageTitle>
                 Créer une publication
             </PageTitle>

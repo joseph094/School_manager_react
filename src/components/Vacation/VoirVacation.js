@@ -52,7 +52,7 @@ function VoirVacation() {
   return (
     <Container>
         <PageTitle>Demandes de vacation</PageTitle>
-        {data}
+        {vacation.length === 0 ? <Empty>Aucune vacation n'est demandée</Empty> : data}
     </Container>
     
   )
@@ -159,6 +159,20 @@ const Title = styled.p`
     font-weight: 1000;
     white-space:nowrap;
     @media (max-width: 350px) {
+        font-size: 0.8rem;
+    }
+    @media (max-width: 300px) {
+        font-size: 0.75rem;
+    }
+`
+const Empty = styled.p`
+    font-size: 1.5rem;
+    font-family: "montserrat";
+    font-weight: 1000;
+    width: 100%;
+    color: black;
+    text-align:center;
+    @media (max-width: 3.50px) {
         font-size: 0.8rem;
     }
     @media (max-width: 300px) {

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes,useLocation } from "react-router-dom";
 import "./App.css";
 import CreateEvent from "./components/CrudEvents/CreateEvent";
 import ListEvents from "./components/CrudEvents/ListEvents";
@@ -33,10 +33,24 @@ import { io } from "socket.io-client";
 import { useState } from "react";
 import AjouterAnneUniversitaire from "./components/AnneUniversitaire/ajouterAnneUniversitaire";
 import BasculerAnne from "./components/AnneUniversitaire/basculerAnne";
+import AlumniGeneralStats from "./components/AlumniStats/AlumniGeneralStats";
+import DemanderVacation from "./components/Vacation/DemanderVacation";
+import VoirVacation from "./components/Vacation/VoirVacation";
+import PostPublication from "./components/Publications/PostPublication";
+import ViewPublication from "./components/Publications/ViewPublication";
+import UpdatePublication from "./components/Publications/UpdatePublication";
+import ViewMyPublications from "./components/Publications/ViewMyPublications";
+import DemanderContratExpert from "./components/ContratExpert/DemanderContratExpert";
+import VoirContratExpert from "./components/ContratExpert/VoirContratExpert";
 function App() {
+  const location = useLocation();
   return (
     <Container>
-      <LeftSide>{/* <SideBar /> */}</LeftSide>
+      {location.pathname !== "/signin" && location.pathname !== "/signup" && (
+        <LeftSide>
+          <SideBar />
+        </LeftSide>
+      )}
       <RightSide>
         <Routes>
           <Route path="/Events" element={<ListEvents />} />
@@ -70,12 +84,24 @@ function App() {
           <Route path="/choisirpfe" element={<Choisirpfe />} />
           <Route path="/etudiant/:id" element={<GetEtudiantByParam />} />
           <Route path="/pfe/:id" element={<GetPfeByParam />} />
+
           <Route path="/etudiantDashboard" element={<EtudiantDashboard />} />
           <Route
             path="/ajouteranneuniversitaire"
             element={<AjouterAnneUniversitaire />}
           />
           <Route path="/basculer" element={<BasculerAnne />} />
+
+          <Route path="/vacations" element={<VoirVacation />} />
+          <Route path="/contrats" element={<VoirContratExpert />} />
+          <Route path="/demandervacation" element={<DemanderVacation />} />
+          <Route path="/demandercontratexpert" element={<DemanderContratExpert />} />
+          <Route path="/generalstats" element={<AlumniGeneralStats />} />
+          <Route path="/postpublication" element={<PostPublication />} />
+          <Route path="/viewpublications" element={<ViewPublication />} />
+          <Route path="/mypublications" element={<ViewMyPublications />} />
+          <Route path="/updatepublication/:id" element={<UpdatePublication />} />
+
         </Routes>
       </RightSide>
     </Container>
