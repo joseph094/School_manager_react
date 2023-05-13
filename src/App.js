@@ -30,7 +30,7 @@ import GetEtudiantByParam from "./components/etudiant/getetudiantbyParam";
 import GetPfeByParam from "./components/pfe/getPfeByParam";
 import EtudiantDashboard from "./components/etudiant/etudiantDashboard";
 import { io } from "socket.io-client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AjouterAnneUniversitaire from "./components/AnneUniversitaire/ajouterAnneUniversitaire";
 import BasculerAnne from "./components/AnneUniversitaire/basculerAnne";
 import AlumniGeneralStats from "./components/AlumniStats/AlumniGeneralStats";
@@ -45,6 +45,7 @@ import VoirContratExpert from "./components/ContratExpert/VoirContratExpert";
 import FormComponent from "./components/formContainer";
 function App() {
   const location = useLocation();
+
   return (
     <Container>
       {location.pathname !== "/signin" && location.pathname !== "/signup" && (

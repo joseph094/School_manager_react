@@ -52,55 +52,66 @@ export default function InsertPFE() {
   }, [stagePFE]);
 
   return (
-    <FormComponent
-      height="130%"
-      imgLink="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtk9O5xLQwmITiyXJWxuKxFVM4nHe9If8C59XIgtNIQwZkTcFPzXWszLVE7PE66qRXVLs&usqp=CAU"
-    >
-      <TitleLogin>Ajouter Stage PFE</TitleLogin>
-      <InputName>Sujet</InputName>
-      <TextField
-        id="filled-basic"
-        label="Filled"
-        variant="filled"
-        name="sujet"
-        onChange={handleChange}
-      />
-      <InputName>Type</InputName>
-      <TextField
-        id="filled-basic"
-        label="Filled"
-        variant="filled"
-        name="type"
-        onChange={handleChange}
-      />
-      <InputName>Societe</InputName>
-      <TextField
-        id="filled-basic"
-        label="Filled"
-        variant="filled"
-        name="societe"
-        onChange={handleChange}
-      />
+    <AllContainer>
+      <FormComponent
+        height="130%"
+        imgLink="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtk9O5xLQwmITiyXJWxuKxFVM4nHe9If8C59XIgtNIQwZkTcFPzXWszLVE7PE66qRXVLs&usqp=CAU"
+      >
+        <TitleLogin>Ajouter Stage PFE</TitleLogin>
+        <InputName>Sujet</InputName>
+        <TextField
+          id="filled-basic"
+          label="Filled"
+          variant="filled"
+          name="sujet"
+          onChange={handleChange}
+          data-test="sujet"
+        />
+        <InputName>Type</InputName>
+        <TextField
+          id="filled-basic"
+          label="Filled"
+          variant="filled"
+          name="type"
+          onChange={handleChange}
+          data-test="type"
+        />
+        <InputName>Societe</InputName>
+        <TextField
+          id="filled-basic"
+          label="Filled"
+          variant="filled"
+          name="societe"
+          onChange={handleChange}
+          data-test="societe"
+        />
 
-      <InputName> Pays </InputName>
-      <TextField
-        id="filled-basic"
-        label="Filled"
-        variant="filled"
-        name="pays"
-        onChange={handleChange}
-      />
-      <ButtonDiv>
-        <Button
-          variant="contained"
-          onClick={handleSubmit}
-          //   disabled={disableButton}
-        >
-          Valider
-        </Button>
-        {error && <Alert severity="error">Un erreur est survenue!</Alert>}
-      </ButtonDiv>
-    </FormComponent>
+        <InputName> Pays </InputName>
+        <TextField
+          id="filled-basic"
+          label="Filled"
+          variant="filled"
+          name="pays"
+          onChange={handleChange}
+          data-test="pays"
+        />
+        <ButtonDiv>
+          <Button
+            variant="contained"
+            onClick={handleSubmit}
+            //   disabled={disableButton}
+            data-test="valider"
+          >
+            Valider
+          </Button>
+          {error && (
+            <Alert severity="error" data-test="alert">
+              Un erreur est survenue!
+            </Alert>
+          )}
+        </ButtonDiv>
+      </FormComponent>
+    </AllContainer>
   );
 }
 const InputName = styled.h3`
@@ -122,4 +133,12 @@ const ButtonDiv = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
+`;
+const AllContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  margin: 10 % auto;
+  @media (max-width: 768px) {
+    margin-top: 0.5em;
+  }
 `;

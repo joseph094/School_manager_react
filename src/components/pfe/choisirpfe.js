@@ -1,6 +1,7 @@
 import {
   Alert,
   Button,
+  CircularProgress,
   Paper,
   TableBody,
   TableCell,
@@ -19,6 +20,8 @@ export default function Choisirpfe() {
   const [data, setData] = useState([]);
   const [etudiant, setEtudiant] = useState([]);
   const [button, setButton] = useState(false);
+  const [loading, setLoading] = useState(true); // added line
+
   let et;
   const navigate = useNavigate();
   const encadrerPfe = (id) => {
@@ -39,6 +42,9 @@ export default function Choisirpfe() {
   };
   useEffect(() => {
     const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/signin");
+    }
     axios.defaults.headers.common["Authorization"] = "Bearer " + token;
     axios.get("http://localhost:3000/etudiant-actuel/pfe").then((res) => {
       const datatofilter = res.data;
@@ -48,6 +54,8 @@ export default function Choisirpfe() {
       setData(filtereddata);
       console.log(data);
     });
+
+    setLoading(false);
   }, []);
 
   return (
@@ -58,63 +66,70 @@ export default function Choisirpfe() {
             Un erreur est survenue ... Veuillez Essayer Plus Tard !{" "}
           </Alert>
         )}
-
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Sujet</TableCell>
-                <TableCell align="right">Nom Etudiant</TableCell>
-                <TableCell align="right">Affectation</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((row, index) => {
-                return (
-                  <TableRow
-                    key={index}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell
-                      align="right"
-                      onClick={() => {
-                        navigate(`/pfe/${row.idpfe}`, {
-                          replace: true,
-                        });
-                        console.log("row====", row);
-                      }}
+        {loading ? ( // added lines
+          <StyledBackdrop open={true}>
+            <CircularProgress color="inherit" />
+          </StyledBackdrop>
+        ) : (
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Sujet</TableCell>
+                  <TableCell align="right">Nom Etudiant</TableCell>
+                  <TableCell align="right">Affectation</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data.map((row, index) => {
+                  return (
+                    <TableRow
+                      key={index}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
-                      {" "}
-                      <a>{row.sujet}</a>
-                    </TableCell>
-                    <TableCell align="right">
-                      <a
+                      <TableCell
+                        align="right"
                         onClick={() => {
-                          navigate(`/etudiant/${row.etudiant.login}`, {
+                          navigate(`/pfe/${row.idpfe}`, {
                             replace: true,
                           });
                           console.log("row====", row);
                         }}
                       >
-                        {row.etudiant.nom + " " + row.etudiant.prenom}
-                      </a>
-                    </TableCell>
-                    <TableCell align="right">
-                      <Button
-                        onClick={() => {
-                          encadrerPfe(row.idpfe);
-                        }}
-                      >
                         {" "}
-                        Encadrer{" "}
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </TableContainer>
+                        <a data-test="sujet">{row.sujet}</a>
+                      </TableCell>
+                      <TableCell align="right">
+                        <a
+                          data-test="etudiant"
+                          onClick={() => {
+                            navigate(`/etudiant/${row.etudiant.login}`, {
+                              replace: true,
+                            });
+                            console.log("row====", row);
+                          }}
+                        >
+                          {row.etudiant.nom + " " + row.etudiant.prenom}
+                        </a>
+                      </TableCell>
+                      <TableCell align="right">
+                        <Button
+                          data-test="encadrer"
+                          onClick={() => {
+                            encadrerPfe(row.idpfe);
+                          }}
+                        >
+                          {" "}
+                          Encadrer{" "}
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
       </FormContainer>
     </Container>
   );
@@ -145,4 +160,8 @@ border-radius: 30px;
   margin : 0.2em;
 }
 
+`;
+const StyledBackdrop = styled.div`
+  z-index: 1;
+  color: #fff;
 `;

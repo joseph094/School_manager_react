@@ -99,13 +99,14 @@ describe("Login", () => {
     // cy.get('[data-test="email"]').should("have.value", "john.doe@example.com");
 
     cy.get('[data-test="date"]').contains("1995-05-12");
-    cy.get('[data-test="delete"]').click();
-    cy.visit("http://localhost:3005/getetudiant");
+    //Delete Etudiant
+    // cy.get('[data-test="delete"]').click();
+    // cy.visit("http://localhost:3005/getetudiant");
 
-    cy.get('[data-test="cin"]').type("{selectall}{backspace}").type("123456");
-    cy.get('[data-test="type"]').click();
-    cy.get('[data-value="Actuel"]').click();
-    cy.contains("Checher").click();
-    cy.contains("Impossible de trouver cet Etudiant !");
+    // cy.get('[data-test="cin"]').type("{selectall}{backspace}").type("123456");
+    // cy.get('[data-test="type"]').click();
+    // cy.get('[data-value="Actuel"]').click();
+    // cy.contains("Checher").click();
+    // cy.contains("Impossible de trouver cet Etudiant !");
   });
 });

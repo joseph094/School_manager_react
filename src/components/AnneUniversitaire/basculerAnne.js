@@ -52,6 +52,7 @@ function BasculerAnne() {
             variant="filled"
             name="anne"
             onChange={handleChange}
+            data-test="anne"
           />
         </StyledDiv>
 

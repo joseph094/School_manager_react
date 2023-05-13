@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Alert, Button, Input, TextField } from "@mui/material";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function InsertStageEte() {
   const [stageEte, setStageEte] = useState({
@@ -24,6 +25,7 @@ export default function InsertStageEte() {
       };
     });
   };
+  const navigate = useNavigate();
   const handleSubmit = () => {
     const token = localStorage.getItem("token");
     const user = jwtDecode(token);
@@ -33,7 +35,10 @@ export default function InsertStageEte() {
         "http://localhost:3000/etudiant-actuel/addstage/" + user.sub,
         stageEte
       )
-      .then(setError(false))
+      .then(() => {
+        setError(false);
+        navigate("/");
+      })
       .catch(setError(true));
   };
   useEffect(() => {
@@ -54,6 +59,7 @@ export default function InsertStageEte() {
         variant="filled"
         name="sujet"
         onChange={handleChange}
+        data-test="sujet"
       />
       <InputName>Description</InputName>
       <TextField
@@ -64,6 +70,7 @@ export default function InsertStageEte() {
         variant="filled"
         name="description"
         onChange={handleChange}
+        data-test="Description"
       />
       <InputName>Societe</InputName>
       <TextField
@@ -72,20 +79,36 @@ export default function InsertStageEte() {
         variant="filled"
         name="societe"
         onChange={handleChange}
+        data-test="societe"
       />
       <InputName>Date de Début</InputName>
-      <Input type="date" name="DateDebut" onChange={handleChange} />
+      <Input
+        type="date"
+        name="DateDebut"
+        onChange={handleChange}
+        data-test="date-debut"
+      />
       <InputName>Date de Fin</InputName>
-      <Input type="date" name="DateDeFin" onChange={handleChange} />
+      <Input
+        type="date"
+        name="DateDeFin"
+        onChange={handleChange}
+        data-test="date-fin"
+      />
       <ButtonDiv>
         <Button
           variant="contained"
           onClick={handleSubmit}
           //   disabled={disableButton}
+          data-test="valider"
         >
           Valider
         </Button>
-        {error && <Alert severity="error">Un erreur est survenue!</Alert>}
+        {error && (
+          <Alert severity="error" data-test="alert">
+            Un erreur est survenue!
+          </Alert>
+        )}
       </ButtonDiv>
     </FormComponent>
   );
