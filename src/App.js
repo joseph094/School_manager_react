@@ -43,6 +43,13 @@ import ViewMyPublications from "./components/Publications/ViewMyPublications";
 import DemanderContratExpert from "./components/ContratExpert/DemanderContratExpert";
 import VoirContratExpert from "./components/ContratExpert/VoirContratExpert";
 import FormComponent from "./components/formContainer";
+import Excel from "./components/importExcel/excel";
+import MakeAccountPublic from "./components/makepublic/makepublic";
+import ConsultPublicAccounts from "./components/publicaccounts/ConsultAccounts";
+import GetDetailEtudiant from "./components/DetailEtudiant/etudiantdetail";
+import GetCvParEns from "./components/Cv-par-enseignant/ConsultCvEnseignant";
+import AddingAdmin from "./components/AddAdmin/AddAdmin";
+import Modal from "./components/Dashboard/dash";
 function App() {
   const location = useLocation();
 
@@ -53,9 +60,14 @@ function App() {
           <SideBar />
         </LeftSide>
       )}
+
       <RightSide>
         <Routes>
+          <Route path="/" element={<Modal />}/>
           <Route path="/Events" element={<ListEvents />} />
+          <Route path="/detail-etudiant/:id" element={<GetDetailEtudiant />} />
+          <Route path="/consult-cv/:id" element={<GetCvParEns />} />
+          <Route path="/gestion-acces" element={<AddingAdmin   />} />
           <Route path="/newEvent" element={<CreateEvent />} />
           <Route path="/Events/:id" element={<UpdateEvent />} />
           <Route path="/signup" element={<SignupAlumni />} />
@@ -67,6 +79,9 @@ function App() {
           <Route path="/ajouteretudiant" element={<EtudiantADD />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/alumnistatus" element={<AlumniAccountState />} />
+          <Route path="/import" element={<Excel />} />
+          <Route path="/make-public" element={<MakeAccountPublic />} />
+          <Route path="/publicaccounts" element={< ConsultPublicAccounts />} />
           <Route
             path="/getunverified"
             element={<GetUnverifiedAlumniAccounts />}

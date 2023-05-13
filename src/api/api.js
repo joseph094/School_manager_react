@@ -96,7 +96,10 @@ export const deletePublication = async (id) => {
   return response.data;
 }
 
-
+export const getEudiantActuel = async (id) => {
+  const response = await api.get(`/etudiant-actuel/${id}`);
+  return response.data;
+}
 export const getEtudiantAlumni = async (id) => {
   const response = await api.get(`/etudiant-alumni/${id}`);
   return response.data;

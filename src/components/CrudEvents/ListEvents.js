@@ -2,11 +2,16 @@ import React, { Fragment, useEffect, useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import './Events.css'
+import jwt_decode from 'jwt-decode';
+
 
 function ListEvents() {
     const token = localStorage.getItem('token');
     const [data, setData] = useState([]);
     const navigate = useNavigate();
+    const decodedToken = jwt_decode(token);
+    const role = decodedToken.roles[0];
+
 
 
 
@@ -46,12 +51,16 @@ function ListEvents() {
                 <td className="colonne">
                     {i.description}
                 </td>
-                <td className="colonne">
-                    <button className="list_btn" onClick={() => navigate(`/Events/${i.idEvenement}`, { replace: true })} >edit</button>
-                </td>
-                <td className="colonne">
-                    <button className="list_btn" onClick={() => DeleteEvent(i.idEvenement)} >delete</button>
-                </td>
+                {role !== 'etudiant' ?
+                    <div>
+                        <td className="colonne">
+                            <button className="list_btn" onClick={() => navigate(`/Events/${i.idEvenement}`, { replace: true })} >edit</button>
+                        </td>
+                        <td className="colonne">
+                            <button className="list_btn" onClick={() => DeleteEvent(i.idEvenement)} >delete</button>
+                        </td>
+                    </div>
+                    : ""}
             </tr>
         )
 
@@ -59,7 +68,7 @@ function ListEvents() {
     return (
         <Fragment>
             <div className="container">
-                <h2 className="list_title" >La Liste des Evenements </h2>
+                <h2 className="titre" >La Liste des Evenements </h2>
                 <div style={{ margin: "4rem", marginTop: "3rem" }}>
                     <table className="custom-table" striped bordered hover size="sm">
                         <thead>

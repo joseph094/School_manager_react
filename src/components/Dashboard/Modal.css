@@ -1,0 +1,136 @@
+body.active-modal {
+    overflow-y: hidden;
+   
+
+}
+
+.btn-modal {
+    padding: 10px 20px;
+    display: block;
+    margin: 100px auto 0;
+    font-size: 18px;
+}
+
+.modal, .overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+.overlay {
+    background: rgba(49,49,49,0.8);
+}
+.modal-content {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #f1f1f1;
+    padding: 14px 28px;
+    border-radius: 3px;
+    max-width: 600px;
+    min-width: 300px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 7px;
+}
+
+  
+  .red-button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    background-color: #e74c3c;
+    cursor: pointer;
+    margin-left: 20px;
+  }
+  
+  .green-button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    background-color: #2ecc71;
+    cursor: pointer;
+
+  }
+  .dash-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .image-wrapper {
+    flex: 0 0 auto;
+    margin-right: 20px;
+  }
+  
+  .image-wrapper img {
+    margin-top: 10vh;
+    width: 500px;
+    height: 70vh;
+  }
+  
+  .text-wrapper {
+    flex: 1 1 auto;
+  }
+  
+  .text-wrapper h2 {
+    color: #0a58ca;
+    margin-top: 20vh;
+    margin-left: 150px;
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+  
+  .text-wrapper p {
+    font-size: 16px;
+    margin-top: 5vh;
+    margin-left: 110px;
+    color: black;
+  }
+  
+  .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    max-width: 600px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-left: 100px;
+}
+.styled-table thead tr {
+    background-color: #0a58ca;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #0a58ca;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #0a58ca;
+}

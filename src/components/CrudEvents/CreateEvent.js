@@ -7,6 +7,8 @@ function CreateEvent() {
     const [idEvent, setIdEvent] = useState('')
     const [NomEvent, setNomEvent] = useState('')
     const [dateEvent, setdateEvent] = useState('')
+    const [anneUni, setanneUni] = useState('')
+
     const [desc, setdesc] = useState('')
 
 
@@ -15,7 +17,8 @@ function CreateEvent() {
             idEvenement: idEvent,
             nom: NomEvent,
             dateEvenement: dateEvent,
-            description: desc
+            description: desc,
+            anneuniversitaireName: anneUni
         }, {
             headers: { 'Authorization': `Bearer ${token}` }
         }).then(res => console.log("this is the post method", res),
@@ -25,7 +28,7 @@ function CreateEvent() {
     return (<div className="contact1">
         <div className="container-contact1">
             <div className="contact1-pic js-tilt" data-tilt>
-                <img src="/event.png" alt="IMG"/>
+                <img src="/event.png" alt="IMG" />
             </div>
 
             <div className="contact1-form">
@@ -34,11 +37,16 @@ function CreateEvent() {
                 </span>
 
                 <div className="wrap-input1" >
-                    <input className="input1" type="text" placeholder="Event ID" value={idEvent} onChange={(e) => setIdEvent(e.target.value)} />
+                    <input className="input1" type="text" placeholder="Event Ref" value={idEvent} onChange={(e) => setIdEvent(e.target.value)} />
                 </div>
 
                 <div className="wrap-input1">
                     <input className="input1" type="text" placeholder="Event Name" value={NomEvent} onChange={(e) => setNomEvent(e.target.value)} />
+                </div>
+                <div className="wrap-input1">
+                    <input className="input1" type="text" placeholder="Event Anne Universitaire" value={anneUni} onChange={(e) => setanneUni(e.target.value)} />
+                    <label>svp  de type 2022-2023</label>
+
                 </div>
 
                 <div className="wrap-input1">
