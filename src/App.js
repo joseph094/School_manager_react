@@ -34,12 +34,14 @@ import ConsultPublicAccounts from "./components/publicaccounts/ConsultAccounts";
 import GetDetailEtudiant from "./components/DetailEtudiant/etudiantdetail";
 import GetCvParEns from "./components/Cv-par-enseignant/ConsultCvEnseignant";
 import AddingAdmin from "./components/AddAdmin/AddAdmin";
+import Modal from "./components/Dashboard/dash";
 function App() {
   return (
     <Container>
       <LeftSide>{<SideBar />}</LeftSide>
       <RightSide>
         <Routes>
+          <Route path="/" element={<Modal />}/>
           <Route path="/Events" element={<ListEvents />} />
           <Route path="/detail-etudiant/:id" element={<GetDetailEtudiant />} />
           <Route path="/consult-cv/:id" element={<GetCvParEns />} />

@@ -87,3 +87,8 @@
   margin-left: 40%;
   color: #0a58ca;
     }
+    .document:hover{
+      color: #0a58ca;
+      cursor: pointer;
+
+    }

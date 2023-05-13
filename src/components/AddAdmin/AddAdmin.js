@@ -62,7 +62,7 @@ function AddingAdmin() {
     return (<div className="contact1">
         <div className="container-contact1">
             <div className="contact1-pic js-tilt" data-tilt>
-                <img src="/event.png" alt="IMG" />
+                <img src="/administration.png" alt="IMG" />
             </div>
 
             <div className="contact1-form">
@@ -106,7 +106,12 @@ function AddingAdmin() {
                                             checked={value}
                                             onChange={() => handleCheckboxChange(field)}
                                         />
-                                        {field}
+                                        {field === "OperationsEtud" ? "Droit Gerer Etudiant" : ""}
+                                        {field === "ImportExcel" ? "Importer Par Excel" : ""}
+                                        {field === "OperationsEvent" ? "Droit Gerer Evenements" : ""}
+                                        {field === "OperationsEns" ? "Droit Gerer Enseignants" : ""}
+                                        {field === "OperationsDemande" ?"Droit Gerer les demandes " : ""}
+                                        {field === "OperationsStats" ? "Consulter les stats" : ""}
                                     </label>
                                     <br />
                                 </div>
