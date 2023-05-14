@@ -1,4 +1,4 @@
-import { Route, Routes,useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import CreateEvent from "./components/CrudEvents/CreateEvent";
 import ListEvents from "./components/CrudEvents/ListEvents";
@@ -37,6 +37,17 @@ import UpdatePublication from "./components/Publications/UpdatePublication";
 import ViewMyPublications from "./components/Publications/ViewMyPublications";
 import DemanderContratExpert from "./components/ContratExpert/DemanderContratExpert";
 import VoirContratExpert from "./components/ContratExpert/VoirContratExpert";
+
+
+import UpdateCVActuelEtudiant from "./components/etudiant-actuel/updateCV";
+import GetallPFAs from "./components/pfa/allPFA";
+import AddPFA from "./components/enseignant/addPFA";
+import UpdatePFA from "./components/enseignant/updatePFA"
+import ListPfasEnseignant from './components/enseignant/allPFA_Enseignant';
+import ChoisirPfa from './components/etudiant-actuel/choisirPFA';
+
+
+
 function App() {
   const location = useLocation();
   return (
@@ -88,6 +99,18 @@ function App() {
           <Route path="/viewpublications" element={<ViewPublication />} />
           <Route path="/mypublications" element={<ViewMyPublications />} />
           <Route path="/updatepublication/:id" element={<UpdatePublication />} />
+
+
+
+          {/* <Route path="/updateCV/:id" element={<UpdateCV />} /> */}
+          <Route path="/getallpfa" element={<GetallPFAs />} />
+          <Route path="/addpfa" element={<AddPFA/>} />
+          <Route path="/updatepfa/:id" element={<UpdatePFA/>} />
+          <Route path="/getallenseignantpfa" element={<ListPfasEnseignant />} />
+          <Route path="/choisirpfa" element={<ChoisirPfa />} /> 
+
+
+
         </Routes>
       </RightSide>
     </Container>
