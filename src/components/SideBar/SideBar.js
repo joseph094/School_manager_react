@@ -16,7 +16,7 @@ export default function SideBar() {
   const [data, setData] = useState(null);
 
   // Change the isOpen state value on screen size change
- /* const handleResize = () => {
+  /* const handleResize = () => {
     if (window.innerWidth <= 1000) {
       setIsOpen(true);
     } else {
@@ -55,10 +55,10 @@ export default function SideBar() {
             );
             console.log("alumni-unverified");
             console.log(data);
-          } else if (userTypeData.verified === undefined){
+          } else if (userTypeData.verified === undefined) {
             data = SideBarData.filter((val) => val.roles.includes("etudiant"));
             console.log("etudiant");
-        }
+          }
         } else {
           data = SideBarData.filter((val) =>
             val.roles.includes("alumni-refused")
@@ -71,7 +71,7 @@ export default function SideBar() {
           SideBarData.filter((val) => val.roles.includes("DroitDemande"))
         );
 
-        if (Admin.SuperAdmin === false) {
+        if (Admin?.SuperAdmin === false) {
           if (Admin.OperationsDemande === true) {
             data = data.concat(
               SideBarData.filter((val) => val.roles.includes("DroitDemande"))
@@ -121,12 +121,16 @@ export default function SideBar() {
     //window.addEventListener("resize", handleResize);
 
     return () => {
-     // window.removeEventListener("resize", handleResize);
+      // window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   return (
-    <Container isOpen={isOpen} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <Container
+      isOpen={isOpen}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <SwitcherTop isOpen={isOpen}>
         <DensityMediumIcon style={{ cursor: "pointer" }} onClick={toggle} />
       </SwitcherTop>
@@ -177,11 +181,11 @@ export default function SideBar() {
 const Container = styled.div`
   z-index: 99;
   height: 100%;
-  overflow-y:scroll;
-    background-color:#145369 ;
-    ::-webkit-scrollbar {
-        width: 0;
-      }
+  overflow-y: scroll;
+  background-color: #145369;
+  ::-webkit-scrollbar {
+    width: 0;
+  }
   @media (max-width: 730px) {
     height: 130%;
     position: absolute;
@@ -189,8 +193,8 @@ const Container = styled.div`
       props.isOpen === false ? "#00000023" : "#00000000"};
     transition: all ease-in 0.3s;
     ::-webkit-scrollbar {
-        width: 3em;
-      } 
+      width: 3em;
+    }
   }
 `;
 const SideBarE = styled.div`

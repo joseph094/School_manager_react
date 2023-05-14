@@ -63,7 +63,7 @@ export default function Signin() {
     }
     console.log(isLogged);
     if (isLogged) {
-      return navigate("/ajouteretudiant");
+      return navigate("/");
     }
   }, [form, isLogged]);
   return (

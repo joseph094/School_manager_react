@@ -8,7 +8,8 @@ describe("Login", () => {
     cy.get('[data-value="admin"]').click(); // Click on the MenuItem with a value of "admin"
 
     cy.getByData("valider").click({ force: true });
-    cy.location("pathname").should("eq", "/ajouteretudiant");
+    cy.location("pathname").should("eq", "/");
+    cy.visit("http://localhost:3005/ajouterEtudiant");
     cy.get('[data-test="nom"]').type("Doe");
     cy.get('[data-test="prenom"]').type("John");
     cy.get('[data-test="cin"]').type("{selectall}{backspace}").type("123456");

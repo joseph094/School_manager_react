@@ -8,7 +8,7 @@ describe("Choisirpfe component", () => {
     // Fill in the form inputs with valid data
 
     cy.getByData("valider").click({ force: true });
-    cy.location("pathname").should("eq", "/ajouteretudiant");
+    cy.location("pathname").should("eq", "/");
     cy.visit("/choisirpfe"); // replace with the correct route
   });
   it("Allows encadrerPfe to be called", () => {

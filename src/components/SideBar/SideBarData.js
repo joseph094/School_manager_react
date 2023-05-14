@@ -60,6 +60,13 @@ export const SideBarData = [
     link: "/getunverified",
     roles: ["admin", "DroitEtud"],
   },
+  ,
+  {
+    title: "Choisir PFE",
+    icon: <AddIcon />,
+    link: "/choisirpfe",
+    roles: ["enseignant"],
+  },
   {
     title: "Insérer Stage",
     icon: <CreateIcon />,

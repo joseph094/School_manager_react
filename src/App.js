@@ -90,6 +90,8 @@ function App() {
           <Route path="/NewEnseignant" element={<CreateTeacher />} />
           <Route path="/enseignants/:id" element={<UpdateEns />} />
           <Route path="/getetudiant/:id" element={<GetEtudiant />} />
+          <Route path="/getetudiant" element={<GetEtudiant />} />
+
           <Route path="/modifyetudiants" element={<EtudiantPUT />} />
           <Route path="/ajouteretudiant" element={<EtudiantADD />} />
           <Route path="/signin" element={<Signin />} />
