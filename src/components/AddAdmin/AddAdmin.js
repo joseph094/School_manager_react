@@ -97,7 +97,7 @@ function AddingAdmin() {
                 </div>
                 <div>
                     {Object.entries(Admin).map(([field, value]) => {
-                        if (typeof value === 'boolean') {
+                        if (typeof value === 'boolean' && field !== "OperationsDemande") {
                             return (
                                 <div>
                                     <label key={field}>
@@ -110,7 +110,7 @@ function AddingAdmin() {
                                         {field === "ImportExcel" ? "Importer Par Excel" : ""}
                                         {field === "OperationsEvent" ? "Droit Gerer Evenements" : ""}
                                         {field === "OperationsEns" ? "Droit Gerer Enseignants" : ""}
-                                        {field === "OperationsDemande" ?"Droit Gerer les demandes " : ""}
+                                        {field === "OperationsDemande" ? "Droit Gerer les demandes " : ""}
                                         {field === "OperationsStats" ? "Consulter les stats" : ""}
                                     </label>
                                     <br />

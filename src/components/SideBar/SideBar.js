@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 export default function SideBar() {
   const navigate = useNavigate();
   const toggle = () => setIsOpen(!isOpen);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const decodedToken = jwt_decode(getToken());
   const [user, setUser] = useState(null);
   const [data, setData] = useState(null);
