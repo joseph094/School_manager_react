@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  Button,
   Paper,
   Table,
   TableBody,
@@ -10,10 +11,10 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import styled from "styled-components";
-import InfoIcon from '@mui/icons-material/Info';
+import InfoIcon from "@mui/icons-material/Info";
 import { useNavigate } from "react-router-dom";
-import jwt_decode from 'jwt-decode';
-import { getEtudiantAlumni, getToken, getEudiantActuel } from '../../api/api';
+import jwt_decode from "jwt-decode";
+import { getEtudiantAlumni, getToken, getEudiantActuel } from "../../api/api";
 
 export default function GetallEtudiants() {
   const [data, setData] = useState([]);
@@ -39,9 +40,11 @@ export default function GetallEtudiants() {
                 <TableCell align="right">Formation</TableCell>
                 <TableCell align="right">Date De naissance</TableCell>
                 <TableCell align="right">E-mail</TableCell>
-                {decodedToken.roles[0] === 'admin' ?
+                {decodedToken.roles[0] === "admin" ? (
                   <TableCell align="right">Detail</TableCell>
-                  : <TableCell align="right">Cv</TableCell>}
+                ) : (
+                  <TableCell align="right">cv</TableCell>
+                )}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -57,18 +60,72 @@ export default function GetallEtudiants() {
                   <TableCell align="right">{row.formation}</TableCell>
                   <TableCell align="right">{row.dateNaissance}</TableCell>
                   <TableCell align="right">{row.email}</TableCell>
-                  {decodedToken.roles[0] === 'admin' ?
+                  {decodedToken.roles[0] === "admin" ? (
                     <div>
-                      <TableCell align="right">{row.vacation != null ?
-                        <InfoIcon onClick={() => navigate(`/detail-etudiant/${row.EtudiantAluId}`, { replace: true })}> </InfoIcon> : <InfoIcon onClick={() => navigate(`/detail-etudiant/${row.EtudiantActId}`, { replace: true })}> </InfoIcon>}
-
+                      <TableCell align="right">
+                        {row.vacation != null ? (
+                          <InfoIcon
+                            onClick={() =>
+                              navigate(
+                                `/detail-etudiant/${row.EtudiantAluId}`,
+                                { replace: true }
+                              )
+                            }
+                          >
+                            {" "}
+                          </InfoIcon>
+                        ) : (
+                          <>
+                            <InfoIcon
+                              onClick={() =>
+                                navigate(
+                                  `/detail-etudiant/${row.EtudiantActId}`,
+                                  { replace: true }
+                                )
+                              }
+                            >
+                              {" "}
+                            </InfoIcon>
+                          </>
+                        )}
                       </TableCell>
-                    </div> : <div>
-                      <TableCell align="right">{row.vacation != null ?
-                        <InfoIcon onClick={() => navigate(`/consult-cv/${row.EtudiantAluId}`, { replace: true })}> </InfoIcon> : <InfoIcon onClick={() => navigate(`/consult-cv/${row.EtudiantActId}`, { replace: true })}> </InfoIcon>}
-
+                    </div>
+                  ) : (
+                    <div>
+                      <TableCell align="right">
+                        {row.vacation != null ? (
+                          <InfoIcon
+                            onClick={() =>
+                              navigate(`/consult-cv/${row.EtudiantAluId}`, {
+                                replace: true,
+                              })
+                            }
+                          >
+                            {" "}
+                          </InfoIcon>
+                        ) : (
+                          <InfoIcon
+                            onClick={() =>
+                              navigate(`/consult-cv/${row.EtudiantActId}`, {
+                                replace: true,
+                              })
+                            }
+                          >
+                            {" "}
+                          </InfoIcon>
+                        )}
                       </TableCell>
-                    </div>}
+                    </div>
+                  )}
+                  {decodedToken.roles[0] == "admin" && (
+                    <Button
+                      onClick={() => {
+                        navigate(`/getetudiant/${row.login}`);
+                      }}
+                    >
+                      Edit
+                    </Button>
+                  )}
                 </TableRow>
               ))}
             </TableBody>
@@ -80,8 +137,8 @@ export default function GetallEtudiants() {
 }
 
 const Btn = styled.button`
-opacity:0;
-`
+  opacity: 0;
+`;
 
 const Container = styled.div`
   background-color: #dfdfdf;

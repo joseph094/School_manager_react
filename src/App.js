@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import CreateEvent from "./components/CrudEvents/CreateEvent";
 import ListEvents from "./components/CrudEvents/ListEvents";
@@ -52,6 +52,21 @@ import AddingAdmin from "./components/AddAdmin/AddAdmin";
 import Modal from "./components/Dashboard/dash";
 function App() {
   const location = useLocation();
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  useEffect(() => {
+    // Check if token is present in local storage
+    const storedToken = localStorage.getItem("token");
+    if (!storedToken) {
+      setError("No token found");
+      navigate("/signin");
+    } else {
+      setToken(storedToken);
+    }
+    setLoading(false);
+  }, []);
 
   return (
     <Container>
@@ -63,25 +78,25 @@ function App() {
 
       <RightSide>
         <Routes>
-          <Route path="/" element={<Modal />}/>
+          <Route path="/" element={<Modal />} />
           <Route path="/Events" element={<ListEvents />} />
           <Route path="/detail-etudiant/:id" element={<GetDetailEtudiant />} />
           <Route path="/consult-cv/:id" element={<GetCvParEns />} />
-          <Route path="/gestion-acces" element={<AddingAdmin   />} />
+          <Route path="/gestion-acces" element={<AddingAdmin />} />
           <Route path="/newEvent" element={<CreateEvent />} />
           <Route path="/Events/:id" element={<UpdateEvent />} />
           <Route path="/signup" element={<SignupAlumni />} />
           <Route path="/enseignants" element={<ListEnseignants />} />
           <Route path="/NewEnseignant" element={<CreateTeacher />} />
           <Route path="/enseignants/:id" element={<UpdateEns />} />
-          <Route path="/getetudiant" element={<GetEtudiant />} />
+          <Route path="/getetudiant/:id" element={<GetEtudiant />} />
           <Route path="/modifyetudiants" element={<EtudiantPUT />} />
           <Route path="/ajouteretudiant" element={<EtudiantADD />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/alumnistatus" element={<AlumniAccountState />} />
           <Route path="/import" element={<Excel />} />
           <Route path="/make-public" element={<MakeAccountPublic />} />
-          <Route path="/publicaccounts" element={< ConsultPublicAccounts />} />
+          <Route path="/publicaccounts" element={<ConsultPublicAccounts />} />
           <Route
             path="/getunverified"
             element={<GetUnverifiedAlumniAccounts />}
@@ -133,7 +148,7 @@ function App() {
 export default App;
 
 const Container = styled.div`
-  height:100%;
+  height: 100%;
   width: 100%;
   display: flex;
   min-height: 100vh;
@@ -141,13 +156,13 @@ const Container = styled.div`
 `;
 
 const LeftSide = styled.div`
-height:100vh;
+  height: 100vh;
   transition: all ease-in 0.3s;
   z-index: 99;
 `;
 
 const RightSide = styled.div`
-  height:100vh;
+  height: 100vh;
   width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
