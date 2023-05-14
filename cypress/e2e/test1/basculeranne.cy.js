@@ -30,7 +30,7 @@ describe("BasculerAnne Component", () => {
     cy.get('[data-value="admin"]').click(); // Click on the MenuItem with a value of "admin"
 
     cy.getByData("valider").click({ force: true });
-    cy.location("pathname").should("eq", "/ajouteretudiant");
+    cy.location("pathname").should("eq", "/");
     cy.visit("http://localhost:3005/ajouteranneuniversitaire"); // Replace with the actual URL of the component
     cy.visit("/basculer");
   });

@@ -28,7 +28,7 @@ export default function GetpfeByEnseignantId() {
   return (
     <Container>
       <FormContainer>
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} style={{ alignItems: "center" }}>
           <Table sx={{ minWidth: 550 }} aria-label="simple table">
             <TableHead>
               <TableRow>
@@ -58,12 +58,16 @@ export default function GetpfeByEnseignantId() {
   );
 }
 const Container = styled.div`
-  background-color: #dfdfdf;
-  position: absolute;
-  width: auto;
-  height: auto;
-  display: flex;
-  jusitfy-content : center;
+backgroundColor: "#dfdfdf",
+position: "absolute",
+width: "100%",
+height: "100%",
+display: "flex",
+justifyContent: "center",
+[theme.breakpoints.down("sm")]: {
+  flexDirection: "column",
+  alignItems: "center",
+},
     @media (max-width: 768px) {
       width: auto;
 
@@ -71,15 +75,16 @@ const Container = styled.div`
   }
 `;
 const FormContainer = styled.div`
-  background-color: white;
-  width : 90%;
-  height : auto;
-
-
- margin-left:3em;
-
-
-border-radius: 30px;
+backgroundColor: "white",
+width: "90%",
+height: "auto",
+marginLeft: "3em",
+borderRadius: "30px",
+[theme.breakpoints.down("sm")]: {
+  width: "auto",
+  height: "auto",
+  margin: "0.2em",
+},
 @media (max-width: 768px) {
   width : auto;
   height auto;
