@@ -158,6 +158,9 @@ const Container = styled.div`
     }
     overflow-y:scroll;
     background-color:#145369 ;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
     
     
