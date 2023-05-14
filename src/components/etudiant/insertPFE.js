@@ -7,6 +7,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function InsertPFE() {
+  const isFormValid = () => {
+    return Object.values(stagePFE).every((value) => value.trim() !== "");
+  };
+
   const [stagePFE, setStagePFE] = useState({
     sujet: "",
     type: "",
@@ -37,7 +41,11 @@ export default function InsertPFE() {
           "http://localhost:3000/etudiant-actuel/addpfe/" + user.sub,
           stagePFE
         )
-        .then(setError(false), navigate("/"))
+        .then((res) => {
+          setError(false);
+          navigate("/");
+          console.log(res.data);
+        })
         .catch((error) => {
           console.log(error);
           setError(true);
@@ -99,7 +107,7 @@ export default function InsertPFE() {
           <Button
             variant="contained"
             onClick={handleSubmit}
-            //   disabled={disableButton}
+            disabled={!isFormValid()}
             data-test="valider"
           >
             Valider

@@ -36,10 +36,21 @@ describe("InsertPFE + Voir Liste PFE", () => {
     cy.visit("http://localhost:3005/insertpfe");
 
     // Submit the form
-    cy.get('[data-test="valider"]').click();
+    cy.get("[data-test=valider]").should("be.disabled");
 
-    // Expect an error message to be shown
-    cy.get('[data-test="alert"]').should("be.visible");
+    // enter data into one of the input fields
+    cy.get("[data-test=sujet]").type("Test sujet");
+
+    // check that the submit button is still disabled
+    cy.get("[data-test=valider]").should("be.disabled");
+
+    // enter data into all the input fields
+    cy.get("[data-test=type]").type("Test type");
+    cy.get("[data-test=societe]").type("Test societe");
+    cy.get("[data-test=pays]").type("Test pays");
+
+    // check that the submit button is enabled
+    cy.get("[data-test=valider]").should("not.be.disabled");
   });
 
   it("displays all fetched data", () => {

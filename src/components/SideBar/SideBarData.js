@@ -68,6 +68,19 @@ export const SideBarData = [
     roles: ["enseignant"],
   },
   {
+    title: "Ajouter PFE",
+    icon: <AddIcon />,
+    link: "/insertpfe",
+    roles: ["etudiant"],
+  },
+  ,
+  {
+    title: "Ajouter Stage Ete",
+    icon: <AddIcon />,
+    link: "/insertstage",
+    roles: ["etudiant"],
+  },
+  {
     title: "Insérer Stage",
     icon: <CreateIcon />,
     link: "/insertstage",

@@ -14,6 +14,10 @@ export default function SideBar() {
   const decodedToken = jwt_decode(getToken());
   const [user, setUser] = useState(null);
   const [data, setData] = useState(null);
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // clear the token from local storage
+    navigate("/signin"); // redirect to the login page
+  };
 
   // Change the isOpen state value on screen size change
   /* const handleResize = () => {
@@ -171,7 +175,9 @@ export default function SideBar() {
         <BottomPart>
           <Logout>
             <PowerSettingsNewIcon />
-            <ButtonText isOpen={isOpen}>Logout</ButtonText>{" "}
+            <ButtonText isOpen={isOpen} onClick={handleLogout}>
+              Logout
+            </ButtonText>{" "}
           </Logout>
         </BottomPart>
       </SideBarE>
