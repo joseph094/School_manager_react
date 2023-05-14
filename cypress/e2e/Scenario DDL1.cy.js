@@ -2,8 +2,8 @@ describe("Login", () => {
   it("Scenario authentification admin et CRUD ETUDIANTS ", () => {
     // window.localStorage.removeItem("token");
     cy.visit("http://localhost:3005/signin");
-    cy.getByData("login").type("123456");
-    cy.getByData("mdp").type("admin");
+    cy.getByData("login").type("25023123");
+    cy.getByData("mdp").type("youssef");
     cy.get("#demo-simple-select").click(); // Click on the select element
     cy.get('[data-value="admin"]').click(); // Click on the MenuItem with a value of "admin"
 

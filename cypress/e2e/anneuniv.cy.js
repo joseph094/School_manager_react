@@ -1,15 +1,5 @@
 describe("AjouterAnneUniversitaire", () => {
-  beforeEach(() => {
-    cy.visit("http://localhost:3005/signin");
-    cy.getByData("login").type("123456");
-    cy.getByData("mdp").type("admin");
-    cy.get("#demo-simple-select").click(); // Click on the select element
-    cy.get('[data-value="admin"]').click(); // Click on the MenuItem with a value of "admin"
-
-    cy.getByData("valider").click({ force: true });
-    cy.location("pathname").should("eq", "/ajouteretudiant");
-    cy.visit("http://localhost:3005/ajouteranneuniversitaire"); // Replace with the actual URL of the component
-  });
+  beforeEach(() => {});
 
   it("displays the correct form inputs", () => {
     cy.get('input[name="anne"]').should("exist");

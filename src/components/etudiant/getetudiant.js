@@ -91,8 +91,15 @@ export default function GetEtudiant() {
   };
 
   useEffect(() => {
-    setError(false);
+    const timeoutId = setTimeout(() => {
+      setError(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [etudiantData, setIsNotFound]);
+
   return (
     <AllContainer>
       <FormComponent height="160%">
