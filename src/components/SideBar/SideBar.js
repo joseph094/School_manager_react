@@ -32,6 +32,12 @@ export default function SideBar() {
         decodedToken.roles[0]
       );
 
+      if (decodedToken.roles[0] == "enseignant") {
+        console.log("enseignant is here");
+        data = SideBarData.filter((val) => val.roles.includes("enseignant"));
+        console.log("enseignant data ===>", data);
+      }
+
       if (decodedToken.roles[0] === "etudiant") {
         if (userTypeData.verified != false) {
           if (userTypeData.verified === true) {
