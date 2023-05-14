@@ -180,4 +180,33 @@ animation: fadeIn ease-in .5s;
         margin-top: -50px;}
     100% { opacity: 1;
     margin-top:0 }
-  }
+}
+
+.success {
+    position:relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'montserrat';
+    color : green;
+    background-color: #e2f1dc;
+    width: 100% ;
+    margin-top: 0;
+    text-align: center;
+    font-size: 1rem;
+    height: 2em;
+    border-radius: 10px;
+    animation: fadeIn ease-in .5s;
+    }
+    @media only screen and (max-width: 470px) {
+        .success {
+            height: fit-content;
+        }
+      }
+    
+    @keyframes fadeIn {
+        0% { opacity: 0; 
+            margin-top: -50px;}
+        100% { opacity: 1;
+        margin-top:0 }
+    }

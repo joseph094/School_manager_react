@@ -133,6 +133,7 @@ function App() {
 export default App;
 
 const Container = styled.div`
+  height:100%;
   width: 100%;
   display: flex;
   min-height: 100vh;
@@ -140,12 +141,14 @@ const Container = styled.div`
 `;
 
 const LeftSide = styled.div`
+height:100vh;
   transition: all ease-in 0.3s;
   z-index: 99;
 `;
 
 const RightSide = styled.div`
+  height:100vh;
   width: 100%;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
 `;
