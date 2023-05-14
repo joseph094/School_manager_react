@@ -11,7 +11,7 @@ export default function SideBar() {
 
     const navigate = useNavigate();
     const toggle = () => setIsOpen(!isOpen);
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     const decodedToken = jwt_decode(getToken());
     const [user, setUser] = useState(null);
     const [data, setData] = useState(null);
@@ -19,14 +19,21 @@ export default function SideBar() {
 
 
     // Change the isOpen state value on screen size change
-    const handleResize = () => {
+    /*const handleResize = () => {
         if (window.innerWidth <= 1000) {
             setIsOpen(true);
         } else {
             setIsOpen(false);
         }
-    };
+    };*/
 
+    const handleMouseEnter = () => {
+        setIsOpen(false);
+      };
+    
+      const handleMouseLeave = () => {
+        setIsOpen(true);
+      };
     useEffect(() => {
         const fetchData = async () => {
 
@@ -88,16 +95,16 @@ export default function SideBar() {
 
         };
         fetchData();
-        window.addEventListener("resize", handleResize);
+        //window.addEventListener("resize", handleResize);
 
         return () => {
-            window.removeEventListener("resize", handleResize);
+            //window.removeEventListener("resize", handleResize);
         };
     }, []);
 
     return (
 
-        <Container isOpen={isOpen} >
+        <Container isOpen={isOpen}  onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
             <SwitcherTop isOpen={isOpen}>
                 <DensityMediumIcon style={{ cursor: 'pointer' }} onClick={toggle} />
             </SwitcherTop>
@@ -149,6 +156,10 @@ const Container = styled.div`
         background-color:${(props) => (props.isOpen === false ? "#00000023" : "#00000000")};
         transition: all ease-in .3s;
     }
+    overflow-y:scroll;
+    background-color:#145369 ;
+
+    
     
 `
 const SideBarE = styled.div`
@@ -174,12 +185,14 @@ const TopPart = styled.div`
     display: flex;
     flex-direction: column;
     width:100%;
+    
 `
 
 const MiddlePart = styled.div`
     display: flex;
     flex-direction: row;
     margin-top: ${(props) => (props.isOpen === false ? "3em" : "4em")};
+    
 `
 
 const Logo = styled.img`
@@ -193,6 +206,7 @@ const LinkList = styled.ul`
     width:100%;
     list-style-type:none;
     padding:0;
+    
 
 `
 
@@ -216,6 +230,7 @@ const ListItem = styled.li`
         color:#041014;
         border-radius: 50px 0px 0px 50px;
         font-weight: 800;
+        z-index:100000;
         cursor: pointer;
         -webkit-box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.16);
         -moz-box-shadow: 10px 10px 5px -4px rgba(0, 0, 0, 0.16);
