@@ -15,8 +15,9 @@ import InfoIcon from "@mui/icons-material/Info";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { getEtudiantAlumni, getToken, getEudiantActuel } from "../../api/api";
+import withAuth from "../../hoc/hoc";
 
-export default function GetallEtudiants() {
+function GetallEtudiants() {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const decodedToken = jwt_decode(getToken());
@@ -135,6 +136,7 @@ export default function GetallEtudiants() {
     </Container>
   );
 }
+export default withAuth(GetallEtudiants, ["admin"]);
 
 const Btn = styled.button`
   opacity: 0;

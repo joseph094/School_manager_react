@@ -4,8 +4,9 @@ import styled from "styled-components";
 import { Alert, Button, MenuItem, Select, TextField } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import withAuth from "../../hoc/hoc";
 
-export default function EtudiantADD() {
+function EtudiantADD() {
   const [etudiantData, setEtudiantData] = useState({
     nom: "",
     prenom: "",
@@ -189,7 +190,7 @@ export default function EtudiantADD() {
     </AllContainer>
   );
 }
-
+export default withAuth(EtudiantADD, ["admin"]);
 const InputName = styled.h3`
   color: #4981f5;
 `;

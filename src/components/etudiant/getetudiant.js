@@ -6,9 +6,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Alert, Button, MenuItem, Select, TextField } from "@mui/material";
 import axios from "axios";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
+import withAuth, { Hoc } from "../../hoc/hoc";
 
-export default function GetEtudiant() {
+function GetEtudiant() {
   const { id } = useParams();
+
   const [etudiantData, setEtudiantData] = useState({
     nom: "",
     prenom: "",
@@ -23,6 +25,7 @@ export default function GetEtudiant() {
   const [isNotFound, setIsNotFound] = useState(false);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const handleChange = (event) => {
     const { name, value } = event.target;
     setEtudiantData((prevState) => {
@@ -219,6 +222,7 @@ export default function GetEtudiant() {
     </AllContainer>
   );
 }
+export default withAuth(GetEtudiant, ["admin"]);
 
 const InputName = styled.h3`
   color: #4981f5;

@@ -6,8 +6,9 @@ import { Alert, TextField } from "@mui/material";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import "./style.css";
+import withAuth from "../../hoc/hoc";
 
-export default function GetPfeByParam() {
+function GetPfeByParam() {
   const [pfe, setPfe] = useState({
     sujet: " ",
     societe: "",
@@ -53,6 +54,8 @@ export default function GetPfeByParam() {
     </FormComponent>
   );
 }
+export default withAuth(GetPfeByParam, ["enseignant"]);
+
 const InputName = styled.h3`
   color: #4981f5;
 `;

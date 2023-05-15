@@ -15,8 +15,8 @@ import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-
-export default function Choisirpfe() {
+import withAuth from "../../hoc/hoc";
+function Choisirpfe() {
   const [data, setData] = useState([]);
   const [etudiant, setEtudiant] = useState([]);
   const [button, setButton] = useState(false);
@@ -134,6 +134,8 @@ export default function Choisirpfe() {
     </Container>
   );
 }
+export default withAuth(Choisirpfe, ["etudiant"]);
+
 const Container = styled.div`
   background-color: #dfdfdf;
   width: auto;

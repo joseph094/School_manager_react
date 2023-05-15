@@ -5,8 +5,10 @@ import { Alert, Button, Input, TextField } from "@mui/material";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import insertPFE from "./insertPFE";
+import withAuth from "../../hoc/hoc";
 
-export default function InsertStageEte() {
+function InsertStageEte() {
   const [stageEte, setStageEte] = useState({
     sujet: "",
     description: "",
@@ -113,6 +115,8 @@ export default function InsertStageEte() {
     </FormComponent>
   );
 }
+export default withAuth(InsertStageEte, ["etudiant"]);
+
 const InputName = styled.h3`
   color: #4981f5;
 `;

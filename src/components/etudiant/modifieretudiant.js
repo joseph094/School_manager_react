@@ -4,8 +4,9 @@ import styled from "styled-components";
 import { Alert, Button, MenuItem, Select, TextField } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import withAuth from "../../hoc/hoc";
 
-export default function EtudiantPUT() {
+function EtudiantPUT() {
   const [etudiantData, setEtudiantData] = useState({
     nom: "",
     prenom: "",
@@ -230,6 +231,8 @@ export default function EtudiantPUT() {
     </AllContainer>
   );
 }
+export default withAuth(EtudiantPUT, ["admin", "etudiant"]);
+
 const AllContainer = styled.div`
   height: 110%;
   width: 100;

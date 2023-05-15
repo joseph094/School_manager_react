@@ -1,4 +1,10 @@
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import {
+  Route,
+  Router,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import "./App.css";
 import CreateEvent from "./components/CrudEvents/CreateEvent";
 import ListEvents from "./components/CrudEvents/ListEvents";
@@ -30,7 +36,7 @@ import GetEtudiantByParam from "./components/etudiant/getetudiantbyParam";
 import GetPfeByParam from "./components/pfe/getPfeByParam";
 import EtudiantDashboard from "./components/etudiant/etudiantDashboard";
 import { io } from "socket.io-client";
-import { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import AjouterAnneUniversitaire from "./components/AnneUniversitaire/ajouterAnneUniversitaire";
 import BasculerAnne from "./components/AnneUniversitaire/basculerAnne";
 import AlumniGeneralStats from "./components/AlumniStats/AlumniGeneralStats";
@@ -50,12 +56,15 @@ import GetDetailEtudiant from "./components/DetailEtudiant/etudiantdetail";
 import GetCvParEns from "./components/Cv-par-enseignant/ConsultCvEnseignant";
 import AddingAdmin from "./components/AddAdmin/AddAdmin";
 import Modal from "./components/Dashboard/dash";
+
+import UnauthorizedPage from "./unauthorized";
 function App() {
   const location = useLocation();
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
   useEffect(() => {
     // Check if token is present in local storage
     const storedToken = localStorage.getItem("token");
@@ -70,15 +79,19 @@ function App() {
 
   return (
     <Container>
-      {location.pathname !== "/signin" && location.pathname !== "/signup" && (
-        <LeftSide>
-          <SideBar />
-        </LeftSide>
-      )}
+      {location.pathname !== "/signin" &&
+        location.pathname !== "/signup" &&
+        location.pathname !== "/unauthorized" && (
+          <LeftSide>
+            <SideBar />
+          </LeftSide>
+        )}
 
       <RightSide>
         <Routes>
           <Route path="/" element={<Modal />} />
+          <Route path="/unauthorized" element={<UnauthorizedPage />} />
+
           <Route path="/Events" element={<ListEvents />} />
           <Route path="/detail-etudiant/:id" element={<GetDetailEtudiant />} />
           <Route path="/consult-cv/:id" element={<GetCvParEns />} />
@@ -168,4 +181,10 @@ const RightSide = styled.div`
   width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
+`;
+const Loader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 `;
