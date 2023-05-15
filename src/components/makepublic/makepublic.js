@@ -3,6 +3,7 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import { getEtudiantAlumni, getToken, getEudiantActuel } from '../../api/api';
 import styled from "styled-components";
+import withAuth from "../../hoc/hoc";
 
 
 
@@ -15,7 +16,7 @@ function MakeAccountPublic() {
 
     function checkVerificationStatus() {
         if (etudiant != null) {
-            if (etudiant.visibilite ===false) {
+            if (etudiant.visibilite === false) {
                 setStatus('Private')
             } else {
                 setStatus('Public')
@@ -131,7 +132,7 @@ function MakeAccountPublic() {
                         {etudiant.visibilite === true && <div>
                             <AccountStatus>Votre Compte Est <Status status="true">Public</Status></AccountStatus>
                             <Button onClick={MakePrivate} > Make it Private </Button></div>}
-                            
+
                         {etudiant.visibilite === false && <div><AccountStatus>Votre Compte Est <Status status="false">Private</Status></AccountStatus> <Button onClick={MakePublic} >  Make it Public </Button></div>}
 
 
@@ -146,7 +147,7 @@ function MakeAccountPublic() {
     );
 };
 
-export default MakeAccountPublic;
+export default withAuth(MakeAccountPublic, ["etudiant"]);
 
 export const Nom = styled.span`
 font-family: 'montserrat';

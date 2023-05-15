@@ -222,7 +222,7 @@ function GetEtudiant() {
     </AllContainer>
   );
 }
-export default withAuth(GetEtudiant, ["admin"]);
+export default withAuth(GetEtudiant, ["admin","DroitEtud"]);
 
 const InputName = styled.h3`
   color: #4981f5;

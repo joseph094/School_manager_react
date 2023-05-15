@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import "./excel.css"
+import withAuth from "../../hoc/hoc";
 
 const Excel = () => {
   const [file, setSelectedFile] = useState(null);
@@ -20,7 +21,7 @@ const Excel = () => {
       }
     }).then(response => {
       console.log(response.data);
-      
+
     }).catch(error => {
       console.log(error);
     });
@@ -41,4 +42,4 @@ const Excel = () => {
   );
 }
 
-export default Excel;
+export default withAuth(Excel, ["admin", "DroitEtud"]);

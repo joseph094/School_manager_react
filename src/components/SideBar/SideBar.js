@@ -72,20 +72,17 @@ export default function SideBar() {
         }
       } else if (decodedToken.roles[0] === "admin") {
         const Admin = await GetUser(decodedToken.sub, decodedToken.roles[0]);
-        data = data.concat(
-          SideBarData.filter((val) => val.roles.includes("DroitDemande"))
-        );
+
 
         if (Admin?.SuperAdmin === false) {
-          if (Admin.OperationsDemande === true) {
-            data = data.concat(
-              SideBarData.filter((val) => val.roles.includes("DroitDemande"))
-            );
-          }
+          data = data.concat(
+            SideBarData.filter((val) => val.roles.includes("DroitDemande"))
+          );
           if (Admin.ImportExcel === true) {
             data = data.concat(
               SideBarData.filter((val) => val.roles.includes("DroitExcel"))
             );
+
           }
           if (Admin.OperationsEtud === true) {
             data = data.concat(
@@ -170,7 +167,7 @@ export default function SideBar() {
                   );
                 }
               })}
-            {}
+            { }
           </LinkList>
         </MiddlePart>
         <BottomPart>
@@ -198,7 +195,7 @@ const Container = styled.div`
     height: 130%;
     position: absolute;
     background-color: ${(props) =>
-      props.isOpen === false ? "#00000023" : "#00000000"};
+    props.isOpen === false ? "#00000023" : "#00000000"};
     transition: all ease-in 0.3s;
     ::-webkit-scrollbar {
       width: 3em;

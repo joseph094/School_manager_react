@@ -82,7 +82,7 @@ function VerifyAlumniAccount () {
   );
 };
 
-export default withAuth(VerifyAlumniAccount, ["admin"]);
+export default withAuth(VerifyAlumniAccount, ["admin","DroitEtud"]);
 
 const Button = styled.button`
     width: 90%;

@@ -5,6 +5,7 @@ import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import { useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode';
 import { getEtudiantAlumni, getToken, getEudiantActuel, GetUser } from '../../api/api';
+import withAuth from "../../hoc/hoc";
 
 function ConsultPublicAccounts() {
   const token = localStorage.getItem('token');
@@ -62,8 +63,8 @@ function ConsultPublicAccounts() {
                       {row.vacation == null && <td className="colonne1">Actuel</td>}
 
                       <td className="colonne1">
-                        {row.vacation != null &&<a className="document" onClick={() => navigate(`/consult-cv/${row.EtudiantAluId}`)}><DocumentScannerIcon /> </a>}
-                        {row.vacation == null &&<a className="document" onClick={() => navigate(`/consult-cv/${row.EtudiantActId}`)}><DocumentScannerIcon /> </a>}
+                        {row.vacation != null && <a className="document" onClick={() => navigate(`/consult-cv/${row.EtudiantAluId}`)}><DocumentScannerIcon /> </a>}
+                        {row.vacation == null && <a className="document" onClick={() => navigate(`/consult-cv/${row.EtudiantActId}`)}><DocumentScannerIcon /> </a>}
 
                       </td>
                     </tr>
@@ -78,4 +79,4 @@ function ConsultPublicAccounts() {
   );
 }
 
-export default ConsultPublicAccounts
+export default withAuth(ConsultPublicAccounts, ["etudiant"]);

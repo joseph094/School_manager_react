@@ -2,6 +2,7 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 import './CreateEvent.css'
+import withAuth from "../../hoc/hoc";
 
 
 function UpdateEvent() {
@@ -76,4 +77,4 @@ function UpdateEvent() {
     );
 };
 
-export default UpdateEvent;
+export default withAuth(UpdateEvent,["admin","Droitevent"]);

@@ -5,8 +5,9 @@ import { getEtudiantAlumni, getToken, getEudiantActuel, GetUser } from '../../ap
 import styled from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import withAuth from "../../hoc/hoc";
 
-export default function Modal() {
+function Modal() {
     const [modal, setModal] = useState(false);
     const [etudiant, setEtudiant] = useState(null);
     const [user, setUser] = useState(null);
@@ -200,3 +201,10 @@ export default function Modal() {
         </>
     );
 }
+export default withAuth(Modal, ["responsable",
+    "enseignant",
+    "admin",
+    "etudiant",
+    "alumni",
+    "unverified",
+    "DroitDemande",])

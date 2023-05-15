@@ -54,7 +54,9 @@ function Getpfe() {
     </Container>
   );
 }
-export default withAuth(Getpfe, ["admin", "enseignant", "etudiant"]);
+export default withAuth(Getpfe, ["admin", "enseignant", "etudiant","DroitEtud"]);
+
+
 
 const Container = styled.div`
   background-color: #dfdfdf;

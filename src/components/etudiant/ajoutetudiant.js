@@ -190,7 +190,7 @@ function EtudiantADD() {
     </AllContainer>
   );
 }
-export default withAuth(EtudiantADD, ["admin"]);
+export default withAuth(EtudiantADD, ["admin","DroitEtud"]);
 const InputName = styled.h3`
   color: #4981f5;
 `;

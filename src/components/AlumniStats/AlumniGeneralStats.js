@@ -322,7 +322,7 @@ function AlumniGeneralStats() {
   )
 }
 
-export default withAuth(AlumniGeneralStats, ["admin"]);
+export default withAuth(AlumniGeneralStats, ["admin","DroitStats"]);
 
 const Container = styled.div`
   display: flex;

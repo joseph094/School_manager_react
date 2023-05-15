@@ -212,5 +212,39 @@ export const GetEtudiantRole = async (id) => {
     }; 
 };
 
+export const GetAdminRole = async (id) => {
+  
+  try{
+    const response = await api.get(`/admin/${id}`)
+    const admin = response.data;
+    let roles=[];
+    if(admin.SuperAdmin==true){
+      return "admin"
+    }else{
+    if(admin.OperationsEtud==true){
+      roles=[...roles,"DroitEtud"];
+    }
+    if(admin.ImportExcel==true){
+      roles=[...roles,"DroitExcel"];
 
+    }
+    if(admin.OperationsEvent==true){
+      roles=[...roles,"Droitevent"];
+
+    }
+    if(admin.OperationsEns==true){
+      roles=[...roles,"DroitEns"];
+
+    }
+    if(admin.OperationsStats==true){
+      roles=[...roles,"DroitStats"];
+
+    }
+    return [...roles,"DroitDemande"]
+  }
+   
+  }catch(error){
+    console.error(error.response.data.message);
+  }; 
+};
 

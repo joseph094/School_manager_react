@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, { useState } from "react"
 import './CreateEvent.css'
+import withAuth from "../../hoc/hoc";
 
 function CreateEvent() {
     const token = localStorage.getItem('token');
@@ -68,4 +69,4 @@ function CreateEvent() {
         </div>
     </div>)
 }
-export default CreateEvent;
+export default withAuth(CreateEvent,["admin","Droitevent"]);

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import './Events.css'
 import jwt_decode from 'jwt-decode';
+import withAuth from "../../hoc/hoc";
 
 
 function ListEvents() {
@@ -39,9 +40,7 @@ function ListEvents() {
     const arr = data.map((i) => {
         return (
             <tr>
-                <td className="colonne">
-                    {i.idEvenement}
-                </td>
+                
                 <td className="colonne">
                     {i.nom}
                 </td>
@@ -73,9 +72,7 @@ function ListEvents() {
                     <table className="custom-table" striped bordered hover size="sm">
                         <thead>
                             <tr>
-                                <th className="table_head">
-                                    IdEvent
-                                </th>
+                                
                                 <th className="table_head">
                                     Even Name
                                 </th>
@@ -104,4 +101,4 @@ function ListEvents() {
 
 }
 
-export default ListEvents;
+export default withAuth(ListEvents,["admin","Droitevent","etudiant"]);

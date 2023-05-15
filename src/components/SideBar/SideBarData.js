@@ -167,13 +167,13 @@ export const SideBarData = [
     title: "Lister Vacations",
     icon: <ListAltIcon />,
     link: "/vacations",
-    roles: ["admin"],
+    roles: ["admin","DroitDemande"],
   },
   {
     title: "Lister Contrats",
     icon: <ListAltIcon />,
     link: "/contrats",
-    roles: ["admin"],
+    roles: ["admin","DroitDemande"],
   },
   {
     title: "Demander Vacations",
@@ -185,7 +185,7 @@ export const SideBarData = [
     title: "Demander Contrat",
     icon: <ContactPageIcon />,
     link: "/demandercontratexpert",
-    roles: ["etudiant", "alumni"],
+    roles: ["alumni"],
   },
   {
     title: "Alumni Stats",

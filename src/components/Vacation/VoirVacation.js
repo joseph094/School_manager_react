@@ -59,7 +59,7 @@ function VoirVacation() {
   )
 }
 
-export default withAuth(VoirVacation, ["admin"]);
+export default withAuth(VoirVacation, ["admin","DroitDemande"]);
 
 const Container = styled.div`
     display: flex;

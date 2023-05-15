@@ -8,6 +8,7 @@
 
 .table_head,
 .colonne {
+  text-align: left;
   padding: 1em;
   background: white;
   border-bottom: 4px solid #d3d0d0;

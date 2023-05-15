@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import "./CreateEns.css";
+import withAuth from "../../hoc/hoc";
 
 function CreateTeacher() {
   const token = localStorage.getItem("token");
@@ -111,4 +112,4 @@ function CreateTeacher() {
     </div>
   );
 }
-export default CreateTeacher;
+export default withAuth(CreateTeacher,["admin","DroitEns"]);

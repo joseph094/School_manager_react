@@ -99,7 +99,7 @@ function PfeStats() {
     </Container>
   );
 }
-export default withAuth(PfeStats, ["admin"]);
+export default withAuth(PfeStats, ["admin","DroitStats"]);
 
 const Container = styled.div`
     background-color: #dfdfdf;

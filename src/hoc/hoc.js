@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import { GetEtudiantRole, GetUser } from "../api/api";
+import { GetAdminRole, GetEtudiantRole, GetUser } from "../api/api";
 
 const withAuth = (Component, inRole) => {
   return function AuthComponent(props) {
@@ -23,6 +23,9 @@ const withAuth = (Component, inRole) => {
           if (decoded.roles[0] === "etudiant"){
             roles = await GetEtudiantRole(decoded.sub);
             console.log(roles);
+          }else if(decoded.roles[0] === "admin"){
+            roles = await GetAdminRole(decoded.sub);
+
           }
           else{
             const user = await GetUser(decoded.sub, decoded.roles[0]);

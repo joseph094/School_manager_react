@@ -231,7 +231,7 @@ function EtudiantPUT() {
     </AllContainer>
   );
 }
-export default withAuth(EtudiantPUT, ["admin", "etudiant"]);
+export default withAuth(EtudiantPUT, ["admin", "etudiant","DroitEtud"]);
 
 const AllContainer = styled.div`
   height: 110%;

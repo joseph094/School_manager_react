@@ -136,7 +136,7 @@ function GetallEtudiants() {
     </Container>
   );
 }
-export default withAuth(GetallEtudiants, ["admin"]);
+export default withAuth(GetallEtudiants, ["admin","DroitEtud"]);
 
 const Btn = styled.button`
   opacity: 0;

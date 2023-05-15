@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./CreateEns.css";
+import withAuth from "../../hoc/hoc";
 
 function UpdateEns() {
   const token = localStorage.getItem("token");
@@ -113,4 +114,4 @@ function UpdateEns() {
   );
 }
 
-export default UpdateEns;
+export default withAuth(UpdateEns,["admin","DroitEns"]);

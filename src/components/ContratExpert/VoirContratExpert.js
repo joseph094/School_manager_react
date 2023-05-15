@@ -56,7 +56,7 @@ function VoirContratExpert() {
   )
 }
 
-export default withAuth(VoirContratExpert, ["admin"]);
+export default withAuth(VoirContratExpert, ["admin","DroitDemande"]);
 
 const Container = styled.div`
     display: flex;

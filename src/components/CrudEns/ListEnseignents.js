@@ -3,6 +3,7 @@ import { Button, Table } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./listeEns.css";
+import withAuth from "../../hoc/hoc";
 
 function ListEnseignants() {
   const token = localStorage.getItem("token");
@@ -91,4 +92,4 @@ function ListEnseignants() {
   );
 }
 
-export default ListEnseignants;
+export default withAuth(ListEnseignants,["admin","DroitEns"]);

@@ -172,7 +172,7 @@ function GetUnverifiedAlumniAccounts () {
 
     
 }
-export default withAuth(GetUnverifiedAlumniAccounts, ["admin"]);
+export default withAuth(GetUnverifiedAlumniAccounts, ["admin","DroitEtud"]);
 
 const Container = styled.div`
     display: flex;

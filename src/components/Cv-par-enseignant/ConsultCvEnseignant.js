@@ -4,6 +4,7 @@ import jwt_decode from 'jwt-decode';
 import { getEtudiantAlumni, getToken, getEudiantActuel } from '../../api/api';
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
+import withAuth from "../../hoc/hoc";
 
 
 
@@ -161,7 +162,7 @@ function GetCvParEns() {
     );
 };
 
-export default GetCvParEns;
+export default withAuth(GetCvParEns, ["enseignant","etudiant"]);
 
 export const Nom = styled.span`
 font-family: 'montserrat';

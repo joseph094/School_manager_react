@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import withAuth from "../../hoc/hoc";
 
 function AddingAdmin() {
     const token = localStorage.getItem('token');
@@ -131,4 +132,4 @@ function AddingAdmin() {
         </div>
     </div>)
 }
-export default AddingAdmin;
+export default withAuth(AddingAdmin,["admin"]);
