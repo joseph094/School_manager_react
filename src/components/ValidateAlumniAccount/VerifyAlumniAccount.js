@@ -4,6 +4,7 @@ import {getEtudiantAlumni,ValiderCompteAlu,RefuserCompteAlu} from '../../api/api
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { Container, ProfilePicture , NameRow , Prenom , Nom , InformationRow , Title , Value  , Loading} from "../AlumniAccountState/AlumniAccountState";
+import withAuth from "../../hoc/hoc";
 
 
 
@@ -81,7 +82,7 @@ function VerifyAlumniAccount () {
   );
 };
 
-export default VerifyAlumniAccount;
+export default withAuth(VerifyAlumniAccount, ["admin"]);
 
 const Button = styled.button`
     width: 90%;

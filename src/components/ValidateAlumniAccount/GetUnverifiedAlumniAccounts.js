@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getUnverifiedAlumniAccounts } from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import withAuth from "../../hoc/hoc";
 
 function GetUnverifiedAlumniAccounts () {
 
@@ -171,7 +172,7 @@ function GetUnverifiedAlumniAccounts () {
 
     
 }
-export default  GetUnverifiedAlumniAccounts;
+export default withAuth(GetUnverifiedAlumniAccounts, ["admin"]);
 
 const Container = styled.div`
     display: flex;

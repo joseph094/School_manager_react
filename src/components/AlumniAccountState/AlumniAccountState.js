@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import jwt_decode from 'jwt-decode';
 import {getEtudiantAlumni, getToken} from '../../api/api';
 import styled from "styled-components";
+import withAuth from "../../hoc/hoc";
 
 
 
@@ -71,7 +72,7 @@ function AlumniAccountState () {
   );
 };
 
-export default AlumniAccountState;
+export default withAuth(AlumniAccountState, ["alumni","unverified","refused"]);
 
 export const Nom= styled.span`
 font-family: 'montserrat';

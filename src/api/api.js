@@ -192,5 +192,25 @@ export const GetUser = async (id,role) => {
   
 };
 
+export const GetEtudiantRole = async (id) => {
+  
+    try{
+      const response = await api.get(`/etudiant/${id}`)
+      const etudiant = response.data;
+      switch (etudiant.verified){
+        case null:
+          return "  unverified";
+        case false :
+          return "refused";
+        case true:
+          return "alumni";
+        case undefined:
+          return "etudiant";  
+      }
+    }catch(error){
+      console.error(error.response.data.message);
+    }; 
+};
+
 
 

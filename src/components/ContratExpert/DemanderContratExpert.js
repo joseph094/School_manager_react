@@ -7,6 +7,7 @@ import { styled  as style} from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { demanderContratExpert, getToken } from '../../api/api';
+import withAuth from '../../hoc/hoc';
 
 function DemanderContratExpert() {
   const navigate = useNavigate();
@@ -106,7 +107,7 @@ function DemanderContratExpert() {
   )
 }
 
-export default DemanderContratExpert;
+export default withAuth(DemanderContratExpert, ["alumni"]);
 
 const Container = styled.div`
     display: flex;

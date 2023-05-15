@@ -6,12 +6,15 @@ import { IconButton } from "@mui/material";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { useNavigate } from "react-router-dom";
 import { Empty } from "../ContratExpert/VoirContratExpert";
+import withAuth from "../../hoc/hoc";
+import { Loading } from "../AlumniAccountState/AlumniAccountState";
 
 
 function ViewPublication() {
 
     const [publication, setPublication] = useState([]);
     const [isAlumni,setIsAlumni]=useState(false)
+    const [isLoading, setIsLoading] = useState(true);
     const decodedToken = jwt_Decode(getToken());
     const navigate = useNavigate();
 
@@ -28,6 +31,7 @@ function ViewPublication() {
 
     useEffect(() => {
         const fetchData = async () => {
+          setIsLoading(true);
           const data = await viewPublications();
           const publicationInfo = await Promise.all(data.map(async (i) => {
             const dataC = await getEtudiantAlumni(i.EtudiantAluId);
@@ -41,6 +45,7 @@ function ViewPublication() {
           }));
           console.log(publicationInfo);
           setPublication(publicationInfo);
+          setIsLoading(false);
         };
         fetchData();
         checkAlumni();
@@ -70,12 +75,16 @@ function ViewPublication() {
         {isAlumni && <IconButton onClick={() => navigate(`/postpublication` , { replace: true })}>
             <AddCircleIcon style={{"color":"#4981f5" , "font-size":"4rem"}}/><p style={{fontFamily:'proximanovasemi',fontSize:"2rem",color:"#4981f5"}}> Add</p>
         </IconButton>}
-        {publication.length === 0 ? <Empty>Aucune publication n'est disponible</Empty> : data}
+        {isLoading ? (
+          <Loading>Loading...</Loading>
+        ) : (
+          publication.length === 0 ? <Empty>Aucune publication n'est disponible</Empty> : data
+        )}
     </Container>
   )
 }
 
-export default ViewPublication;
+export default withAuth(ViewPublication, ["alumni","etudiant"]);
 
 
 const Container = styled.div`

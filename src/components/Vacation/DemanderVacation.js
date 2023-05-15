@@ -7,6 +7,7 @@ import { styled  as style} from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { demanderVacation, getToken } from '../../api/api';
+import withAuth from '../../hoc/hoc';
 
 function DemanderVacation() {
   const navigate = useNavigate();
@@ -104,7 +105,7 @@ function DemanderVacation() {
   )
 }
 
-export default DemanderVacation;
+export default withAuth(DemanderVacation, ["alumni"]);
 
 const Container = styled.div`
     display: flex;

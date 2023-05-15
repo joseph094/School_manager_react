@@ -8,6 +8,7 @@ import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { CountryCodes } from "./CountryCodes";
 import Flag from 'react-world-flags'
+import withAuth from "../../hoc/hoc";
 
 
 
@@ -321,7 +322,7 @@ function AlumniGeneralStats() {
   )
 }
 
-export default AlumniGeneralStats;
+export default withAuth(AlumniGeneralStats, ["admin"]);
 
 const Container = styled.div`
   display: flex;

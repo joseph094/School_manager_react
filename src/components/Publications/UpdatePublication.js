@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import React ,{useState,useEffect} from 'react';
-import { modifierPublication, viewPublication } from "../../api/api";
+import { getToken, modifierPublication, viewPublication } from "../../api/api";
 import { useNavigate, useParams } from "react-router-dom";
 import { TextField } from "@mui/material";
+import jwt_decode from 'jwt-decode';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Loading } from "../AlumniAccountState/AlumniAccountState";
+import withAuth from "../../hoc/hoc";
 
 function UpdatePublication() {
     const[formError,setFormError] = useState('')
@@ -15,20 +17,29 @@ function UpdatePublication() {
         contenu : '',
         type : ''
     }]);
-
+    const decodedToken = jwt_decode(getToken());
     const navigate = useNavigate();
 
     const { id } = useParams();
     useEffect(() => {
         const fetchData = async () => {
-          const data = await viewPublication(id);
-          let publiction = {
-            idPublication:id,
-            contenu : data.contenu,
-            type : data.type
-          }
-          console.log(publiction);
-          setPublication(publiction);
+            try{
+                const data = await viewPublication(id);
+                if (data.EtudiantAluId != decodedToken.sub){
+                  navigate("/unauthorized");
+              }
+                let publiction = {
+                  idPublication:id,
+                  contenu : data.contenu,
+                  type : data.type
+                }
+                console.log(publiction);
+                setPublication(publiction);
+            }
+            catch( err) {
+                navigate("/unauthorized");
+            }
+          
         };
         fetchData();
     },[id]);
@@ -100,7 +111,7 @@ function UpdatePublication() {
   )
 }
 
-export default UpdatePublication;
+export default withAuth(UpdatePublication, ["alumni"]);
 
 const Container = styled.div`
     display: flex;

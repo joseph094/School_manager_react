@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import { GetUser } from "../api/api";
+import { GetEtudiantRole, GetUser } from "../api/api";
 
 const withAuth = (Component, inRole) => {
   return function AuthComponent(props) {
@@ -19,9 +19,17 @@ const withAuth = (Component, inRole) => {
 
         try {
           const decoded = jwtDecode(token);
-          const user = await GetUser(decoded.sub, decoded.roles[0]);
-
-          if (inRole && !inRole.some((role) => user.roles.includes(role))) {
+          let roles;
+          if (decoded.roles[0] === "etudiant"){
+            roles = await GetEtudiantRole(decoded.sub);
+            console.log(roles);
+          }
+          else{
+            const user = await GetUser(decoded.sub, decoded.roles[0]);
+            roles = user.roles[0];
+          }
+          console.log("roles",roles);
+          if (inRole && !inRole.some((role) => roles.includes(role))) {
             navigate("/unauthorized");
             return;
           }

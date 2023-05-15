@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getEtudiantAlumni, getContratExperts } from '../../api/api';
+import withAuth from "../../hoc/hoc";
 
 function VoirContratExpert() {
     const [contratExpert, setContratExpert] = useState([]);
@@ -55,7 +56,7 @@ function VoirContratExpert() {
   )
 }
 
-export default VoirContratExpert;
+export default withAuth(VoirContratExpert, ["admin"]);
 
 const Container = styled.div`
     display: flex;

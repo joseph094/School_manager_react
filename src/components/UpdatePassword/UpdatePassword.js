@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import jwt_decode from 'jwt-decode';
 import {changerPassEnseignant, changerPassAdmin, changerPassResponsable, changerPassEtudiant, getToken} from '../../api/api';
 import "./style/style.css";
+import withAuth from '../../hoc/hoc';
 
 function UpdatePassword() {
   const [oldPassword, setOldPassword] = useState('');
@@ -127,4 +128,10 @@ function UpdatePassword() {
   );
 }
 
-export default UpdatePassword;
+export default withAuth(UpdatePassword, ["responsable",
+"enseignant",
+"admin",
+"etudiant",
+"alumni",
+"unverified",
+"DroitDemande",]);

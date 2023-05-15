@@ -11,7 +11,8 @@ export default function SideBar() {
   const navigate = useNavigate();
   const toggle = () => setIsOpen(!isOpen);
   const [isOpen, setIsOpen] = useState(false);
-  const decodedToken = jwt_decode(getToken());
+  const token = getToken();
+  const decodedToken = token ? jwt_decode(token) : null;
   const [user, setUser] = useState(null);
   const [data, setData] = useState(null);
   const handleLogout = () => {
@@ -188,6 +189,7 @@ const Container = styled.div`
   z-index: 99;
   height: 100%;
   overflow-y: scroll;
+  overflow-x:hidden;
   background-color: #145369;
   ::-webkit-scrollbar {
     width: 0;

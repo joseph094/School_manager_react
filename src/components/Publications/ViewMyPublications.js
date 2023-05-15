@@ -7,9 +7,12 @@ import { getToken } from '../../api/api';
 import { IconButton } from "@mui/material";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Empty } from "../ContratExpert/VoirContratExpert";
+import withAuth from "../../hoc/hoc";
+import { Loading } from "../AlumniAccountState/AlumniAccountState";
 
 function ViewMyPublications() {
     const [publication, setPublication] = useState([]);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const decodedToken = jwt_decode(getToken());
 
@@ -18,6 +21,7 @@ function ViewMyPublications() {
     }
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
           const data = await viewPublications();
           const publicationInfo = await Promise.all(data.map(async (i) => {
             const dataC = await getEtudiantAlumni(i.EtudiantAluId);
@@ -34,6 +38,7 @@ function ViewMyPublications() {
           console.log(publicationInfo);
           console.log(myPosts);
           setPublication(myPosts);
+          setLoading(false);
         };
         fetchData();
     },[]);
@@ -74,13 +79,18 @@ function ViewMyPublications() {
         <PageTitle>My publications</PageTitle>
         <IconButton onClick={() => navigate(`/postpublication` , { replace: true })}>
             <AddCircleIcon style={{"color":"#4981f5" , "font-size":"4rem"}}/><p style={{fontFamily:'proximanovasemi',fontSize:"2rem",color:"#4981f5"}}> Add</p>
-        </IconButton>
-        {publication.length === 0 ? <Empty>Vous n'avez aucune publication</Empty> : data}
+        </IconButton>{loading ? (
+                <Loading>Loading ...</Loading>
+            ) : publication.length === 0 ? (
+                <Empty>Vous n'avez aucune publication</Empty>
+            ) : (
+                data
+            )}
     </Container>
   )
 }
 
-export default ViewMyPublications;
+export default withAuth(ViewMyPublications, ["alumni"]);
 
 const Container = styled.div`
     display: flex;

@@ -9,6 +9,7 @@ import Select from '@mui/material/Select';
 import { styled  as style} from '@mui/material/styles';
 import { getToken, publier } from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import withAuth from "../../hoc/hoc";
 
 function PostPublication() {
     const [type, setType] = useState('');
@@ -96,7 +97,7 @@ function PostPublication() {
   )
 }
 
-export default PostPublication;
+export default withAuth(PostPublication, ["alumni"]);
 
 const Container = styled.div`
     display: flex;

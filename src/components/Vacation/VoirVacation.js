@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getEtudiantAlumni, getVacations } from '../../api/api';
+import withAuth from "../../hoc/hoc";
 
 function VoirVacation() {
 
@@ -58,7 +59,7 @@ function VoirVacation() {
   )
 }
 
-export default VoirVacation;
+export default withAuth(VoirVacation, ["admin"]);
 
 const Container = styled.div`
     display: flex;
