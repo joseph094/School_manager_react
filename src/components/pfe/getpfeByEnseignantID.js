@@ -11,8 +11,9 @@ import jwtDecode from "jwt-decode";
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import styled from "styled-components";
+import withAuth from "../../hoc/hoc";
 
-export default function GetpfeByEnseignantId() {
+function GetpfeByEnseignantId() {
   const [data, setData] = useState([""]);
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -57,6 +58,8 @@ export default function GetpfeByEnseignantId() {
     </Container>
   );
 }
+export default withAuth(GetpfeByEnseignantId, ["enseignant"]);
+
 const Container = styled.div`
 backgroundColor: "#dfdfdf",
 position: "absolute",

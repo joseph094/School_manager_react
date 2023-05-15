@@ -5,8 +5,9 @@ import { Alert, Button, Input, TextField } from "@mui/material";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import withAuth from "../../hoc/hoc";
 
-export default function InsertPFE() {
+function InsertPFE() {
   const isFormValid = () => {
     return Object.values(stagePFE).every((value) => value.trim() !== "");
   };
@@ -122,6 +123,8 @@ export default function InsertPFE() {
     </AllContainer>
   );
 }
+export default withAuth(InsertPFE, ["etudiant"]);
+
 const InputName = styled.h3`
   color: #4981f5;
 `;

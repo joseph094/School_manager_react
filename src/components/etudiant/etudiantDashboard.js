@@ -7,8 +7,9 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 import styled from "styled-components";
+import withAuth from "../../hoc/hoc";
 
-export default function EtudiantDashboard() {
+function EtudiantDashboard() {
   const socket = io("http://localhost:3000");
   const [connected, setConnected] = useState(socket.connected);
   const [notifs, setNotifs] = useState();
@@ -79,6 +80,8 @@ export default function EtudiantDashboard() {
     </Containerg>
   );
 }
+export default withAuth(EtudiantDashboard, ["etudiant"]);
+
 const ContainerDiv = styled.div`
   display: flex;
   justify-content: center;

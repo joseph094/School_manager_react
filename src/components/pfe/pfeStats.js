@@ -20,8 +20,9 @@ import {
   YAxis,
 } from "recharts";
 import styled from "styled-components";
+import withAuth from "../../hoc/hoc";
 
-export default function PfeStats() {
+function PfeStats() {
   const [data, setData] = useState([""]);
   const [dataBox, setDataBox] = useState([]);
 
@@ -98,6 +99,8 @@ export default function PfeStats() {
     </Container>
   );
 }
+export default withAuth(PfeStats, ["admin"]);
+
 const Container = styled.div`
     background-color: #dfdfdf;
     position: absolute;

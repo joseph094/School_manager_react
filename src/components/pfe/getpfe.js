@@ -10,8 +10,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import styled from "styled-components";
+import withAuth from "../../hoc/hoc";
 
-export default function Getpfe() {
+function Getpfe() {
   const [data, setData] = useState([""]);
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -53,6 +54,8 @@ export default function Getpfe() {
     </Container>
   );
 }
+export default withAuth(Getpfe, ["admin", "enseignant", "etudiant"]);
+
 const Container = styled.div`
   background-color: #dfdfdf;
   width: auto;
