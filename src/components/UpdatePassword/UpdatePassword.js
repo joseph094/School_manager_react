@@ -119,7 +119,7 @@ function UpdatePassword() {
                 />
               </div>
               <div className='button-grp'>
-                <button type="submit" className='changer'>Changer</button>
+                <button type="submit" data-test="changer" className='changer'>Changer</button>
               </div> 
           </form>
         </div>

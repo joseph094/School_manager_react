@@ -68,7 +68,7 @@ function App() {
   useEffect(() => {
     // Check if token is present in local storage
     const storedToken = localStorage.getItem("token");
-    if (!storedToken) {
+    if (!storedToken && location.pathname!=="/signup") {
       setError("No token found");
       navigate("/signin");
     } else {

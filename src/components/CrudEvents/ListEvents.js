@@ -101,4 +101,4 @@ function ListEvents() {
 
 }
 
-export default withAuth(ListEvents,["admin","Droitevent","etudiant"]);
+export default withAuth(ListEvents,["admin","Droitevent","etudiant","alumni"]);

@@ -42,27 +42,27 @@ function AlumniAccountState () {
         <Container>
         <ProfilePicture src=".\profile.png"></ProfilePicture>
         <NameRow>
-          <Prenom>{etudiantAlumni.prenom}<Nom> {etudiantAlumni.nom}</Nom></Prenom>
+          <Prenom data-test="prenom">{etudiantAlumni.prenom}<Nom data-test="nom"> {etudiantAlumni.nom}</Nom></Prenom>
         </NameRow>
         <InformationRow>
-          <Title>Email</Title><Value>{etudiantAlumni.email}</Value>
+          <Title >Email</Title><Value data-test="email">{etudiantAlumni.email}</Value>
         </InformationRow>
         <InformationRow>
-          <Title>Date De Naissance</Title><Value>{etudiantAlumni.dateNaissance}</Value>
+          <Title>Date De Naissance</Title><Value data-test="dateNaissance">{etudiantAlumni.dateNaissance}</Value>
         </InformationRow>
         <InformationRow>
-          <Title>Formation</Title><Value>{etudiantAlumni.formation}</Value>
+          <Title>Formation</Title><Value data-test="formation">{etudiantAlumni.formation}</Value>
         </InformationRow>
         <InformationRow>
-          <Title>Poste</Title><Value>{etudiantAlumni.poste}</Value>
+          <Title>Poste</Title><Value data-test="poste">{etudiantAlumni.poste}</Value>
         </InformationRow>
         <InformationRow>
-          <Title>Date Obtention Diplome</Title><Value>{etudiantAlumni.dateObtentionDiplome}</Value>
+          <Title>Date Obtention Diplome</Title><Value data-test="dateObtentionDiplome">{etudiantAlumni.dateObtentionDiplome}</Value>
         </InformationRow>
         <InformationRow>
-          <Title>Date Embauche</Title><Value>{etudiantAlumni.dateEmbacuhe}</Value>
+          <Title>Date Embauche</Title><Value data-test="dateEmbacuhe">{etudiantAlumni.dateEmbacuhe}</Value>
         </InformationRow>
-        <AccountStatus>Votre Compte Est <Status status={status}>{status}</Status></AccountStatus>
+        <AccountStatus>Votre Compte Est <Status status={status} data-test="status">{status}</Status></AccountStatus>
       </Container>
       ) : (
         <Container><Loading>Loading...</Loading> </Container>

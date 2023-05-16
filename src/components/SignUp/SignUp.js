@@ -141,6 +141,7 @@ function SignupAlumni() {
                   id="nom"
                   required
                   placeholder='Nom'
+                  data-test="nom"
                   value={formData.nom}
                   onChange={handleChange}
                   />
@@ -150,6 +151,7 @@ function SignupAlumni() {
                   type="text"
                   name="prenom"
                   id="prenom"
+                  data-test="prenom"
                   required
                   placeholder='Prenom'
                   value={formData.prenom}
@@ -166,6 +168,7 @@ function SignupAlumni() {
                   name="dateNaissance"
                   id="dateNaissance"
                   required
+                  data-test="dateNaissance"
                   placeholder='Date de Naissance'
                   value={formData.dateNaissance}
                   max={new Date().toISOString().split("T")[0]}
@@ -178,6 +181,7 @@ function SignupAlumni() {
                   name="formation"
                   id="formation"
                   required
+                  data-test="formation"
                   placeholder='Formation'
                   value={formData.formation}
                   onChange={handleChange}
@@ -191,6 +195,7 @@ function SignupAlumni() {
                   name="poste"
                   id="poste"
                   required
+                  data-test="poste"
                   placeholder='Poste'
                   value={formData.poste}
                   onChange={handleChange}
@@ -202,6 +207,7 @@ function SignupAlumni() {
                   name="email"
                   id="email"
                   required
+                  data-test="email"
                   placeholder='Email'
                   value={formData.email}
                   onChange={handleChange}
@@ -216,6 +222,7 @@ function SignupAlumni() {
                   onBlur={handleBlur}
                   id="login"
                   name="login"
+                  data-test="login"
                   placeholder="login"
                   required
                   value={formData.login}
@@ -229,6 +236,7 @@ function SignupAlumni() {
                   name="mdp"
                   id="mdp"
                   required
+                  data-test="mdp"
                   placeholder='Mot de Passe'
                   value={formData.mdp}
                   onChange={handleChange}
@@ -240,6 +248,7 @@ function SignupAlumni() {
                   id="confirmPassword"
                   name="confirmPassword"
                   required
+                  data-test="confirmPassword"
                   placeholder='Confirmer le Mot de Passe'
                   value={formData.confirmPassword}
                   onChange={handleChange}
@@ -254,6 +263,7 @@ function SignupAlumni() {
                   id="dateObtentionDiplome"
                   name="dateObtentionDiplome"
                   required
+                  data-test="dateObtentionDiplome"
                   placeholder="Date d'obtention du diplôme"
                   value={formData.dateObtentionDiplome}
                   max={new Date().toISOString().split("T")[0]}
@@ -266,6 +276,7 @@ function SignupAlumni() {
                   onBlur={handleBlur}
                   id="dateEmbacuhe"
                   name="dateEmbacuhe"
+                  data-test="dateEmbacuhe"
                   placeholder="Date d'embauche"
                   value={formData.dateEmbacuhe}
                   max={new Date().toISOString().split("T")[0]}
@@ -279,6 +290,7 @@ function SignupAlumni() {
                   name="societe"
                   id="societe"
                   required
+                  data-test="societe"
                   placeholder='Societé'
                   value={formData.societe}
                   onChange={handleChange}
@@ -286,6 +298,7 @@ function SignupAlumni() {
                   <select
                     className='signInput'
                     name='pays'
+                    data-test="pays"
                     id='pays'
                     value={formData.pays}
                     onChange={handleChange}
@@ -301,7 +314,7 @@ function SignupAlumni() {
                 </div>
               </div>
               <div className='bottom-partS'>
-                <button type="submit" className="btn">
+                <button type="submit" data-test="submit" className="btn">
                   S'inscrire
                 </button>
                 <p className='redirect'>Avez vous déja un compte?<span className='bold'> Connectez-vous</span></p>
