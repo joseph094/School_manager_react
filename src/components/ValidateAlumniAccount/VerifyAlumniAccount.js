@@ -71,8 +71,8 @@ function VerifyAlumniAccount () {
         <InformationRow>
           <Title>Date Embauche</Title><Value>{etudiantAlumni.dateEmbacuhe}</Value>
         </InformationRow>
-        <Button onClick={() => ValiderCompte(etudiantAlumni.EtudiantAluId)}>Valider</Button>
-        <Button style={{backgroundColor:"red"}} onClick={() => RefuserCompte(etudiantAlumni.EtudiantAluId)}>Refuser</Button>
+        <Button data-test="valider" onClick={() => ValiderCompte(etudiantAlumni.EtudiantAluId)}>Valider</Button>
+        <Button data-test="refuser" style={{backgroundColor:"red"}} onClick={() => RefuserCompte(etudiantAlumni.EtudiantAluId)}>Refuser</Button>
       </Container>
       ) : (
         <Container><Loading>Loading...</Loading> </Container>

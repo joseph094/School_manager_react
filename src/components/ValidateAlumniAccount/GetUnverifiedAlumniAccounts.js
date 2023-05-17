@@ -138,7 +138,7 @@ function GetUnverifiedAlumniAccounts () {
         <>
             <Container>
                 <PageTitle>Unverified Accounts List</PageTitle>
-            <Table>
+            <Table data-test="unverified">
                 <Head>
                     <HeadColumn>ID</HeadColumn>
                     <HeadColumn>Nom</HeadColumn>
@@ -154,7 +154,7 @@ function GetUnverifiedAlumniAccounts () {
             </Container>
             <Container>
                 <PageTitle style={{color:"red"}}>Refused Accounts List</PageTitle>
-            <Table>
+            <Table data-test="refused">
                 <Head>
                     <HeadColumn>ID</HeadColumn>
                     <HeadColumn>Nom</HeadColumn>

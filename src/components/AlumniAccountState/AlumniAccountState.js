@@ -102,11 +102,9 @@ export const Title= styled.p`
 font-family: 'montserrat';
 font-weight: 600;
 color: black;
-font-size: 1.5rem;
-width:fit-content;
+font-size: 1.3rem;
 width:30%;
 margin:0;
-margin-bottom:20px;
 @media (max-width: 768px) {
     margin:0;
     width:100%;
@@ -121,7 +119,7 @@ export const Value= styled.p`
 font-family: 'montserrat';
 font-weight: 300;
 color: black;
-font-size: 1.4rem;
+font-size: 1.2rem;
 width:30%;
 margin: 0;
 @media (max-width: 768px) {
@@ -162,7 +160,9 @@ export const InformationRow = styled.div`
   display: flex;
   flex-direction: row;
   text-align:left;
+  align-items:center;
   width: 100%;
+  margin-bottom:1.5em;
   justify-content:space-evenly;
 
   @media (max-width: 768px) {

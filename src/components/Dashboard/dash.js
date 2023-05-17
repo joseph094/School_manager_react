@@ -207,4 +207,5 @@ export default withAuth(Modal, ["responsable",
     "etudiant",
     "alumni",
     "unverified",
+    "refused",
     "DroitDemande",])
