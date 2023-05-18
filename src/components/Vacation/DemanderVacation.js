@@ -65,7 +65,7 @@ function DemanderVacation() {
             </PageTitle>
             <Form onSubmit={handleSubmit}>
                 <InputArea>
-                    <Input id="standard-basic" label="Titre" variant="standard" size='normal' name='titre'  required onChange={handleChange} fullWidth/>
+                    <Input id="standard-basic" data-test="title" label="Titre" variant="standard" size='normal' name='titre'  required onChange={handleChange} fullWidth/>
                 </InputArea>
                 <InputArea>
                     <Input
@@ -74,6 +74,7 @@ function DemanderVacation() {
                     name='description'
                     multiline
                     rows={7}
+                    data-test="description"
                     required
                     variant="standard"
                     onChange={handleChange}
@@ -87,6 +88,7 @@ function DemanderVacation() {
                     key={index}
                     variant="standard"
                     label="Competence"
+                    data-test="competence"
                     size='normal'
                     required
                     value={competence}
@@ -98,7 +100,7 @@ function DemanderVacation() {
                       <AddCircleIcon style={{"color":"#4981f5"}}/>
                     </IconButton>
                     </Competences>
-                <Button type='submit'>Deposer</Button>
+                <Button data-test="demander" type='submit'>Deposer</Button>
             </Form>
         </RightSide>
     </Container>

@@ -67,7 +67,7 @@ function DemanderContratExpert() {
             </PageTitle>
             <Form onSubmit={handleSubmit}>
                 <InputArea>
-                    <Input id="standard-basic" label="Titre" variant="standard" size='normal' name='titre' onChange={handleChange} required fullWidth/>
+                    <Input id="standard-basic" data-test="title" label="Titre" variant="standard" size='normal' name='titre' onChange={handleChange} required fullWidth/>
                 </InputArea>
                 <InputArea>
                     <Input
@@ -75,6 +75,7 @@ function DemanderContratExpert() {
                     label="Description"
                     name='description'
                     multiline
+                    data-test="description"
                     rows={7}
                     required
                     variant="standard"
@@ -90,6 +91,7 @@ function DemanderContratExpert() {
                     variant="standard"
                     label="Competence"
                     size='normal' 
+                    data-test="competence"
                     required
                     value={competence}
                     onChange={event => handleChangeCompetence(index, event)}
@@ -100,7 +102,7 @@ function DemanderContratExpert() {
                       <AddCircleIcon style={{"color":"#4981f5"}}/>
                     </IconButton>
                     </Competences>
-                <Button type='submit'>Deposer</Button>
+                <Button type='submit' data-test="demander">Deposer</Button>
             </Form>
         </RightSide>
     </Container>

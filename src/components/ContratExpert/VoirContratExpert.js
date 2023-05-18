@@ -26,20 +26,20 @@ function VoirContratExpert() {
 
     const data = contratExpert.map((i,index) => {
         return (
-                <GridBox>
+                <GridBox data-test="contrat">
                     <SectionTitle>Demande n° {index+1}</SectionTitle>
                     <Top>
                         <InfoRow>
                             <Title>Par</Title>
-                            <Value>{i.nomEtudiant} {i.prenomEtudiant}</Value>  
+                            <Value data-test="nomprenom">{i.nomEtudiant} {i.prenomEtudiant}</Value>  
                         </InfoRow>
                         <InfoRow>
                             <Title>Titre</Title>
-                            <Value>{i.titre}</Value>
+                            <Value data-test="titre">{i.titre}</Value>
                         </InfoRow>
                         <InfoRow>
                             <Title>Description</Title>
-                            <Value>{i.description}</Value>
+                            <Value data-test="description">{i.description}</Value>
                         </InfoRow>
                     </Top>
                     <Bottom>
