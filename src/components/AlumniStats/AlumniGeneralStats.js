@@ -296,7 +296,7 @@ function AlumniGeneralStats() {
                 </PromotionCounts>
             </TopPart>
             <BottomPart>
-            <SubSectionTitle>Map Chart</SubSectionTitle>
+            <SubSectionTitle>Chart</SubSectionTitle>
                 <ChartSection >
                 <BarChart width={width+50} height={height} data={dataS}>
                     <CartesianGrid strokeDasharray="3 3" />

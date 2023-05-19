@@ -54,15 +54,15 @@ function ViewPublication() {
     
     const data = publication.map((i,index) => {
         return (
-                <GridBox>
-                    <SectionTitle>{i.type}</SectionTitle>
+                <GridBox data-test="publication">
+                    <SectionTitle  data-test="type">{i.type}</SectionTitle>
                     <Top>
                         <InfoRow>
                             <Picture src="..\profile.png"/>
-                            <Value>{i.nomEtudiant} {i.prenomEtudiant}</Value>  
+                            <Value data-test="nomprenom">{i.nomEtudiant} {i.prenomEtudiant}</Value>  
                         </InfoRow>
                         <InfoRow>
-                            <Value>{i.contenu}</Value>
+                            <Value data-test="contenu">{i.contenu}</Value>
                         </InfoRow>
                     </Top>
                 </GridBox>

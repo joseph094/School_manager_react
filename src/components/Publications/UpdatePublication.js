@@ -75,6 +75,7 @@ function UpdatePublication() {
                     id="standard-multiline-static"
                     label="Contenu"
                     name='contenu'
+                    data-test="contenu"
                     multiline
                     rows={7}
                     value={publication.contenu || ''}
@@ -101,7 +102,7 @@ function UpdatePublication() {
                     <MenuItem value="offre">Offre</MenuItem>
                     </Select>
                 </FormControl>
-                <Button onClick={(e) => ModifierPublication(publication, e)}>Modifier</Button>
+                <Button data-test="modifier" onClick={(e) => ModifierPublication(publication, e)}>Modifier</Button>
             </Form>) : (
        <Loading>Loading...</Loading> 
         

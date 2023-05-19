@@ -1,4 +1,4 @@
-describe('SignupAlumni', () => {
+describe('Verifie les fonctionnalitées pour un alumni', () => {
     beforeEach(() => {
         cy.request({
           method: 'DELETE',
@@ -23,22 +23,17 @@ describe('SignupAlumni', () => {
             cy.get('[data-test="dateEmbacuhe"]').type('2021-01-01');
             cy.get('[data-test="societe"]').type('Acme Inc.');
             cy.getByData("pays").select("Brésil");
-            
-        
-            // Submit the form
             cy.get('[data-test="submit"]').click();
-        
-            // Assert that the user is redirected to the signin page
     });
     it('Alumni Not Verified', () => {
         cy.location('pathname').should('eq', '/signin');
-            cy.getByData("login").type("12345");
-            cy.getByData("mdp").type("password");
-            cy.get("#demo-simple-select").click(); // Click on the select element
-            cy.get('[data-value="etudiant"]').click();
-            cy.getByData("valider").click({ force: true });
-            cy.location('pathname').should('eq', '/');
-        cy.wait(2000);
+        cy.getByData("login").type("12345");
+        cy.getByData("mdp").type("password");
+        cy.get("#demo-simple-select").click();
+        cy.get('[data-value="etudiant"]').click();
+        cy.getByData("valider").click({ force: true });
+        cy.location('pathname').should('eq', '/');
+        cy.wait(5000);
         cy.contains("Voir Status");
         cy.contains("Changer Mot De Passe");
 
@@ -66,15 +61,16 @@ describe('SignupAlumni', () => {
             },
           }).as("etudiant");
 
-          cy.location('pathname').should('eq', '/signin');
-            cy.getByData("login").type("12345");
-            cy.getByData("mdp").type("password");
-            cy.get("#demo-simple-select").click(); // Click on the select element
-            cy.get('[data-value="etudiant"]').click();
-            cy.getByData("valider").click({ force: true });
-            cy.location('pathname').should('eq', '/');
+        cy.location('pathname').should('eq', '/signin');
+        cy.getByData("login").type("12345");
+        cy.getByData("mdp").type("password");
+        cy.get("#demo-simple-select").click(); // Click on the select element
+        cy.get('[data-value="etudiant"]').click();
+        cy.getByData("valider").click({ force: true });
+        cy.location('pathname').should('eq', '/');
         
         cy.wait("@etudiant");
+        cy.wait(5000);
         cy.contains("Voir Status");
         cy.contains("Changer Mot De Passe");
         cy.contains("Lister Events");
@@ -115,6 +111,7 @@ describe('SignupAlumni', () => {
             cy.location('pathname').should('eq', '/');
         
         cy.wait("@etudiant");
+        cy.wait(5000);
         cy.contains("Voir Status");
 
     })

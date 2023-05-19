@@ -1,4 +1,4 @@
-describe('SignupAlumni', () => {
+describe('Signup Alumni Voir son etat Et changer Mot De passe', () => {
         beforeEach(() => {
             cy.request({
               method: 'DELETE',
@@ -50,10 +50,11 @@ describe('SignupAlumni', () => {
         cy.getByData('dateEmbacuhe').should('contain','2021-01-01');
         cy.getByData('status').should('contain','Non Validé');
         cy.visit('/passreset');
-        // Fill out form with correct information.
         cy.get('#old-password').type('fakepass');
         cy.get('#new-password').type('newfakepass');
         cy.get('#confirm-new-password').type('newfakepass');
+        cy.getByData('changer').click(); 
+        cy.wait(5000)
         cy.intercept('PUT', `/etudiant`, {
             statusCode: 200,
             body:{
@@ -63,10 +64,6 @@ describe('SignupAlumni', () => {
             }
         }); 
         cy.getByData('changer').click(); 
-        // Check that success message is displayed.
         cy.get('.success').should('contain', 'Mot de passe modifier avec succes');
-        // Clear the form fields.
-        cy.get('#old-password').clear();
-        cy.get('#new-password').clear();
-        cy.get('#confirm-new-password').clear();})
+        })
   });

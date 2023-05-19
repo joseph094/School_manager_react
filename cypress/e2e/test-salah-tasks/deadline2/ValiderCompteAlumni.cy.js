@@ -1,4 +1,4 @@
-describe("GetUnverifiedAlumniAccounts Component", () => {
+describe("Valider Compte Alumni Scenario", () => {
     beforeEach(() => {
         cy.visit("http://localhost:3005/signin");
         cy.getByData("login").type("115");
@@ -8,7 +8,7 @@ describe("GetUnverifiedAlumniAccounts Component", () => {
         cy.getByData("valider").click({ force: true });
     });
   
-    it("scenario ddl 2 Valider un compte Alumni", () => {
+    it("Valider un compte Alumni", () => {
         cy.wait(6000);
         const mockData = [
             {
@@ -148,6 +148,7 @@ describe("GetUnverifiedAlumniAccounts Component", () => {
     },
     }).as("etudiant");
     cy.wait("@etudiant");
+    cy.wait(5000);
     cy.contains(unverifiedAccounts[randomIndex].prenom+" "+unverifiedAccounts[randomIndex].nom);
     cy.contains('Email').next().should('contain', unverifiedAccounts[randomIndex].email);
     cy.contains('Date De Naissance').next().should('contain', unverifiedAccounts[randomIndex].dateNaissance);
@@ -172,6 +173,7 @@ describe("GetUnverifiedAlumniAccounts Component", () => {
           }).as("etudiants");
         cy.location('pathname').should('eq', '/getunverified');
     })
+    cy.wait(5000);
     cy.get("[data-test='unverified'] tr").each(($row, index) => {
         cy.wrap($row)
         .find("td")
@@ -181,7 +183,7 @@ describe("GetUnverifiedAlumniAccounts Component", () => {
     
     })
     
-    it("scenario ddl 2 refuser un compte Alumni", () => {
+    it("refuser un compte Alumni", () => {
         cy.wait(6000);
         const mockData = [
             {
@@ -321,6 +323,7 @@ describe("GetUnverifiedAlumniAccounts Component", () => {
     },
     }).as("etudiant");
     cy.wait("@etudiant");
+    cy.wait(5000);
     cy.contains(unverifiedAccounts[randomIndex].prenom+" "+unverifiedAccounts[randomIndex].nom);
     cy.contains('Email').next().should('contain', unverifiedAccounts[randomIndex].email);
     cy.contains('Date De Naissance').next().should('contain', unverifiedAccounts[randomIndex].dateNaissance);

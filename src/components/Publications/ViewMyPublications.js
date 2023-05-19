@@ -55,20 +55,20 @@ function ViewMyPublications() {
     const data = publication.map((i,index) => {
         return (
                 <GridBox>
-                    <SectionTitle>{i.type}</SectionTitle>
+                    <SectionTitle data-test="type">{i.type}</SectionTitle>
                     <Top>
                         <InfoRow>
                             <Picture src="..\profile.png"/>
-                            <Value>{i.nomEtudiant} {i.prenomEtudiant}</Value>  
+                            <Value data-test="nomprenom">{i.nomEtudiant} {i.prenomEtudiant}</Value>  
                         </InfoRow>
                         <InfoRow>
-                            <Value>{i.contenu}</Value>
+                            <Value data-test="contenu">{i.contenu}</Value>
                         </InfoRow>
                         
                     </Top>
                     <Bottom>
-                        <Button onClick={() => DeletePublication(i.idPublication)} style={{"backgroundColor":'red'}}>Supprimer</Button>
-                        <Button onClick={() => navigate(`/updatePublication/${i.idPublication}` , { replace: true })}  >Modifier</Button>
+                        <Button data-test="delete" onClick={() => DeletePublication(i.idPublication)} style={{"backgroundColor":'red'}}>Supprimer</Button>
+                        <Button data-test="update" onClick={() => navigate(`/updatePublication/${i.idPublication}` , { replace: true })}  >Modifier</Button>
                     </Bottom>
                 </GridBox>
         );

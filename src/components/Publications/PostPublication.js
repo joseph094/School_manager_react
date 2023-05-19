@@ -67,6 +67,7 @@ function PostPublication() {
                     name='contenu'
                     multiline
                     rows={7}
+                    data-test="contenu"
                     variant="outlined"
                     required
                     onChange={handleChange}
@@ -90,7 +91,7 @@ function PostPublication() {
                     <MenuItem value="offre">Offre</MenuItem>
                     </Select>
                 </FormControl>
-                <Button type='submit'>Publier</Button>
+                <Button data-test="publier" type='submit'>Publier</Button>
             </Form>
         </RightSide>
     </Container>
