@@ -104,6 +104,12 @@ export  const SideBarData= [
         roles: ['admin']
     },
     {
+        title :"Lister PFA" ,
+        icon : <FormatListNumberedRtlIcon/>,
+        link: '/getallenseignantpfa',
+        roles: ['enseignant']
+    },
+    {
         title :"Mes Pfe" ,
         icon : <FormatListNumberedRtlIcon/>,
         link: '/getpfeenseignant',
