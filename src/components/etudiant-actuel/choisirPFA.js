@@ -27,18 +27,6 @@ function ChoisirPfa() {
             })
             .catch(setButton(true));
     };
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-        axios.get("http://localhost:3000/etudiant-actuel/pfa").then((res) => {
-            const datatofilter = res.data;
-            console.log(datatofilter);
-            const filtereddata = datatofilter.filter((d) => d.idEtudiant == null);
-            console.log(filtereddata);
-            setData(filtereddata);
-            console.log(data);
-        });
-    }, []);
 
     const arr = data.map((i) => {
         return (

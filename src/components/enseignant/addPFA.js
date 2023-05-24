@@ -12,8 +12,7 @@ export default function AddPFA() {
     titre: "",
     description: "",
     technologie: "",
-    nbEtudiants:0,
-    idEtudiant: "",
+    nbEtudiants:0
   });
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -65,7 +64,7 @@ export default function AddPFA() {
                 />
             </InputContainer>
             <InputContainer>
-                <InputName>Title</InputName>
+                <InputName>Titre du sujet</InputName>
                 <TextField
                     id="filled-basic"
                     label="Filled"
@@ -77,7 +76,7 @@ export default function AddPFA() {
         </InputRow>
         <InputRow>
             <InputContainer>
-                <InputName>Description</InputName>
+                <InputName>Description du sujet</InputName>
                 <TextField
                     id="filled-basic"
                     label="Filled"
@@ -87,7 +86,7 @@ export default function AddPFA() {
                 />
             </InputContainer>
             <InputContainer>
-                <InputName>Technologies</InputName>
+                <InputName>Technologies utilisées</InputName>
                 <TextField
                     id="filled-basic"
                     label="Filled"
@@ -98,7 +97,7 @@ export default function AddPFA() {
             </InputContainer>
         </InputRow>
         <InputRow>
-            <InputContainer>
+            <InputContainer style={{marginLeft:"100px"}}>
                 <InputName> Nb Etudiants </InputName>
                 <TextField
                     id="filled-basic"
@@ -108,16 +107,7 @@ export default function AddPFA() {
                     onChange={handleChange}
                 />
             </InputContainer>
-            <InputContainer>
-                <InputName> Etudiant </InputName>
-                <TextField
-                    id="filled-basic"
-                    label="Filled"
-                    variant="filled"
-                    name="idEtudiant"
-                    onChange={handleChange}
-                />
-            </InputContainer>
+            
         </InputRow>
         <ButtonDiv>
             <Button

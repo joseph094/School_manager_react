@@ -39,7 +39,10 @@ import DemanderContratExpert from "./components/ContratExpert/DemanderContratExp
 import VoirContratExpert from "./components/ContratExpert/VoirContratExpert";
 
 
-import UpdateCVActuelEtudiant from "./components/etudiant-actuel/updateCV";
+import UpdateCV from "./components/etudiant-actuel/updateCV";
+import GetCV from "./components/etudiant-actuel/getCV";
+import EditProfile from "./components/etudiant-actuel/EditProfile";
+import Profile from "./components/etudiant-actuel/profile";
 import GetallPFAs from "./components/pfa/allPFA";
 import AddPFA from "./components/enseignant/addPFA";
 import UpdatePFA from "./components/enseignant/updatePFA"
@@ -102,7 +105,10 @@ function App() {
 
 
 
-          {/* <Route path="/updateCV/:id" element={<UpdateCV />} /> */}
+          <Route path="/updateCV/:id" element={<UpdateCV />} />
+          <Route path="/getCV/:id" element={<GetCV />} />
+          <Route path="/profile/:id" element={<Profile />} />
+          <Route path="/Editprofile/:id" element={<EditProfile />} />
           <Route path="/getallpfa" element={<GetallPFAs />} />
           <Route path="/addpfa" element={<AddPFA/>} />
           <Route path="/updatepfa/:id" element={<UpdatePFA/>} />

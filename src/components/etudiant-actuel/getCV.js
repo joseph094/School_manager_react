@@ -1,19 +1,59 @@
 import React, { useState, useEffect } from "react";
 import './updateCV.css'
 import moment from "moment";
+import styled from "styled-components";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Alert, Button, Input, TextField } from "@mui/material";
 
-const UpdateCV = () => {
+const GetCV = () => {
 
     const token = localStorage.getItem('token');
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const [openAlert, setAlert] = useState(false);
-    const [validationError, setValidationError] = useState({ message: '' });
+    const [isDarkMode, setIsDarkMode] = useState(localStorage.getItem('isDarkMode') === 'true');
+
+    useEffect(() => {
+        localStorage.setItem('isDarkMode', isDarkMode);
+      }, [isDarkMode]);
+
+    const toggleDarkMode = () => {
+        setIsDarkMode(!isDarkMode);
+    };
+
+    const containerStyle = {
+        backgroundColor: isDarkMode ? '#333' : '#fff',
+        color: isDarkMode ? '#fff' : '#333',
+        padding: '1rem',
+        borderRadius: '4px',
+    };
+
+    const titleStyle = {
+        color: isDarkMode ? 'orange' : '#333'
+    };
+
+    const titStyle = {
+        color: isDarkMode ? '#87ceeb' : '#333'
+    };
+
+    const fieldStyle = {
+        backgroundColor: isDarkMode ? 'white' : '#fff',
+        color: isDarkMode ? '#333' : '#fff',
+        borderRadius: '5px'
+    };
+
+    const buttonStyle = {
+        backgroundColor: isDarkMode ? '#333' : 'green',
+        color: isDarkMode ? '#fff' : '#fff',
+        padding: '0.5rem 1rem',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        marginTop: "70px", float: "left", marginLeft: "-165px"
+    };
+
 
     const [cvData, setCvData] = useState({
         idCv: '',
@@ -69,27 +109,7 @@ const UpdateCV = () => {
     }, [id, token])
 
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        delete cvData._id;
-        try {
-            await axios.patch(`http://localhost:3000/Cv/update/${id}`, {...cvData}, {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            console.log("CV updated");
-            navigate(`/getCV/${id}`);
-        } catch (error) {
-            if (error.response) {
-                console.log("CV update failed:", error.response.data);
-            } else if (error.request) {
-                console.log("CV update failed: No response received");
-            } else {
-                console.log("CV update failed:", error.message);
-            }
-        }
-        setValidationError(null);
-        setAlert(true);
-    };
+
 
     const handleInput = (e) => {
         setCvData({ ...cvData, [e.target.name]: e.target.value })
@@ -101,23 +121,8 @@ const UpdateCV = () => {
         const { name, value } = e.target;
         const newExperiences = [...cvData.experience];
         newExperiences[index] = { ...newExperiences[index], [name]: value };
-        calculateDifference(newExperiences[index].startDate, newExperiences[index].endDate)
         setCvData({ ...cvData, experience: newExperiences })
     };
-
-
-    const handleAddExperience = () => {
-        cvData.experience.push({ title: "", emplacement: "", startDate: "", endDate: "", description: "" })
-        setCvData({ ...cvData })
-    };
-
-
-    const handleRemoveExperience = (index) => {
-        const newExperiences = [...cvData.experience];
-        newExperiences.splice(index, 1);
-        setCvData({ ...cvData, experience: newExperiences })
-    };
-
 
 
 
@@ -125,64 +130,55 @@ const UpdateCV = () => {
         const { name, value } = e.target;
         const newEducations = [...cvData.formation];
         newEducations[index] = { ...newEducations[index], [name]: value };
-        calculateDifference(newEducations[index].startDate, newEducations[index].endDate)
         setCvData({ ...cvData, formation: newEducations })
     };
 
 
-    const handleAddEducation = () => {
-        cvData.formation.push({ title: "", emplacement: "", startDate: "", endDate: "", description: "" })
-        setCvData({ ...cvData })
-    };
-
-
-    const handleRemoveFormations = (index) => {
-        const newFormations = [...cvData.formation];
-        newFormations.splice(index, 1);
-        setCvData({ ...cvData, formation: newFormations })
-    };
-
-
-    const calculateDifference = (startDate, endDate) => {
-        const start = moment(startDate);
-        const end = moment(endDate);
-        const difference = end.diff(start, "days");
-        if (difference < 0) {
-            setErrorMessage("La date de fin doit être postérieure à la date de début");
-        } else {
-            setErrorMessage("");
-            console.log("La différence est de", difference, "jours");
-        }
-    };
 
 
     return (
-        <>
-            <div id="userForm" className="center">
-                <h1>CV Form</h1>
-                <div className="container">
-                    <form onSubmit={handleSubmit} >
 
+        <>
+            <Button style={{ marginTop: "20px", float: "right", marginRight: "50px", backgroundColor: "orange", color: "black" }}
+                variant="contained"
+                onClick={() => navigate(`/updateCV/${id}`, { replace: true })}
+            >
+                Modifier le CV
+            </Button>
+
+            <Button style={{ marginTop: "20px", float: "left", marginLeft: "15px", backgroundColor: "grey", color: "white" }}
+                variant="contained"
+                onClick={() => navigate(`/profile/${id}`, { replace: true })}
+            >
+                Back to Profile
+            </Button>
+            <button data-test="dark-mode-toggle" style={buttonStyle} onClick={toggleDarkMode}>
+                Basculer en {isDarkMode ? 'Mode clair' : 'Mode sombre'}
+            </button>
+            <div data-test="container" style={containerStyle} id="userForm" className="center">
+
+                <h1 data-test="cv-title" style={titStyle}>CV</h1>
+                <div className="container">
+                    <ProfileImage src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtk9O5xLQwmITiyXJWxuKxFVM4nHe9If8C59XIgtNIQwZkTcFPzXWszLVE7PE66qRXVLs&usqp=CAU" />
+                    <form>
+                        <hr></hr>
                         <div>
-                            <label>
+                            <label style={titleStyle}>
                                 ID CV:</label>
                             <input
-                            name="idCv"
                                 type="text"
                                 required
-                                data-test="idCv"
                                 value={cvData.idCv || ''} onChange={handleInput}
                             />
 
                         </div>
 
                         <div>
-                            <label>
+                            <label style={titleStyle}>
                                 Bio:</label>
-                            <input name="bio"
+                            <input
                                 type="text"
                                 required
-                                data-test="bio"
                                 value={cvData.bio || ''}
                                 onChange={handleInput}
                             />
@@ -190,12 +186,11 @@ const UpdateCV = () => {
                         </div>
 
                         <div>
-                            <label>
+                            <label style={titleStyle}>
                                 Localisation:</label>
-                            <input name="location"
+                            <input
                                 type="text"
                                 required
-                                data-test="location"
                                 value={cvData.location || ''}
                                 onChange={handleInput}
                             />
@@ -203,12 +198,11 @@ const UpdateCV = () => {
                         </div>
 
                         <div>
-                            <label>
+                            <label style={titleStyle}>
                                 LinkedIn:</label>
-                            <input name="linkedIn"
+                            <input
                                 type="text"
                                 required
-                                data-test="linkedIn"
                                 value={cvData.linkedIn || ''}
                                 onChange={handleInput}
                             />
@@ -217,12 +211,10 @@ const UpdateCV = () => {
 
 
 
-                        <h2>Diplôme</h2>
-                        <TextField
+                        <h2 style={titleStyle}>Diplôme</h2>
+                        <TextField style={fieldStyle}
                             type="text"
-                            name="diplome"
                             required
-                            data-test="diplome"
                             disabled={isDiplome}
                             value={cvData.diplome || ''}
                             onChange={handleInput}
@@ -232,23 +224,21 @@ const UpdateCV = () => {
 
 
 
-                        <h2>Compétences</h2>
+                        <h2 style={titleStyle}>Compétences</h2>
 
-                        <TextField
-                        name="Competences"
+                        <TextField style={fieldStyle}
                             type="text"
                             required
-                            data-test="Competences"
                             value={cvData.Competences || ''}
                             onChange={handleInput}
                         />
 
 
 
-                        <h2>Formations</h2>
+                        <h2 style={titleStyle}>Formations</h2>
                         {cvData.formation?.map((f, index) => (
                             <div key={index}>
-                                <h3>Formation {index + 1}   <button onClick={() => { handleRemoveFormations(index) }}>Supprimer</button> </h3>
+                                <h3>Formation {index + 1} </h3>
 
                                 <div>
                                     <label>
@@ -258,7 +248,6 @@ const UpdateCV = () => {
                                         name="title"
                                         required
                                         value={f.title}
-                                        data-test={`formation-title-${index}`}
                                         onChange={(e) => handleEducationChange(e, index)}
                                     />
 
@@ -272,7 +261,6 @@ const UpdateCV = () => {
                                         name="emplacement"
                                         required
                                         value={f.emplacement}
-                                        data-test={`formation-location-${index}`}
                                         onChange={(e) => handleEducationChange(e, index)}
                                     />
 
@@ -280,13 +268,13 @@ const UpdateCV = () => {
 
                                 <div>
                                     <label htmlFor="dateBirth">Date de début:</label>
-                                    <input id={`formation-startDate-${index}`} data-test={`formation-startDate-${index}`} type="date" value={f.startDate}
+                                    <input type="date" id="dateBirth" value={f.startDate}
                                         name='startDate' required onChange={(e) => handleEducationChange(e, index)} />
                                 </div>
 
                                 <div>
                                     <label htmlFor="dateBirth">Date de fin:</label>
-                                    <input  id={`formation-endDate-${index}`} type="date" data-test={`formation-endDate-${index}`} value={f.endDate}
+                                    <input type="date" id="dateBirth" value={f.endDate}
                                         name='endDate' required onChange={(e) => handleEducationChange(e, index)} />
                                 </div>
 
@@ -298,7 +286,6 @@ const UpdateCV = () => {
                                     <textarea
                                         name="description"
                                         required
-                                        data-test={`formation-description-${index}`}
                                         value={f.description}
                                         onChange={(e) => handleEducationChange(e, index)}
                                     />
@@ -308,15 +295,11 @@ const UpdateCV = () => {
                             </div>
                         ))}
 
-                        <button type="button" onClick={handleAddEducation}>
-                            Ajouter formation
-                        </button>
 
-
-                        <h2>Experiences</h2>
+                        <h2 style={titleStyle}>Experiences</h2>
                         {cvData.experience?.map((exper, index) => (
                             <div key={index}>
-                                <h3 >Experience {index + 1}  <button onClick={() => { handleRemoveExperience(index) }}>Supprimer</button> </h3>
+                                <h3 >Experience {index + 1} </h3>
                                 <div>
                                     <label>
                                         Titre:</label>
@@ -325,7 +308,6 @@ const UpdateCV = () => {
                                         name="title"
                                         required
                                         value={exper.title}
-                                        data-test={`experience-title-${index}`}
                                         onChange={(e) => handleExperienceChange(e, index)}
                                     />
 
@@ -339,7 +321,6 @@ const UpdateCV = () => {
                                         name="emplacement"
                                         required
                                         value={exper.emplacement}
-                                        data-test={`experience-location-${index}`}
                                         onChange={(e) => handleExperienceChange(e, index)}
                                     />
 
@@ -347,13 +328,13 @@ const UpdateCV = () => {
 
                                 <div>
                                     <label htmlFor="dateBirth">Date de début:</label>
-                                    <input data-test={`experience-startDate-${index}`} type="date" id={`experience-startDate-${index}`} value={exper.startDate}
+                                    <input type="date" id="dateBirth" value={exper.startDate}
                                         name='startDate' required onChange={(e) => handleExperienceChange(e, index)} />
                                 </div>
 
                                 <div>
                                     <label htmlFor="dateBirth">Date de fin:</label>
-                                    <input data-test={`experience-endDate-${index}`} type="date" id={`experience-endDate-${index}`} value={exper.endDate}
+                                    <input type="date" id="dateBirth" value={exper.endDate}
 
                                         name='endDate' required onChange={(e) => handleExperienceChange(e, index)} />
                                 </div>
@@ -367,7 +348,6 @@ const UpdateCV = () => {
                                         name="description"
                                         required
                                         value={exper.description}
-                                        data-test={`experience-description-${index}`}
                                         onChange={(e) => handleExperienceChange(e, index)}
                                     />
 
@@ -375,26 +355,20 @@ const UpdateCV = () => {
 
                             </div>
                         ))}
-                        <button type="button" onClick={handleAddExperience}>
-                            Ajouter nouvelle experience
-                        </button>
-
-
-                        <div>
-                            <button className="submit-button" type="submit">Enregistrer</button>
-                        </div>
                     </form>
                 </div>
             </div>
 
-            <div className="alert-container">
-                {openAlert && (
-                    <Alert severity="success" onClose={() => setAlert(false)}>
-                        CV modifié avec succès !
-                    </Alert>
-                )}
-            </div>
+
         </>
     );
 };
-export default UpdateCV
+export default GetCV
+const ProfileImage = styled.img`
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 2em;
+  margin-top:-330px;
+  `;

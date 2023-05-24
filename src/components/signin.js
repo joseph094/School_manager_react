@@ -63,7 +63,7 @@ export default function Signin() {
     }
     console.log(isLogged);
     if (isLogged) {
-      return navigate("/ajouteretudiant");
+      return navigate("/");
     }
   }, [form, isLogged]);
   return (
@@ -75,6 +75,7 @@ export default function Signin() {
         label="Login"
         variant="filled"
         name="login"
+        data-test="login"
         onChange={handleChange}
         value={form.login}
       />
@@ -84,6 +85,7 @@ export default function Signin() {
         label="Mot de passe"
         variant="filled"
         name="motdepasse"
+        data-test="mdp"
         onChange={handleChange}
         value={form.motdepasse}
         type="password"
@@ -102,7 +104,7 @@ export default function Signin() {
         <MenuItem value={"enseignant"}>Enseignant</MenuItem>
         <MenuItem value={"responsable"}>Responsable</MenuItem>
       </Select>
-      <Button variant="contained" onClick={authUser} disabled={disableButton}>
+      <Button data-test="valider" variant="contained" onClick={authUser} disabled={disableButton}>
         Valider
       </Button>
       {error && (
