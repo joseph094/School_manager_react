@@ -121,7 +121,13 @@ export default function Signin() {
         )}
         <Divider>
           {" "}
-          <Mdp>Mot de passe oublié ?</Mdp>{" "}
+          <Mdp
+            onClick={() => {
+              navigate("/forgotpassword");
+            }}
+          >
+            Mot de passe oublié ?
+          </Mdp>{" "}
         </Divider>
       </FormComponent>
     </AllContainer>

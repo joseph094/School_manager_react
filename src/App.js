@@ -58,6 +58,7 @@ import AddingAdmin from "./components/AddAdmin/AddAdmin";
 import Modal from "./components/Dashboard/dash";
 
 import UnauthorizedPage from "./unauthorized";
+import ForgotPassword from "./components/forgotpassword/forgetPassword";
 function App() {
   const location = useLocation();
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -68,7 +69,7 @@ function App() {
   useEffect(() => {
     // Check if token is present in local storage
     const storedToken = localStorage.getItem("token");
-    if (!storedToken && location.pathname!=="/signup") {
+    if (!storedToken && location.pathname !== "/forgotpassword") {
       setError("No token found");
       navigate("/signin");
     } else {
@@ -81,7 +82,8 @@ function App() {
     <Container>
       {location.pathname !== "/signin" &&
         location.pathname !== "/signup" &&
-        location.pathname !== "/unauthorized" && (
+        location.pathname !== "/unauthorized" &&
+        location.pathname !== "/forgotpassword" && (
           <LeftSide>
             <SideBar />
           </LeftSide>
@@ -108,6 +110,8 @@ function App() {
           <Route path="/modifyetudiants" element={<EtudiantPUT />} />
           <Route path="/ajouteretudiant" element={<EtudiantADD />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+
           <Route path="/alumnistatus" element={<AlumniAccountState />} />
           <Route path="/import" element={<Excel />} />
           <Route path="/make-public" element={<MakeAccountPublic />} />
