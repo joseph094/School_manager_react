@@ -173,7 +173,7 @@ export default function SideBar() {
         <BottomPart>
           <Logout>
             <PowerSettingsNewIcon />
-            <ButtonText isOpen={isOpen} onClick={handleLogout}>
+            <ButtonText data-test="btn-logout" isOpen={isOpen} onClick={handleLogout}>
               Logout
             </ButtonText>{" "}
           </Logout>

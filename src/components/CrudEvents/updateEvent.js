@@ -1,12 +1,13 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import './CreateEvent.css'
 import withAuth from "../../hoc/hoc";
 
 
 function UpdateEvent() {
     const token = localStorage.getItem('token');
+    const navigate = useNavigate();
 
     const { id } = useParams();
     const [event, setEvent] = useState([{
@@ -31,6 +32,7 @@ function UpdateEvent() {
         axios.put('http://localhost:3000/evenement', event, {
             headers: { 'Authorization': `Bearer ${token}` }
         }).then(res => console.log("this is the update method", res),
+            navigate(`/Events`, { replace: true })
 
         ).catch(err => console.log(err));
     }
@@ -53,19 +55,19 @@ function UpdateEvent() {
                     </div>
 
                     <div className="wrap-input1">
-                        <input className="input1" type="text" placeholder="Event Name" value={event.nom || ''} onChange={handleInput} name="nom" />
+                        <input data-test="event-update-name" className="input1" type="text" placeholder="Event Name" value={event.nom || ''} onChange={handleInput} name="nom" />
                     </div>
 
                     <div className="wrap-input1">
-                        <input className="input1" type="date" placeholder="Event Date" value={event.dateEvenement || ''} onChange={handleInput} name="dateEvenement" />
+                        <input data-test="event-update-date" className="input1" type="date" placeholder="Event Date" value={event.dateEvenement || ''} onChange={handleInput} name="dateEvenement" />
                     </div>
 
                     <div className="wrap-input1">
-                        <textarea className="input1" placeholder="A little Description" value={event.description || ''} onChange={handleInput} name="description"></textarea>
+                        <textarea data-test="event-update-desc" className="input1" placeholder="A little Description" value={event.description || ''} onChange={handleInput} name="description"></textarea>
                     </div>
 
                     <div className="container-contact1-form-btn" >
-                        <button className="contact1-form-btn" onClick={UpdateEvent}>
+                        <button data-test="btn-update-event" className="contact1-form-btn" onClick={UpdateEvent}>
                             <span>
                                 Update Event
                             </span>
@@ -77,4 +79,4 @@ function UpdateEvent() {
     );
 };
 
-export default withAuth(UpdateEvent,["admin","Droitevent"]);
+export default withAuth(UpdateEvent, ["admin", "Droitevent"]);

@@ -55,16 +55,16 @@ function ConsultPublicAccounts() {
                 if (row.visibilite === true) {
                   return (
                     <tr key={row.id}>
-                      <td className="colonne1">{row.nom}</td>
-                      <td className="colonne1" >{row.prenom}</td>
-                      <td className="colonne1">{row.email}</td>
-                      <td className="colonne1">{row.dateNaissance}</td>
+                      <td data-test="colonne" className="colonne1">{row.nom}</td>
+                      <td data-test="colonne" className="colonne1" >{row.prenom}</td>
+                      <td data-test="colonne" className="colonne1">{row.email}</td>
+                      <td data-test="colonne" className="colonne1">{row.dateNaissance}</td>
                       {row.vacation != null && <td className="colonne1">Alumni</td>}
                       {row.vacation == null && <td className="colonne1">Actuel</td>}
 
                       <td className="colonne1">
-                        {row.vacation != null && <a className="document" onClick={() => navigate(`/consult-cv/${row.EtudiantAluId}`)}><DocumentScannerIcon /> </a>}
-                        {row.vacation == null && <a className="document" onClick={() => navigate(`/consult-cv/${row.EtudiantActId}`)}><DocumentScannerIcon /> </a>}
+                        {row.vacation != null && <a className="document" data-test="public-account-cv" onClick={() => navigate(`/consult-cv/${row.EtudiantAluId}`)}><DocumentScannerIcon /> </a>}
+                        {row.vacation == null && <a className="document" data-test="public-account-cv" onClick={() => navigate(`/consult-cv/${row.EtudiantActId}`)}><DocumentScannerIcon /> </a>}
 
                       </td>
                     </tr>
