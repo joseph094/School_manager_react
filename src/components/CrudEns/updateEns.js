@@ -37,7 +37,7 @@ function UpdateEns() {
       .put("http://localhost:3000/enseignant", enseignant)
       .then(
         (res) => console.log("this is the update method", res),
-        navigate(`/enseignants/`, { replace: true })
+        navigate(`/enseignants`, { replace: true })
       )
       .catch((err) => console.log(err));
   };
@@ -69,6 +69,8 @@ function UpdateEns() {
               value={enseignant.nom || ""}
               onChange={handleInput}
               name="nom"
+              data-test="ens-update-nom"
+
             />
           </div>
 
@@ -80,6 +82,8 @@ function UpdateEns() {
               value={enseignant.prenom || ""}
               onChange={handleInput}
               name="prenom"
+              data-test="ens-update-prenom"
+
             />
           </div>
           <div className="wrap-input1">
@@ -90,6 +94,8 @@ function UpdateEns() {
               value={enseignant.email || ""}
               onChange={handleInput}
               name="email"
+              data-test="ens-update-email"
+
             />
           </div>
           <div className="wrap-input1">
@@ -104,7 +110,7 @@ function UpdateEns() {
             />
           </div>
           <div className="container-contact1-form-btn">
-            <button className="contact1-form-btn" onClick={UpdateEns}>
+            <button         data-test="btn-update-ens" className="contact1-form-btn" onClick={UpdateEns}>
               <span>Update Enseingnant</span>
             </button>
           </div>

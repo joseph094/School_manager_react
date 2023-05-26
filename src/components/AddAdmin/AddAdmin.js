@@ -103,6 +103,7 @@ function AddingAdmin() {
                                 <div>
                                     <label key={field}>
                                         <input
+                                        name={field}
                                             type="checkbox"
                                             checked={value}
                                             onChange={() => handleCheckboxChange(field)}
@@ -122,7 +123,7 @@ function AddingAdmin() {
                     })}
                 </div>
                 <div className="container-contact1-form-btn" >
-                    <button className="contact1-form-btn" onClick={AddAdmin} >
+                    <button className="contact1-form-btn" data-test="btn-add-admin" onClick={AddAdmin} >
                         <span>
                             Ajouter un Administratif
                         </span>

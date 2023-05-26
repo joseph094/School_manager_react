@@ -116,24 +116,24 @@ function MakeAccountPublic() {
                 {etudiant ? (
                     <Container>
                         <ProfilePicture src=".\profile.png"></ProfilePicture>
-                        <NameRow>
+                        <NameRow data-test="account-name">
                             <Prenom>{etudiant.prenom}<Nom> {etudiant.nom}</Nom></Prenom>
                         </NameRow>
-                        <InformationRow>
+                        <InformationRow data-test="account-email">
                             <Title>Email</Title><Value>{etudiant.email}</Value>
                         </InformationRow>
-                        <InformationRow>
+                        <InformationRow data-test="account-date-naissance">
                             <Title>Date De Naissance</Title><Value>{etudiant.dateNaissance}</Value>
                         </InformationRow>
-                        <InformationRow>
+                        <InformationRow data-test="account-formation">
                             <Title>Formation</Title><Value>{etudiant.formation}</Value>
                         </InformationRow>
 
                         {etudiant.visibilite === true && <div>
-                            <AccountStatus>Votre Compte Est <Status status="true">Public</Status></AccountStatus>
-                            <Button onClick={MakePrivate} > Make it Private </Button></div>}
+                            <AccountStatus>Votre Compte Est <Status data-test="account-status" status="true">Public</Status></AccountStatus>
+                            <Button data-test="account-change-btn" onClick={MakePrivate} > Make it Private </Button></div>}
 
-                        {etudiant.visibilite === false && <div><AccountStatus>Votre Compte Est <Status status="false">Private</Status></AccountStatus> <Button onClick={MakePublic} >  Make it Public </Button></div>}
+                        {etudiant.visibilite === false && <div><AccountStatus >Votre Compte Est <Status status="false" data-test="account-status" >Private</Status></AccountStatus> <Button data-test="account-change-btn" onClick={MakePublic} >  Make it Public </Button></div>}
 
 
 

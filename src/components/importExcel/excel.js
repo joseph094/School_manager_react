@@ -2,9 +2,11 @@ import axios from "axios";
 import React, { useState } from "react";
 import "./excel.css"
 import withAuth from "../../hoc/hoc";
+import { useNavigate } from "react-router-dom";
 
 const Excel = () => {
   const [file, setSelectedFile] = useState(null);
+  const navigate = useNavigate();
   const handleFileInput = (e) => {
     console.log(e.target.files[0]);
     setSelectedFile(e.target.files[0]);
@@ -20,6 +22,7 @@ const Excel = () => {
         "Content-Type": "multipart/form-data"
       }
     }).then(response => {
+      navigate(`/getalletudiant`, { replace: true })
       console.log(response.data);
 
     }).catch(error => {
@@ -32,9 +35,10 @@ const Excel = () => {
       <input type="file" onChange={handleFileInput} />
 
       {file && !isCsvOrXlsxFile(file.name) && (
-        <div style={{ color: 'red' }}>Only CSV or XLSX files are allowed</div>
+        <div style={{ color: 'red' }}>Only CSV or XLSX files are allowed </div>
+
       )}{file && isCsvOrXlsxFile(file.name) && (
-        <button onClick={handleFileUpload} > Submit </button>
+        <button className="importSubmit" data-test="import-submit" onClick={handleFileUpload} > Submit </button>
       )
 
       }
