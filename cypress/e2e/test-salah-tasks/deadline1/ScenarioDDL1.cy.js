@@ -4,7 +4,6 @@ describe('Signup Alumni Voir son etat Et changer Mot De passe', () => {
               method: 'DELETE',
               url: 'http://localhost:3000/etudiant-alumni/12345'
             }).then((resp) => {
-                // redirect status code is 302
                 expect(resp.status).to.eq(200)})
         });
     it('DDL 1 Scenario', () => {
