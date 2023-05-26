@@ -23,7 +23,7 @@ describe("AjouterAnneUniversitaire", () => {
       body: {},
     });
 
-    cy.get('input[name="anne"]').type("2023");
+    cy.get('input[name="anne"]').type("2022-2023");
     cy.get('input[name="semestre"]').type("1");
     cy.get('button[data-test="valider"]').click();
 
