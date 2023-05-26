@@ -56,10 +56,10 @@ describe("InsertPFE + Voir Liste PFE", () => {
   it("displays all fetched data", () => {
     window.localStorage.removeItem("token");
     cy.visit("http://localhost:3005/signin");
-    cy.getByData("login").type("123456");
-    cy.getByData("mdp").type("admin");
+    cy.getByData("login").type("12355");
+    cy.getByData("mdp").type("231788");
     cy.get("#demo-simple-select").click(); // Click on the select element
-    cy.get('[data-value="admin"]').click(); // Click on the MenuItem with a value of "admin"
+    cy.get('[data-value="enseignant"]').click(); // Click on the MenuItem with a value of "admin"
 
     cy.getByData("valider").click({ force: true });
     cy.location("pathname").should("eq", "/");

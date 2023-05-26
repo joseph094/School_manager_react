@@ -134,7 +134,7 @@ function Choisirpfe() {
     </Container>
   );
 }
-export default withAuth(Choisirpfe, ["etudiant"]);
+export default withAuth(Choisirpfe, ["enseignant"]);
 
 const Container = styled.div`
   background-color: #dfdfdf;

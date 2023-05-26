@@ -1,8 +1,6 @@
 describe("BasculerAnne Component", () => {
   beforeEach(() => {
     cy.intercept("GET", "http://localhost:3000/evenement", {
-      // Return an array instead of an object
-      // Also add a mock anneuniversitaire property to each event
       body: [
         {
           id: 1,
@@ -10,7 +8,10 @@ describe("BasculerAnne Component", () => {
           dateEvenement: "2023-06-01",
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          anneuniversitaireName: "2022-2023",
+          anneuniversitaireName: {
+            anne: "2022-2023",
+            nbsemestre: 2,
+          },
         },
         {
           id: 2,
@@ -18,7 +19,10 @@ describe("BasculerAnne Component", () => {
           date: "2023-06-15",
           description:
             "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          anneuniversitaireName: "2022-2023",
+          anneuniversitaireName: {
+            anne: "2022-2023",
+            nbsemestre: 2,
+          },
         },
       ],
     }).as("getEvents");

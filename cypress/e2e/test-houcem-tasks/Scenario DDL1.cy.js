@@ -1,4 +1,6 @@
 describe("Login", () => {
+  const generateRandomId = () => Cypress._.uniqueId("");
+  let randomId = generateRandomId();
   it("Scenario authentification admin et CRUD ETUDIANTS ", () => {
     // window.localStorage.removeItem("token");
     cy.visit("http://localhost:3005/signin");
@@ -12,7 +14,7 @@ describe("Login", () => {
     cy.visit("http://localhost:3005/ajouterEtudiant");
     cy.get('[data-test="nom"]').type("Doe");
     cy.get('[data-test="prenom"]').type("John");
-    cy.get('[data-test="cin"]').type("{selectall}{backspace}").type("123456");
+    cy.get('[data-test="cin"]').type("{selectall}{backspace}").type(randomId);
     cy.get('[data-test="email"]').type("johndoe@example.com");
     cy.get('[data-test="classe"]').type("ing");
 
@@ -53,7 +55,7 @@ describe("Login", () => {
         ensureScrollable: false,
       })
       .type("{selectall}{backspace}")
-      .type("123456");
+      .type(randomId);
     //   .should("be.visible")
 
     cy.get('[data-test="type"]').click();
@@ -89,7 +91,7 @@ describe("Login", () => {
     //ETUDIANT AJOUTE
     cy.visit("http://localhost:3005/getetudiant");
 
-    cy.get('[data-test="cin"]').type("{selectall}{backspace}").type("123456");
+    cy.get('[data-test="cin"]').type("{selectall}{backspace}").type(randomId);
     cy.get('[data-test="type"]').click();
     cy.get('[data-value="Actuel"]').click();
     cy.contains("Checher").click();
@@ -104,7 +106,7 @@ describe("Login", () => {
     // cy.get('[data-test="delete"]').click();
     // cy.visit("http://localhost:3005/getetudiant");
 
-    // cy.get('[data-test="cin"]').type("{selectall}{backspace}").type("123456");
+    // cy.get('[data-test="cin"]').type("{selectall}{backspace}").type("randomId");
     // cy.get('[data-test="type"]').click();
     // cy.get('[data-value="Actuel"]').click();
     // cy.contains("Checher").click();

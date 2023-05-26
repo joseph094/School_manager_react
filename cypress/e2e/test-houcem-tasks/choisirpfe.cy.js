@@ -9,9 +9,10 @@ describe("Choisirpfe component", () => {
 
     cy.getByData("valider").click({ force: true });
     cy.location("pathname").should("eq", "/");
-    cy.visit("/choisirpfe"); // replace with the correct route
   });
   it("Allows encadrerPfe to be called", () => {
+    cy.visit("/choisirpfe"); // replace with the correct route
+
     cy.get("[data-test=sujet]").first().click({ force: true });
     cy.location("pathname").should("include", "/pfe/");
     cy.visit("/choisirpfe"); // replace with the correct route
