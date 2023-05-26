@@ -237,14 +237,15 @@ width: 400px;
   @media (max-width: 992px) {
     .container-contact1 {
       padding: 90px 80px 88px 90px;
+      margin-right: 30px;
     }
   
     .contact1-pic {
-      width: 35%;
+      display: none;
     }
   
     .contact1-form {
-      width: 55%;
+      width: 100%;
     }
   }
   

@@ -60,7 +60,7 @@ function Modal() {
                 });
 
             axios
-                .post("http://localhost:3000/etudiant-alumni/inserting", {
+                .post("http://localhost:3000/etudiant-alumni/insteraftersucess", {
                     nom: student.nom,
                     prenom: student.prenom,
                     dateNaissance: student.dateNaissance,
@@ -137,7 +137,7 @@ function Modal() {
             {modal &&
                 <div className="modal">
                     <div onClick={toggleModal} className="overlay"></div>
-                    <div className="modal-content">
+                    <div data-test="modal" className="modal-content">
                         <h2> Année Universtiaire {currentYear}/{currentYear + 1} </h2>
                         <h4>Bonjour {etudiant ? etudiant.nom + ' ' + etudiant.prenom : ''} </h4>
 
@@ -145,13 +145,13 @@ function Modal() {
                             Nous Esperons que vous allez bien .Avant d'acceder votre espace ,  nous aimerions savoir comment vous avez fait l'année scolaire précédente
                         </p>
                         <div className="wrap-input1">
-                            <input className="signInput" type="date" placeholder="Date Obtention Diplome" name="diplome" value={diplome} onChange={(e) => setdiplome(e.target.value)} />
+                            <input data-test="test-obtention" className="signInput" type="date" placeholder="Date Obtention Diplome" name="diplome" value={diplome} onChange={(e) => setdiplome(e.target.value)} />
                         </div>
                         <button className="close-modal" onClick={toggleModal}>
                             CLOSE
                         </button>
-                        <button className="green-button" onClick={reussi} > Reussi(e) </button>
-                        <button className="red-button" onClick={redoublant}> Redoublant(e) </button>
+                        <button data-test="reussi-btn-year" className="green-button" onClick={reussi} > Reussi(e) </button>
+                        <button data-test="redoublante-btn-year"  className="red-button" onClick={redoublant}> Redoublant(e) </button>
                     </div>
                 </div>
             }

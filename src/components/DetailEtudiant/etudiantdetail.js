@@ -42,38 +42,38 @@ function GetDetailEtudiant() {
             <div>
                 {etudiant ?
                     <Container>
-                        <ProfilePicture src={process.env.PUBLIC_URL +'/profile.png'}></ProfilePicture>
-                        <NameRow>
+                        <ProfilePicture src={process.env.PUBLIC_URL + '/profile.png'}></ProfilePicture>
+                        <NameRow data-test="detail-name">
                             <Prenom>{etudiant.prenom}<Nom> {etudiant.nom}</Nom></Prenom>
                         </NameRow>
-                        <InformationRow>
+                        <InformationRow data-test="detail-email" >
                             <Title>Email</Title><Value>{etudiant.email}</Value>
                         </InformationRow>
-                        <InformationRow>
+                        <InformationRow data-test="detail-date-naissance" >
                             <Title>Date De Naissance</Title><Value>{etudiant.dateNaissance}</Value>
                         </InformationRow>
-                        <InformationRow>
+                        <InformationRow data-test="detail-formation">
                             <Title>Formation</Title><Value>{etudiant.niveau} {etudiant.Classe}</Value>
                         </InformationRow>
 
-                        {etudiant.vacation != null && <InformationRow> <Title>Etudiant : </Title><Value> Alumni</Value></InformationRow>}
-                        {etudiant.vacation == null && <InformationRow> <Title>Etudiant : </Title><Value> Actuel</Value></InformationRow>}
+                        {etudiant.vacation != null && <InformationRow data-test="detail-type"> <Title>Etudiant:</Title><Value>Alumni</Value></InformationRow>}
+                        {etudiant.vacation == null && <InformationRow data-test="detail-type"> <Title>Etudiant:</Title><Value>Actuel</Value></InformationRow>}
 
 
                         {etudiant.visibilite === true && <div>
-                            <AccountStatus>Son Compte Est <Status status="true">Public</Status></AccountStatus>
+                            <AccountStatus data-test="detail-status">Son Compte Est <Status status="true">Public</Status></AccountStatus>
                         </div>}
 
-                        {etudiant.visibilite === false && <div><AccountStatus>Son Compte Est <Status status="false">Private</Status></AccountStatus></div>}
+                        {etudiant.visibilite === false && <div><AccountStatus data-test="detail-status">Son Compte Est <Status status="false">Private</Status></AccountStatus></div>}
 
                         {etudiant.vacation != null ? <div>
-                            <InformationRow>
+                            <InformationRow data-test="detail-diplome">
                                 <Title> Date Obtention Diplome : </Title><Value>{etudiant.dateObtentionDiplome} </Value>
                             </InformationRow>
-                            <InformationRow>
+                            <InformationRow data-test="detail-societe">
                                 <Title> La Societe qui travaille dans  : </Title><Value>{etudiant.societe} </Value>
                             </InformationRow>
-                            <InformationRow>
+                            <InformationRow data-test="detail-pays">
                                 <Title>Pays  : </Title><Value>{etudiant.pays} </Value>
                             </InformationRow>
 
@@ -82,7 +82,7 @@ function GetDetailEtudiant() {
                             <h1>Curriculum Vitae</h1>
                         </InformationRow>
 
-                        <InformationRow>
+                        <InformationRow data-test="detail-experiences" >
                             <h2>Experience:</h2>
                             <Value>
                                 {etudiant.cv ? etudiant.cv.experience.map((i) => {
@@ -94,7 +94,7 @@ function GetDetailEtudiant() {
                                 }) : 'no Experience ICI'}
                             </Value>
                         </InformationRow>
-                        <InformationRow>
+                        <InformationRow data-test="detail-formations">
                             <h2>Formation:</h2>
                             <Value>
                                 {etudiant.cv ? etudiant.cv.formation.map((i) => {
@@ -106,7 +106,7 @@ function GetDetailEtudiant() {
                                 }) : 'no formation ICI'}
                             </Value>
                         </InformationRow>
-                        <InformationRow>
+                        <InformationRow data-test="detail-competences">
                             <h2>Competences:</h2>
                             <Value>
                                 {etudiant.cv ? etudiant.cv.Competences.map((i) => {
@@ -123,19 +123,19 @@ function GetDetailEtudiant() {
                             <div>
                                 {etudiant.pfe != null ?
                                     <div>
-                                        <InformationRow>
+                                        <InformationRow data-test="detail-pfe-titre">
                                             <h1 style={{ marginLeft: "100px" }}>Projet Fin D'Etudes</h1><br />
                                         </InformationRow>
-                                        <InformationRow>
+                                        <InformationRow data-test="detail-pfe-type">
                                             <Title>Type:</Title><Value>{etudiant.pfe.type}</Value>
                                         </InformationRow>
-                                        <InformationRow>
+                                        <InformationRow data-test="detail-pfe-sujet">
                                             <Title>Sujet:</Title><Value>{etudiant.pfe.sujet}</Value>
                                         </InformationRow>
-                                        <InformationRow>
+                                        <InformationRow data-test="detail-pfe-societe">
                                             <Title>Societe:</Title><Value>{etudiant.pfe.societe}</Value>
                                         </InformationRow>
-                                        <InformationRow>
+                                        <InformationRow data-test="detail-pfe-pays">
                                             <Title>Pays:</Title><Value>{etudiant.pfe.pays}</Value>
                                         </InformationRow>
 
@@ -146,16 +146,34 @@ function GetDetailEtudiant() {
                                         <InformationRow>
                                             <h1 style={{ marginInlineStart: "50px" }}>Projet Fin D'Année</h1><br />
                                         </InformationRow>
-                                        <InformationRow>
+                                        <InformationRow data-test="detail-pfa-titre">
                                             <Title>Titre:</Title><Value>{etudiant.pfa.titre}</Value>
                                         </InformationRow>
-                                        <InformationRow>
+                                        <InformationRow data-test="detail-pfa-desc">
                                             <Title>Description:</Title><Value>{etudiant.pfa.description}</Value>
                                         </InformationRow>
-                                        <InformationRow>
+                                        <InformationRow data-test="detail-pfa-technologie">
                                             <Title>Technologie:</Title><Value>{etudiant.pfa.technologie}</Value>
                                         </InformationRow>
                                     </div> : <div><InformationRow><h1 style={{ marginInlineStart: "50px" }}>Cet Etudiant n a pas encore un PFA</h1><br /></InformationRow></div>}
+                                {etudiant.stages != null ?
+                                    <div>
+                                        <InformationRow>
+                                            <h1 style={{ marginInlineStart: "50px" }}>Stages</h1><br />
+                                        </InformationRow>
+                                        <InformationRow>
+                                            <Title>sujet:</Title><Value>{etudiant.stages[0].sujet}</Value>
+                                        </InformationRow>
+                                        <InformationRow >
+                                            <Title>societe:</Title><Value>{etudiant.stages[0].societe}</Value>
+                                        </InformationRow>
+                                        <InformationRow >
+                                            <Title>Date Debut:</Title><Value>{etudiant.stages[0].dateDebut}</Value>
+                                        </InformationRow>
+                                        <InformationRow >
+                                            <Title>Date Fin:</Title><Value>{etudiant.stages[0].dateFin}</Value>
+                                        </InformationRow>
+                                    </div> : <div><InformationRow><h1 style={{ marginInlineStart: "50px" }}>Cet Etudiant n'pas fait des stages</h1><br /></InformationRow></div>}
                             </div>
                             : ''}
                     </Container>
@@ -175,7 +193,7 @@ function GetDetailEtudiant() {
     );
 };
 
-export default withAuth(GetDetailEtudiant, ["admin","DroitEtud"]);
+export default withAuth(GetDetailEtudiant, ["admin", "DroitEtud"]);
 
 export const Nom = styled.span`
 font-family: 'montserrat';

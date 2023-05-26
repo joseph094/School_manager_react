@@ -40,7 +40,10 @@ function ListEvents() {
     const arr = data.map((i) => {
         return (
             <tr>
-                
+                <td className="colonne">
+                    {i.idEvenement}
+                </td>
+
                 <td className="colonne">
                     {i.nom}
                 </td>
@@ -72,9 +75,12 @@ function ListEvents() {
                     <table className="custom-table" striped bordered hover size="sm">
                         <thead>
                             <tr>
-                                
                                 <th className="table_head">
-                                    Even Name
+                                    Ref
+                                </th>
+
+                                <th className="table_head">
+                                    Event Name
                                 </th>
                                 <th className="table_head">
                                     Date
@@ -101,4 +107,4 @@ function ListEvents() {
 
 }
 
-export default withAuth(ListEvents,["admin","Droitevent","etudiant","alumni"]);
+export default withAuth(ListEvents, ["admin", "Droitevent", "etudiant", "alumni"]);

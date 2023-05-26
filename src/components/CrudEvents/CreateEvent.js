@@ -2,6 +2,7 @@ import axios from "axios"
 import React, { useState } from "react"
 import './CreateEvent.css'
 import withAuth from "../../hoc/hoc";
+import { useNavigate } from "react-router-dom";
 
 function CreateEvent() {
     const token = localStorage.getItem('token');
@@ -11,6 +12,7 @@ function CreateEvent() {
     const [anneUni, setanneUni] = useState('')
 
     const [desc, setdesc] = useState('')
+    const navigate = useNavigate();
 
 
     const AddEvent = (e) => {
@@ -23,7 +25,8 @@ function CreateEvent() {
         }, {
             headers: { 'Authorization': `Bearer ${token}` }
         }).then(res => console.log("this is the post method", res),
-            window.location.reload(false)
+            navigate(`/Events`, { replace: true })
+
         ).catch(err => console.log(err));
     }
     return (<div className="contact1">
@@ -38,28 +41,28 @@ function CreateEvent() {
                 </span>
 
                 <div className="wrap-input1" >
-                    <input className="input1" type="text" placeholder="Event Ref" value={idEvent} onChange={(e) => setIdEvent(e.target.value)} />
+                    <input data-test="event-ref" className="input1" type="text" placeholder="Event Ref" value={idEvent} onChange={(e) => setIdEvent(e.target.value)} />
                 </div>
 
                 <div className="wrap-input1">
-                    <input className="input1" type="text" placeholder="Event Name" value={NomEvent} onChange={(e) => setNomEvent(e.target.value)} />
+                    <input data-test="event-name" className="input1" type="text" placeholder="Event Name" value={NomEvent} onChange={(e) => setNomEvent(e.target.value)} />
                 </div>
                 <div className="wrap-input1">
-                    <input className="input1" type="text" placeholder="Event Anne Universitaire" value={anneUni} onChange={(e) => setanneUni(e.target.value)} />
+                    <input data-test="event-anne" className="input1" type="text" placeholder="Event Anne Universitaire" value={anneUni} onChange={(e) => setanneUni(e.target.value)} />
                     <label>svp  de type 2022-2023</label>
 
                 </div>
 
                 <div className="wrap-input1">
-                    <input className="input1" type="date" placeholder="Event Date" value={dateEvent} onChange={(e) => setdateEvent(e.target.value)} />
+                    <input data-test="event-date" className="input1" type="date" placeholder="Event Date" value={dateEvent} onChange={(e) => setdateEvent(e.target.value)} />
                 </div>
 
                 <div className="wrap-input1">
-                    <textarea className="input1" value={desc} onChange={(e) => setdesc(e.target.value)} placeholder="A little Description"></textarea>
+                    <textarea data-test="event-desc" className="input1" value={desc} onChange={(e) => setdesc(e.target.value)} placeholder="A little Description"></textarea>
                 </div>
 
                 <div className="container-contact1-form-btn" >
-                    <button className="contact1-form-btn" onClick={AddEvent} >
+                    <button data-test="btn-create-event" className="contact1-form-btn" onClick={AddEvent} >
                         <span>
                             Create New Event
                         </span>
@@ -69,4 +72,4 @@ function CreateEvent() {
         </div>
     </div>)
 }
-export default withAuth(CreateEvent,["admin","Droitevent"]);
+export default withAuth(CreateEvent, ["admin", "Droitevent"]);
