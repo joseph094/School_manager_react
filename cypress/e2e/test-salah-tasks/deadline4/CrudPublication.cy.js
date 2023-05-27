@@ -61,6 +61,7 @@ describe('Crud Publication', () => {
         cy.wait(5000);
         cy.getByData("publier").click();
         cy.location('pathname').should('eq','/mypublications');
+        cy.wait(5000);
         cy.getByData("type").should("contain.text","conseil");
         cy.getByData("nomprenom").should("contain.text","Doe John");
         cy.getByData("contenu").should("contain.text","contenu de publication");
@@ -72,6 +73,7 @@ describe('Crud Publication', () => {
         cy.wait(5000);
         cy.getByData("modifier").click();
         cy.location('pathname').should('eq','/mypublications');
+        cy.wait(5000);
         cy.getByData("type").should("contain.text","offre");
         cy.getByData("nomprenom").should("contain.text","Doe John");
         cy.wait(5000);
