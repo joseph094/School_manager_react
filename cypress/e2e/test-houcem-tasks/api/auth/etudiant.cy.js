@@ -50,6 +50,12 @@ describe("etudiantAuthController", () => {
       userDto
     ).then((response) => {
       expect(response.status).to.eq(201);
+      const token = response.body.access_token;
+
+      expect(token).to.not.be.null;
+      expect(token).to.match(
+        /^[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+$/
+      );
     });
   });
 });

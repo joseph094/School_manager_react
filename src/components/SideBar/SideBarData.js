@@ -106,7 +106,20 @@ export const SideBarData = [
     link: "/NewEnseignant",
     roles: ["responsable", "admin", "DroitEns"],
   },
-
+  ,
+  {
+    title: "Ajouter Anne Universitaire",
+    icon: <CreateIcon />,
+    link: "/AjouterAnneUniversitaire",
+    roles: ["admin"],
+  },
+  ,
+  {
+    title: "Basculer Anne Universitaire",
+    icon: <CreateIcon />,
+    link: "/BasculerAnne",
+    roles: ["admin"],
+  },
   {
     title: "Voir  Etudiant",
     icon: <FormatListNumberedRtlIcon />,
@@ -167,13 +180,13 @@ export const SideBarData = [
     title: "Lister Vacations",
     icon: <ListAltIcon />,
     link: "/vacations",
-    roles: ["admin","DroitDemande"],
+    roles: ["admin", "DroitDemande"],
   },
   {
     title: "Lister Contrats",
     icon: <ListAltIcon />,
     link: "/contrats",
-    roles: ["admin","DroitDemande"],
+    roles: ["admin", "DroitDemande"],
   },
   {
     title: "Demander Vacations",
