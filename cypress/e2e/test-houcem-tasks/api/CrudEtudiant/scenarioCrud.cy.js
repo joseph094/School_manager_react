@@ -120,10 +120,11 @@ describe("EtudiantActuelService", () => {
     });
     cy.request({
       method: "GET",
-      url: `http://localhost:3000/etudiant-actuel/${etudiantId}`,
+      url: `http://localhost:3000/etudiant-actuel/all`,
       failOnStatusCode: false,
     }).then((response) => {
-      expect(response.status).to.eq(404);
+      const f = response.body.filter((et) => et.login == randomId);
+      expect(f.length).to.eq(0);
     });
   });
 });

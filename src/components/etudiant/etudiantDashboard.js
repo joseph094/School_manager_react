@@ -12,7 +12,7 @@ import withAuth from "../../hoc/hoc";
 function EtudiantDashboard() {
   const socket = io("http://localhost:3000");
   const [connected, setConnected] = useState(socket.connected);
-  const [notifs, setNotifs] = useState();
+  const [notifs, setNotifs] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     const token = jwtDecode(localStorage.getItem("token"));

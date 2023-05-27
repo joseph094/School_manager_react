@@ -1,7 +1,7 @@
-describe("addpfe API", () => {
+describe("add stage API", () => {
   const generateRandomId = () => Cypress._.uniqueId("");
   let randomId = generateRandomId();
-  it("adds a PFE successfully", () => {
+  it("adds a stage successfully", () => {
     const etudiant = {
       cin: randomId,
       login: randomId,
