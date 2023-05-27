@@ -199,7 +199,7 @@ export const GetEtudiantRole = async (id) => {
       const etudiant = response.data;
       switch (etudiant.verified){
         case null:
-          return "  unverified";
+          return "unverified";
         case false :
           return "refused";
         case true:
