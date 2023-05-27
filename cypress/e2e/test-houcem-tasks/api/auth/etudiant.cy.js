@@ -1,5 +1,5 @@
 describe("etudiantAuthController", () => {
-  const generateRandomId = () => Cypress._.uniqueId("id_");
+  const generateRandomId = () => Cypress._.uniqueId("");
   let randomId = generateRandomId();
 
   it("should sign up an alumni", () => {

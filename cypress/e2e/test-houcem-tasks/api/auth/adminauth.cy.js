@@ -1,5 +1,5 @@
 describe("AdminAuthController", () => {
-  const generateRandomId = () => Cypress._.uniqueId("id_");
+  const generateRandomId = () => Cypress._.uniqueId("");
   let randomId = generateRandomId();
 
   it("should sign up a new admin", () => {
