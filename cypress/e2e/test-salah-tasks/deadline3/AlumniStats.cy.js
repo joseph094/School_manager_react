@@ -1,4 +1,4 @@
-describe('Faire Demandes', () => {
+describe('Voir Statistiques Alumni', () => {
     beforeEach(() => {
         cy.visit("/signin");
         cy.getByData("login").type("115");
