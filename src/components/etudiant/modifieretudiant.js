@@ -211,6 +211,7 @@ function EtudiantPUT() {
             <DatePicker
               type="date"
               name="DOB"
+              value={etudiantData.DOB}
               onChange={handleChange}
               data-test="date"
             />
@@ -231,7 +232,7 @@ function EtudiantPUT() {
     </AllContainer>
   );
 }
-export default withAuth(EtudiantPUT, ["admin", "etudiant","DroitEtud"]);
+export default withAuth(EtudiantPUT, ["admin", "etudiant", "DroitEtud"]);
 
 const AllContainer = styled.div`
   height: 110%;
