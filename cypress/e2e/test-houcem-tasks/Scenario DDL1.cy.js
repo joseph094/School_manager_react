@@ -97,9 +97,9 @@ describe("Login", () => {
     cy.contains("Checher").click();
     // A fixer !
 
-    // cy.get('[data-test="nom"]').should("have.value", "John");
-    // cy.get('[data-test="prenom"]').should("have.value", "Doe");
-    // cy.get('[data-test="email"]').should("have.value", "john.doe@example.com");
+    cy.get('[data-test="nom"]').should("have.value", "John");
+    cy.get('[data-test="prenom"]').should("have.value", "Doe");
+    cy.get('[data-test="email"]').should("have.value", "john.doe@example.com");
 
     cy.get('[data-test="date"]').contains("1995-05-12");
     //Delete Etudiant

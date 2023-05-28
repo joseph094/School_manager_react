@@ -2,8 +2,8 @@ describe("InsertPFE + Voir Liste PFE", () => {
   let pfes;
   it("should submit the form with valid data", () => {
     cy.visit("http://localhost:3005/signin");
-    cy.getByData("login").type("123456");
-    cy.getByData("mdp").type("123456");
+    cy.getByData("login").type("12341234");
+    cy.getByData("mdp").type("jalel");
     cy.get("#demo-simple-select").click(); // Click on the select element
     cy.get('[data-value="etudiant"]').click(); // Click on the MenuItem with a value of "admin"
     // Fill in the form inputs with valid data
@@ -25,8 +25,8 @@ describe("InsertPFE + Voir Liste PFE", () => {
 
   it("should show an error message when the form is submitted with invalid data", () => {
     cy.visit("http://localhost:3005/signin");
-    cy.getByData("login").type("123456");
-    cy.getByData("mdp").type("123456");
+    cy.getByData("login").type("12341234");
+    cy.getByData("mdp").type("jalel");
     cy.get("#demo-simple-select").click(); // Click on the select element
     cy.get('[data-value="etudiant"]').click(); // Click on the MenuItem with a value of "admin"
     // Fill in the form inputs with valid data

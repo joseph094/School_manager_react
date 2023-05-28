@@ -25,9 +25,7 @@ export default function AjouterAnneUniversitaire() {
     const token = localStorage.getItem("token");
 
     axios
-      .post("http://localhost:3000/anneuniversitaire", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      .post("http://localhost:3000/anneuniversitaire", anne)
       .then(setError(false), navigate("/"))
       .catch((error) => {
         console.log(error);

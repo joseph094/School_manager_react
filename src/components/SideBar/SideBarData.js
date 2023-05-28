@@ -117,14 +117,14 @@ export const SideBarData = [
   {
     title: "Basculer Anne Universitaire",
     icon: <CreateIcon />,
-    link: "/BasculerAnne",
+    link: "/basculer",
     roles: ["admin"],
   },
   {
     title: "Voir  Etudiant",
     icon: <FormatListNumberedRtlIcon />,
     link: "/getetudiant",
-    roles: ["responsable", "enseignant", "admin", "DroitEtud"],
+    roles: ["responsable", "admin", "DroitEtud"],
   },
   {
     title: "Modifier Etudiant",

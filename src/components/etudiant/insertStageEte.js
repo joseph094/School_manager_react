@@ -44,7 +44,7 @@ function InsertStageEte() {
       .catch(setError(true));
   };
   useEffect(() => {
-    console.log(stageEte);
+    console.log("stageEttte ", stageEte);
     setError(false);
   }, [stageEte]);
 

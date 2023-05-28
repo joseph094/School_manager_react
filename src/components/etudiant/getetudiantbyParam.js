@@ -12,7 +12,7 @@ export default function GetEtudiantByParam() {
     nom: "",
     prenom: "",
     email: "",
-    Competences: "",
+    Competences: "vide",
     formation: "",
     experience: "",
   });
@@ -28,9 +28,9 @@ export default function GetEtudiantByParam() {
             nom: response.data.nom,
             prenom: response.data.prenom,
             email: response.data.email,
-            Competences: response.data.cv.Competences,
-            formation: response.data.cv.formation,
-            experience: response.data.cv.experience,
+            Competences: response.data.cv?.Competences,
+            formation: response.data.cv?.formation,
+            experience: response.data.cv?.experience,
           };
         });
       })
